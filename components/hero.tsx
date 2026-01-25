@@ -1,0 +1,67 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ConsultationCta } from "@/components/consultation-cta";
+import { AGENCY } from "@/lib/constants";
+
+export function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container-wide text-center text-white pt-20">
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+          {/* Eyebrow */}
+          <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
+            {AGENCY.tagline}
+          </p>
+
+          {/* Main Headline */}
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
+            Discover Your Next
+            <span className="block mt-2 text-gold-gradient">Masterpiece</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-editorial">
+            We specialize in curating extraordinary properties for discerning
+            clients who appreciate the finest in luxury real estate.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 text-base px-8"
+            >
+              <Link href="/properties">
+                View Properties
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <ConsultationCta variant="outline" size="lg" className="border-white text-white hover:bg-white/10" />
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/80 rounded-full" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
