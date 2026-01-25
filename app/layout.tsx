@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${SEO.siteName}`,
   },
   description: SEO.defaultDescription,
-  keywords: SEO.defaultKeywords,
+  keywords: [...SEO.defaultKeywords],
   authors: [{ name: AGENCY.fullName }],
   creator: AGENCY.fullName,
   openGraph: {
