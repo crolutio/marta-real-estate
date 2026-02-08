@@ -77,10 +77,13 @@ export default function ContactPage() {
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Let&apos;s Start a Conversation
             </h1>
-            <p className="text-lg text-muted-foreground text-editorial">
+            <p className="text-lg text-muted-foreground text-editorial mb-4">
               Whether you&apos;re looking to buy, sell, or invest in luxury real
               estate, I&apos;m here to provide personalized guidance and expert
               insight. Reach out to begin your journey.
+            </p>
+            <p className="text-muted-foreground/80 text-sm font-medium">
+              Request a Property Consultation or Make an Appointment
             </p>
           </div>
         </div>

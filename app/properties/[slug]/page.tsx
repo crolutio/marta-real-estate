@@ -225,7 +225,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
                 <TabsContent value="highlights" className="pt-6">
                   <ul className="space-y-3">
-                    {property.highlights.map((highlight, index) => (
+                    {property.highlights.map((highlight: string, index: number) => (
                       <li
                         key={index}
                         className="flex items-start gap-3 text-muted-foreground"
@@ -239,7 +239,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
                 <TabsContent value="amenities" className="pt-6">
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {property.amenities.map((amenity, index) => (
+                    {property.amenities.map((amenity: string, index: number) => (
                       <div
                         key={index}
                         className="flex items-center gap-3 p-3 bg-secondary/30 rounded-lg"

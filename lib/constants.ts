@@ -5,9 +5,9 @@ export const AGENCY = {
   tagline: "Exceptional Properties for Discerning Clients",
   description:
     "A boutique real estate agency specializing in luxury properties for high-net-worth individuals seeking exceptional investment opportunities.",
-  email: "contact@martaduran.com",
-  phone: "+1 (555) 123-4567",
-  whatsapp: "+15551234567", // Format for wa.me link (no spaces, dashes, or special chars)
+  email: "info@martaduran.ae",
+  phone: "+971 55 754 1884",
+  whatsapp: "+971557541884", // Format for wa.me link (no spaces, dashes, or special chars)
   address: {
     line1: "123 Luxury Avenue, Suite 500",
     city: "New York",
@@ -18,7 +18,7 @@ export const AGENCY = {
   hours: "Mon - Fri: 9:00 AM - 6:00 PM | Sat: By Appointment",
   social: {
     instagram: "https://instagram.com/martaduran",
-    linkedin: "https://ae.linkedin.com/in/marta-duran-camps-9ba795397",
+    linkedin: "https://www.linkedin.com/in/marta-duran-camps-9ba795397/?originalSubdomain=ae",
     facebook: "https://facebook.com/martaduranrealestate",
   },
 } as const;
@@ -44,6 +44,8 @@ export const SEO = {
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Properties", href: "/properties" },
+  { label: "About Dubai", href: "/about-dubai" },
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -52,6 +54,8 @@ export const NAV_LINKS = [
 export const FOOTER_LINKS = {
   main: [
     { label: "Properties", href: "/properties" },
+    { label: "About Dubai", href: "/about-dubai" },
+    { label: "Services", href: "/services" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
