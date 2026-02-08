@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -75,15 +75,7 @@ export function SiteHeader() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href={`tel:${AGENCY.phone}`}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={`Call us at ${AGENCY.phone}`}
-            >
-              <Phone className="h-4 w-4" />
-              <span className="sr-only md:not-sr-only">{AGENCY.phone}</span>
-            </a>
+          <div className="hidden md:flex items-center">
             <ConsultationCta />
           </div>
 
@@ -121,14 +113,7 @@ export function SiteHeader() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-6 border-t border-border space-y-4">
-                  <a
-                    href={`tel:${AGENCY.phone}`}
-                    className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <Phone className="h-5 w-5" />
-                    {AGENCY.phone}
-                  </a>
+                <div className="pt-6 border-t border-border">
                   <ConsultationCta className="w-full" />
                 </div>
               </nav>

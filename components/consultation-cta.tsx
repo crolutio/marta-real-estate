@@ -81,7 +81,7 @@ export function ConsultationCta({
           )}
         >
           <Calendar className="mr-2 h-4 w-4" />
-          Book a Consultation
+          Schedule a Consultation
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
