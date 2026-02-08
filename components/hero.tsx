@@ -35,8 +35,7 @@ export function Hero() {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-editorial">
-            We specialize in curating extraordinary properties for discerning
-            clients who appreciate the finest in luxury real estate.
+            We specialize in high-end homes for clients seeking modern luxury and comfort.
           </p>
 
           {/* CTA Button */}
@@ -44,7 +43,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 text-base px-8"
+              className="bg-white text-primary text-base px-8"
             >
               <Link href="/properties">
                 View Properties

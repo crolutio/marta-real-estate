@@ -21,7 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AGENCY, FAQ_ITEMS } from "@/lib/constants";
+import { AGENCY, FAQ_ITEMS, DUBAI_FAQ_ITEMS } from "@/lib/constants";
 import { toast } from "sonner";
 
 export default function ContactPage() {
@@ -324,7 +324,7 @@ export default function ContactPage() {
 
       {/* FAQ Section */}
       <section className="section-padding bg-secondary/30">
-        <div className="container-narrow">
+        <div className="container-wide">
           <div className="text-center mb-12">
             <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
               Common Questions
@@ -334,22 +334,49 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
-            {FAQ_ITEMS.map((item, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card rounded-lg px-6"
-              >
-                <AccordionTrigger className="text-left font-semibold hover:no-underline py-6">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* General FAQ */}
+            <div>
+              <h3 className="font-serif text-2xl font-semibold mb-6 text-center">General Questions</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {FAQ_ITEMS.map((item, index) => (
+                  <AccordionItem
+                    key={`general-${index}`}
+                    value={`general-${index}`}
+                    className="bg-card rounded-lg px-6"
+                  >
+                    <AccordionTrigger className="text-left font-semibold hover:no-underline py-6">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground pb-6">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Dubai FAQ */}
+            <div>
+              <h3 className="font-serif text-2xl font-semibold mb-6 text-center">Dubai Investment Questions</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {DUBAI_FAQ_ITEMS.map((item, index) => (
+                  <AccordionItem
+                    key={`dubai-${index}`}
+                    value={`dubai-${index}`}
+                    className="bg-card rounded-lg px-6"
+                  >
+                    <AccordionTrigger className="text-left font-semibold hover:no-underline py-6">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground pb-6">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
         </div>
       </section>
     </div>

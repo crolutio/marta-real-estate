@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Moon, Sun, Monitor } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -26,7 +26,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
-  const [theme, setTheme] = React.useState<"light" | "dark" | "system">("system");
+  const [theme, setTheme] = React.useState<"light" | "dark">("light");
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -38,30 +38,24 @@ export function SiteHeader() {
 
   React.useEffect(() => {
     // Load theme from localStorage
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | "system" | null;
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     if (savedTheme) {
       setTheme(savedTheme);
       applyTheme(savedTheme);
     } else {
-      // Default to system
-      applyTheme("system");
+      // Default to light
+      setTheme("light");
+      applyTheme("light");
     }
   }, []);
 
-  const applyTheme = (newTheme: "light" | "dark" | "system") => {
+  const applyTheme = (newTheme: "light" | "dark") => {
     const root = document.documentElement;
-
-    if (newTheme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      root.classList.toggle("dark", systemTheme === "dark");
-    } else {
-      root.classList.toggle("dark", newTheme === "dark");
-    }
-
+    root.classList.toggle("dark", newTheme === "dark");
     localStorage.setItem("theme", newTheme);
   };
 
-  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
+  const handleThemeChange = (newTheme: "light" | "dark") => {
     setTheme(newTheme);
     applyTheme(newTheme);
   };
@@ -130,10 +124,6 @@ export function SiteHeader() {
                   <Moon className="mr-2 h-4 w-4" />
                   <span>Dark</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleThemeChange("system")}>
-                  <Monitor className="mr-2 h-4 w-4" />
-                  <span>System</span>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <ConsultationCta />
@@ -193,14 +183,6 @@ export function SiteHeader() {
                         className="h-8 w-8 p-0"
                       >
                         <Moon className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant={theme === "system" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => handleThemeChange("system")}
-                        className="h-8 w-8 p-0"
-                      >
-                        <Monitor className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>

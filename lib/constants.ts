@@ -46,7 +46,7 @@ export const NAV_LINKS = [
   { label: "Properties", href: "/properties" },
   { label: "About Dubai", href: "/about-dubai" },
   { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
+  { label: "Meet Marta", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -56,7 +56,7 @@ export const FOOTER_LINKS = {
     { label: "Properties", href: "/properties" },
     { label: "About Dubai", href: "/about-dubai" },
     { label: "Services", href: "/services" },
-    { label: "About", href: "/about" },
+    { label: "Meet Marta", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   legal: [
@@ -142,5 +142,44 @@ export const FAQ_ITEMS = [
     question: "Is my inquiry confidential?",
     answer:
       "Absolutely. Discretion is fundamental to our service. All client information and transactions are handled with the strictest confidentiality.",
+  },
+] as const;
+
+// Dubai FAQ Items
+export const DUBAI_FAQ_ITEMS = [
+  {
+    question: "What about property ownership in Dubai?",
+    answer:
+      "Dubai offers one of the most investor-friendly property ownership frameworks in the world. Since 2002, foreign nationals have been allowed to own 100% freehold property in designated areas across the city. These freehold areas give non-residents full ownership rights, with no time limits and the freedom to sell, lease, or pass the property on to heirs. The government has established clear, transparent regulations to protect foreign investors, ensuring a secure and well-regulated real estate market. This openness, combined with Dubai's strong legal framework and tax advantages, has made the city a global hub for international property investors seeking stability, growth, and long-term value.",
+  },
+  {
+    question: "Does buying property give me residency?",
+    answer:
+      "Yes. Purchasing qualifying real estate can make you eligible for a UAE residency visa, subject to current regulations and minimum property value requirements. We'll guide you through the residency options that best suit your needs and ensure all requirements are met for a smooth process.",
+  },
+  {
+    question: "Are there taxes on property purchases in Dubai?",
+    answer:
+      "Dubai is highly tax-efficient: No property tax, No capital gains tax, No inheritance tax, No income tax on rental income. Only a one-time transfer fee applies at purchase: 4% DLD fees to the Dubai Land Department.",
+  },
+  {
+    question: "Is off-plan property a good investment?",
+    answer:
+      "Off-plan properties often offer: Lower entry prices compared to completed developments, Flexible payment plans during construction, Strong capital appreciation potential as the project completes. They are especially attractive for investors looking to maximize returns over the medium to long term. We carefully select developments from trusted developers to ensure project completion and quality standards.",
+  },
+  {
+    question: "Why invest in Dubai real estate now?",
+    answer:
+      "Dubai combines: Strong economic growth driven by diversification, Global investor demand from around the world, Political and financial stability in the region, High rental yields compared to other global markets, Long-term capital appreciation potential. Current market conditions present excellent opportunities for discerning investors. We stay ahead of market trends to identify the best opportunities for our clients.",
+  },
+  {
+    question: "Do I need to be a resident to buy real estate in Dubai?",
+    answer:
+      "No. You do not need to be a UAE resident to buy real estate in Dubai. Foreign nationals can purchase property in designated freehold areas with full ownership rights, whether they live in the UAE or abroad. This flexibility makes Dubai uniquely accessible for international investors.",
+  },
+  {
+    question: "Do I need to open a bank account to buy off-plan in Dubai?",
+    answer:
+      "No, opening a UAE bank account is not mandatory to purchase off-plan property. Developers typically accept international transfers for payments. However, opening a local bank account can make future transactions—such as service charges, rental income, or resale—simpler and more efficient. We can assist with this process if desired.",
   },
 ] as const;
