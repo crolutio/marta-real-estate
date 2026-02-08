@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building2, FileText, MapPin, Users } from "lucide-react";
+import { ArrowRight, Building2, FileText, MapPin, Users, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -30,7 +30,7 @@ const services = [
   {
     id: "banking",
     title: "Opening a Local Bank Account in Dubai",
-    icon: "CreditCard",
+    icon: CreditCard,
     description: "Expert guidance through Dubai's banking system. We help you open corporate and personal bank accounts with leading UAE banks, ensuring smooth financial operations for your business or residence.",
     features: [
       "Corporate bank account setup",
