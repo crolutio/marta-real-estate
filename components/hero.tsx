@@ -24,13 +24,13 @@ export function Hero() {
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
           {/* Eyebrow */}
           <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
-            {AGENCY.tagline}
+            Spaces Curated for Exceptional Living
           </p>
 
           {/* Main Headline */}
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
-            Discover Your Next
-            <span className="block mt-2 text-gold-gradient">Masterpiece</span>
+            Find the Place Where You
+            <span className="block mt-2 text-gold-gradient">Belong</span>
           </h1>
 
           {/* Subheadline */}
@@ -38,12 +38,9 @@ export function Hero() {
             We specialize in curating extraordinary properties for discerning
             clients who appreciate the finest in luxury real estate.
           </p>
-          <p className="text-white/70 text-sm mt-4 font-medium">
-            Your trusted partner for Dubai&apos;s most exclusive real estate opportunities.
-          </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          {/* CTA Button */}
+          <div className="flex justify-center pt-4">
             <Button
               asChild
               size="lg"
@@ -54,7 +51,6 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <ConsultationCta variant="outline" size="lg" className="border-white text-white hover:bg-white/10" />
           </div>
         </div>
 

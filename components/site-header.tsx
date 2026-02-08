@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +12,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { AGENCY, NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ConsultationCta } from "@/components/consultation-cta";
@@ -20,6 +26,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [theme, setTheme] = React.useState<"light" | "dark" | "system">("system");
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +35,36 @@ export function SiteHeader() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  React.useEffect(() => {
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | "system" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      applyTheme(savedTheme);
+    } else {
+      // Default to system
+      applyTheme("system");
+    }
+  }, []);
+
+  const applyTheme = (newTheme: "light" | "dark" | "system") => {
+    const root = document.documentElement;
+
+    if (newTheme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      root.classList.toggle("dark", systemTheme === "dark");
+    } else {
+      root.classList.toggle("dark", newTheme === "dark");
+    }
+
+    localStorage.setItem("theme", newTheme);
+  };
+
+  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
+    setTheme(newTheme);
+    applyTheme(newTheme);
+  };
 
   return (
     <header
@@ -74,8 +111,31 @@ export function SiteHeader() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop CTA & Theme Toggle */}
+          <div className="hidden md:flex items-center gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-9 w-9">
+                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => handleThemeChange("light")}>
+                  <Sun className="mr-2 h-4 w-4" />
+                  <span>Light</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
+                  <Moon className="mr-2 h-4 w-4" />
+                  <span>Dark</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleThemeChange("system")}>
+                  <Monitor className="mr-2 h-4 w-4" />
+                  <span>System</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <ConsultationCta />
           </div>
 
@@ -113,7 +173,37 @@ export function SiteHeader() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-6 border-t border-border">
+                <div className="pt-6 border-t border-border space-y-4">
+                  {/* Mobile Theme Toggle */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Theme</span>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={theme === "light" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => handleThemeChange("light")}
+                        className="h-8 w-8 p-0"
+                      >
+                        <Sun className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant={theme === "dark" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => handleThemeChange("dark")}
+                        className="h-8 w-8 p-0"
+                      >
+                        <Moon className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant={theme === "system" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => handleThemeChange("system")}
+                        className="h-8 w-8 p-0"
+                      >
+                        <Monitor className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
                   <ConsultationCta className="w-full" />
                 </div>
               </nav>
