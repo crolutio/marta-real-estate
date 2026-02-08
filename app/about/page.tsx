@@ -59,7 +59,7 @@ export default function AboutPage() {
               A Legacy of Excellence in Luxury Real Estate
             </h1>
             <p className="text-lg text-white/90 text-editorial">
-              For over 15 years, I&apos;ve helped discerning clients navigate the
+              For over 10 years, I&apos;ve helped clients navigate the
               world&apos;s most prestigious real estate markets with discretion,
               expertise, and unwavering commitment to their success.
             </p>
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <div className="space-y-4">
                 <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium">
-                  My Story
+                  Marta's Story
                 </p>
                 <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
                   Passion Meets Expertise
@@ -158,7 +158,7 @@ export default function AboutPage() {
         <div className="container-wide">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
-              My Approach
+              Marta's Approach
             </p>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
               Principles That Guide Every Transaction
