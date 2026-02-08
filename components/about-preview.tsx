@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Award, Users, Globe } from "lucide-react";
+import { ArrowRight, Award, Users, Globe, Languages, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AGENCY } from "@/lib/constants";
 
@@ -25,7 +25,7 @@ export function AboutPreview() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
                   <span className="block font-serif text-3xl font-semibold text-accent">
-                    15+
+                    10+
                   </span>
                   <span className="text-sm text-muted-foreground">
                     Years Experience
@@ -56,18 +56,32 @@ export function AboutPreview() {
 
             <div className="space-y-4 text-muted-foreground text-editorial">
               <p>
-                With over 15 years of experience in the luxury real estate market,
-                I have built a reputation for discretion, expertise, and
-                exceptional results. My approach is deeply personal—I take the
-                time to understand your vision and work tirelessly to find
-                properties that exceed your expectations.
+                With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. Originally from Barcelona, she combines her real estate expertise with a Master of Laws (LL.M.) qualification to provide comprehensive guidance.
               </p>
               <p>
-                Whether you&apos;re seeking a primary residence, a vacation retreat,
-                or an investment opportunity, I provide the guidance and insight
-                you need to make informed decisions in the world&apos;s most
-                prestigious markets.
+                Whether you&apos;re seeking a primary residence, vacation retreat, or investment opportunity, Marta offers exclusive access to Dubai&apos;s most coveted properties with a refined, strategic approach to real estate investment.
               </p>
+            </div>
+
+            {/* Languages and LinkedIn */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <div className="flex items-center gap-3">
+                <Languages className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">
+                  Speaks Spanish, English, and German
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href={AGENCY.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="text-sm font-medium">LinkedIn</span>
+                </a>
+              </div>
             </div>
 
             {/* Trust Signals */}

@@ -10,6 +10,8 @@ import {
   Shield,
   Lock,
   Compass,
+  Linkedin,
+  Languages,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -29,7 +31,7 @@ const iconMap = {
 };
 
 const stats = [
-  { value: "15+", label: "Years Experience" },
+  { value: "10+", label: "Years Experience" },
   { value: "$2B+", label: "In Transactions" },
   { value: "200+", label: "Clients Served" },
   { value: "50+", label: "Countries" },
@@ -113,26 +115,38 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-muted-foreground text-editorial">
                 <p>
-                  My journey in luxury real estate began over 15 years ago, driven by
-                  a passion for exceptional properties and a commitment to
-                  providing unparalleled service. What started as a curiosity about
-                  architecture and investment has evolved into a career defined by
-                  trust, expertise, and countless successful transactions.
+                  With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. Originally from Barcelona—where she was already one of the most reputable real estate brokers - she has worked with the region&apos;s most renowned developers and leading real estate firms, gaining invaluable expertise in luxury properties and off-market investments.
                 </p>
                 <p>
-                  Throughout my career, I&apos;ve had the privilege of working with
-                  some of the most discerning clients in the world—from
-                  entrepreneurs and executives to royal families and institutional
-                  investors. Each relationship has reinforced my belief that
-                  successful real estate transactions are built on deep
-                  understanding, absolute discretion, and genuine partnership.
+                  In addition to her real estate background, Marta is a qualified lawyer with a Master of Laws (LL.M.), bringing a rigorous, detail-driven perspective to every transaction. This legal foundation strengthens her ability to protect clients&apos; interests, assess risk with precision, and structure acquisitions with clarity and confidence - particularly in complex, high-stakes deals.
                 </p>
                 <p>
-                  Today, my practice spans the globe&apos;s most coveted markets. Whether
-                  you&apos;re seeking a primary residence, a vacation retreat, or a
-                  strategic investment, I bring the same dedication, insight, and
-                  personal attention to every client relationship.
+                  Throughout her career, Marta has built a reputation for market intelligence, discretion, and a meticulous approach to portfolio curation. Her ability to navigate market cycles with precision has enabled her clients to optimize returns and build enduring wealth.
                 </p>
+                <p>
+                  Driven by a vision to elevate the real estate experience, she founded Marta Duran Realty - a firm that reflects her commitment to personalized service, integrity, and a results-driven mindset. Under her leadership, Marta Duran Realty stands as a trusted partner for discerning investors, offering exclusive access to Dubai&apos;s most coveted properties and delivering a refined, highly strategic approach to real estate investment.
+                </p>
+              </div>
+
+              {/* Languages and LinkedIn */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <div className="flex items-center gap-3">
+                  <Languages className="h-5 w-5 text-accent" />
+                  <span className="text-sm text-muted-foreground">
+                    Speaks Spanish, English, and German
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={AGENCY.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                    <span className="text-sm font-medium">LinkedIn Profile</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

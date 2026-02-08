@@ -18,7 +18,7 @@ export const AGENCY = {
   hours: "Mon - Fri: 9:00 AM - 6:00 PM | Sat: By Appointment",
   social: {
     instagram: "https://instagram.com/martaduran",
-    linkedin: "https://linkedin.com/in/martaduran",
+    linkedin: "https://ae.linkedin.com/in/marta-duran-camps-9ba795397",
     facebook: "https://facebook.com/martaduranrealestate",
   },
 } as const;
