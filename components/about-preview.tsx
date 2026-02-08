@@ -59,7 +59,7 @@ export function AboutPreview() {
                 With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. Originally from Barcelona, she combines her real estate expertise with a Master of Laws (LL.M.) qualification to provide comprehensive guidance.
               </p>
               <p>
-                Whether you&apos;re seeking a primary residence, vacation retreat, or investment opportunity, Marta offers exclusive access to Dubai&apos;s most coveted properties with a refined, strategic approach to real estate investment.
+                Whether you&apos;re seeking a primary residence, vacation retreat, or investment opportunity, Marta offers exclusive access to Dubai&apos;s most coveted properties with a refined, strategic approach to real estate investment. You&apos;ll feel completely supported throughout your entire journey.
               </p>
             </div>
 

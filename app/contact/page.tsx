@@ -82,8 +82,11 @@ export default function ContactPage() {
               estate, I&apos;m here to provide personalized guidance and expert
               insight. Reach out to begin your journey.
             </p>
-            <p className="text-muted-foreground/80 text-sm font-medium">
+            <p className="text-muted-foreground/80 text-sm font-medium mb-2">
               Request a Property Consultation or Make an Appointment
+            </p>
+            <p className="text-muted-foreground/60 text-xs">
+              You&apos;re in expert hands. We&apos;ll take care of every detail to ensure a smooth, successful experience.
             </p>
           </div>
         </div>

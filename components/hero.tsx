@@ -38,6 +38,9 @@ export function Hero() {
             We specialize in curating extraordinary properties for discerning
             clients who appreciate the finest in luxury real estate.
           </p>
+          <p className="text-white/70 text-sm mt-4 font-medium">
+            Your trusted partner for Dubai&apos;s most exclusive real estate opportunities.
+          </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">

@@ -216,6 +216,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       {property.shortDescription}
                     </p>
+                    <p className="text-muted-foreground/80 text-sm mt-3 font-medium">
+                      We&apos;ll guide you through every aspect of this exceptional property opportunity.
+                    </p>
                     <Separator className="my-6" />
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                       {property.longDescription}

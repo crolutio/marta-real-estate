@@ -178,6 +178,9 @@ export default function AboutDubaiPage() {
               iconic developments to emerging opportunities, Dubai offers
               unparalleled potential for discerning investors.
             </p>
+            <p className="text-white/80 text-sm mt-4 font-medium">
+              We&apos;ll guide you through the process. We specialize in offering tailored investment opportunities in Dubai&apos;s real estate market.
+            </p>
           </div>
         </div>
       </section>
@@ -319,6 +322,126 @@ export default function AboutDubaiPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-secondary/30">
+        <div className="container-wide">
+          <div className="text-center mb-12">
+            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+              Your Questions Answered
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground text-editorial max-w-2xl mx-auto mt-4">
+              We understand that investing in Dubai real estate can raise many questions.
+              Here are answers to the most common inquiries from our clients.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-6">
+              {/* Property Ownership */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  What about property ownership in Dubai?
+                </h3>
+                <p className="text-muted-foreground text-editorial leading-relaxed">
+                  Dubai offers one of the most investor-friendly property ownership frameworks in the world. Since 2002, foreign nationals have been allowed to own 100% freehold property in designated areas across the city. These freehold areas give non-residents full ownership rights, with no time limits and the freedom to sell, lease, or pass the property on to heirs. The government has established clear, transparent regulations to protect foreign investors, ensuring a secure and well-regulated real estate market. This openness, combined with Dubai&apos;s strong legal framework and tax advantages, has made the city a global hub for international property investors seeking stability, growth, and long-term value.
+                </p>
+              </div>
+
+              {/* Residency */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Does buying property give me residency?
+                </h3>
+                <p className="text-muted-foreground text-editorial">
+                  Yes. Purchasing qualifying real estate can make you eligible for a UAE residency visa, subject to current regulations and minimum property value requirements. We&apos;ll guide you through the residency options that best suit your needs and ensure all requirements are met for a smooth process.
+                </p>
+              </div>
+
+              {/* Taxes */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Are there taxes on property purchases in Dubai?
+                </h3>
+                <p className="text-muted-foreground text-editorial leading-relaxed">
+                  Dubai is highly tax-efficient:
+                </p>
+                <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
+                  <li>• <strong>No property tax</strong></li>
+                  <li>• <strong>No capital gains tax</strong></li>
+                  <li>• <strong>No inheritance tax</strong></li>
+                  <li>• <strong>No income tax on rental income</strong></li>
+                  <li>• Only a one-time transfer fee applies at purchase: 4% DLD fees to the Dubai Land Department</li>
+                </ul>
+                <p className="text-muted-foreground text-editorial mt-4">
+                  This tax-efficient environment makes Dubai particularly attractive for international investors seeking to maximize their returns.
+                </p>
+              </div>
+
+              {/* Off-plan Investment */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Is off-plan property a good investment?
+                </h3>
+                <p className="text-muted-foreground text-editorial leading-relaxed">
+                  Off-plan properties often offer:
+                </p>
+                <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
+                  <li>• <strong>Lower entry prices</strong> compared to completed developments</li>
+                  <li>• <strong>Flexible payment plans</strong> during construction</li>
+                  <li>• <strong>Strong capital appreciation potential</strong> as the project completes</li>
+                </ul>
+                <p className="text-muted-foreground text-editorial mt-4">
+                  They are especially attractive for investors looking to maximize returns over the medium to long term. We carefully select developments from trusted developers to ensure project completion and quality standards.
+                </p>
+              </div>
+
+              {/* Why Invest Now */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Why invest in Dubai real estate now?
+                </h3>
+                <p className="text-muted-foreground text-editorial leading-relaxed">
+                  Dubai combines:
+                </p>
+                <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
+                  <li>• <strong>Strong economic growth</strong> driven by diversification</li>
+                  <li>• <strong>Global investor demand</strong> from around the world</li>
+                  <li>• <strong>Political and financial stability</strong> in the region</li>
+                  <li>• <strong>High rental yields</strong> compared to other global markets</li>
+                  <li>• <strong>Long-term capital appreciation</strong> potential</li>
+                </ul>
+                <p className="text-muted-foreground text-editorial mt-4">
+                  Current market conditions present excellent opportunities for discerning investors. We stay ahead of market trends to identify the best opportunities for our clients.
+                </p>
+              </div>
+
+              {/* Residency Requirements */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Do I need to be a resident to buy real estate in Dubai?
+                </h3>
+                <p className="text-muted-foreground text-editorial">
+                  No. You do not need to be a UAE resident to buy real estate in Dubai. Foreign nationals can purchase property in designated freehold areas with full ownership rights, whether they live in the UAE or abroad. This flexibility makes Dubai uniquely accessible for international investors.
+                </p>
+              </div>
+
+              {/* Bank Account */}
+              <div className="bg-card p-8 rounded-lg shadow-sm">
+                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                  Do I need to open a bank account to buy off-plan in Dubai?
+                </h3>
+                <p className="text-muted-foreground text-editorial">
+                  No, opening a UAE bank account is not mandatory to purchase off-plan property. Developers typically accept international transfers for payments. However, opening a local bank account can make future transactions—such as service charges, rental income, or resale—simpler and more efficient. We can assist with this process if desired.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

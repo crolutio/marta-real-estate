@@ -94,6 +94,9 @@ export default function PropertiesPage() {
               penthouses to grand estates. Each property has been carefully
               selected to meet the highest standards of quality and exclusivity.
             </p>
+            <p className="text-muted-foreground/80 text-sm mt-4 font-medium">
+              We&apos;ll guide you through every detail to ensure you find the perfect property for your needs.
+            </p>
           </div>
         </div>
       </section>

@@ -89,6 +89,9 @@ export default function ServicesPage() {
               residency services to ensure your complete transition to Dubai is
               seamless, efficient, and successful.
             </p>
+            <p className="text-muted-foreground/80 text-sm mt-4 font-medium">
+              We&apos;ll guide you through every step of your Dubai journey, ensuring you feel supported and confident throughout the process.
+            </p>
           </div>
         </div>
       </section>
