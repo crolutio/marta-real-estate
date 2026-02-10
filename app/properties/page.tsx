@@ -122,7 +122,10 @@ export default function PropertiesPage() {
 
           {/* Properties Grid */}
           {filteredProperties.length > 0 ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div
+              key={filteredProperties.map((p) => p.slug).join(",")}
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children"
+            >
               {filteredProperties.map((property) => (
                 <PropertyCard key={property.slug} property={property} />
               ))}

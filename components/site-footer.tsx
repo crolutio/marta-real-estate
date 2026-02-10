@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY, FOOTER_LINKS } from "@/lib/constants";
 
@@ -27,15 +27,6 @@ export function SiteFooter() {
             {/* Social Links */}
             <div className="flex gap-4">
               <a
-                href={AGENCY.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
-                aria-label="Follow us on Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
                 href={AGENCY.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -43,15 +34,6 @@ export function SiteFooter() {
                 aria-label="Connect on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href={AGENCY.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-10 w-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
-                aria-label="Follow us on Facebook"
-              >
-                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>

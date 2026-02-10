@@ -43,20 +43,13 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-primary text-base px-8"
+              className="bg-white text-[#1a1a1a] hover:bg-accent hover:text-accent-foreground text-base px-8"
             >
               <Link href="/properties">
                 View Properties
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-white/80 rounded-full" />
           </div>
         </div>
       </div>

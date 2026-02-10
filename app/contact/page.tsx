@@ -27,8 +27,6 @@ import { toast } from "sonner";
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
     name: "",
-    email: "",
-    phone: "",
     subject: "",
     message: "",
   });
@@ -42,8 +40,9 @@ export default function ContactPage() {
     }));
   };
 
-  const generateMessage = () => {
-    return `Hello,\n\nI'm ${formData.name}.\n\n${formData.subject ? `Subject: ${formData.subject}\n\n` : ""}${formData.message}\n\nContact Information:\nEmail: ${formData.email}${formData.phone ? `\nPhone: ${formData.phone}` : ""}`;
+  // Email body: From and message only (Subject goes in email subject line)
+  const generateEmailBody = () => {
+    return `From: ${formData.name}\n\n${formData.message}`;
   };
 
   const handleEmailSubmit = (e: React.FormEvent) => {
@@ -51,19 +50,22 @@ export default function ContactPage() {
     const subject = encodeURIComponent(
       formData.subject || "Inquiry from Website"
     );
-    const body = encodeURIComponent(generateMessage());
+    const body = encodeURIComponent(generateEmailBody());
     window.open(`mailto:${AGENCY.email}?subject=${subject}&body=${body}`);
     toast.success("Opening your email client...");
   };
 
   const handleWhatsAppSubmit = () => {
-    const message = encodeURIComponent(generateMessage());
+    const message = encodeURIComponent(
+      formData.subject
+        ? `Subject: ${formData.subject}\n\n${generateEmailBody()}`
+        : generateEmailBody()
+    );
     window.open(`https://wa.me/${AGENCY.whatsapp}?text=${message}`, "_blank");
     toast.success("Opening WhatsApp...");
   };
 
-  const isFormValid =
-    formData.name.trim() && formData.email.trim() && formData.message.trim();
+  const isFormValid = formData.name.trim() && formData.message.trim();
 
   return (
     <div className="pt-20">
@@ -77,15 +79,12 @@ export default function ContactPage() {
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Let&apos;s Start a Conversation
             </h1>
-            <p className="text-lg text-muted-foreground text-editorial mb-4">
+            <p className="text-muted-foreground/90 text-xl md:text-2xl font-medium leading-snug mb-4">
               Whether you&apos;re looking to buy, sell, or invest in luxury real
-              estate, I&apos;m here to provide personalized guidance and expert
+              estate, we&apos;re here to provide personalized guidance and expert
               insight. Reach out to begin your journey.
             </p>
-            <p className="text-muted-foreground/80 text-sm font-medium mb-2">
-              Request a Property Consultation or Make an Appointment
-            </p>
-            <p className="text-muted-foreground/60 text-xs">
+            <p className="text-lg md:text-xl text-muted-foreground text-editorial font-medium leading-snug">
               You&apos;re in expert hands. We&apos;ll take care of every detail to ensure a smooth, successful experience.
             </p>
           </div>
@@ -125,16 +124,17 @@ export default function ContactPage() {
                     <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
                       <MessageCircle className="h-6 w-6 text-accent" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">WhatsApp</h3>
-                      <a
-                        href={`https://wa.me/${AGENCY.whatsapp}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        Message on WhatsApp
-                      </a>
+                    <div className="flex flex-col gap-3 min-w-0">
+                      <h3 className="font-semibold">WhatsApp</h3>
+                      <Button asChild variant="outline" size="sm" className="w-fit">
+                        <a
+                          href={`https://wa.me/${AGENCY.whatsapp}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Message on WhatsApp
+                        </a>
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -204,81 +204,35 @@ export default function ContactPage() {
                     Send a Message
                   </h2>
                   <form onSubmit={handleEmailSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="name"
-                          className="text-sm font-medium"
-                        >
-                          Name <span className="text-destructive">*</span>
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="email"
-                          className="text-sm font-medium"
-                        >
-                          Email <span className="text-destructive">*</span>
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="phone"
-                          className="text-sm font-medium"
-                        >
-                          Phone
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="+1 (555) 000-0000"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="subject"
-                          className="text-sm font-medium"
-                        >
-                          Subject
-                        </label>
-                        <Input
-                          id="subject"
-                          name="subject"
-                          placeholder="What is this regarding?"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                        />
-                      </div>
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">
+                        Name <span className="text-destructive">*</span>
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
 
                     <div className="space-y-2">
-                      <label
-                        htmlFor="message"
-                        className="text-sm font-medium"
-                      >
+                      <label htmlFor="subject" className="text-sm font-medium">
+                        Subject
+                      </label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        placeholder="What is this regarding?"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium">
                         Message <span className="text-destructive">*</span>
                       </label>
                       <Textarea

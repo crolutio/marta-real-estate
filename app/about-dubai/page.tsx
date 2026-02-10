@@ -10,6 +10,7 @@ import {
   Users,
   Globe,
 } from "lucide-react";
+import { GoogleMapEmbed } from "@/components/google-map-embed";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -530,15 +531,12 @@ export default function AboutDubaiPage() {
             </p>
           </div>
 
-          {/* Map Placeholder */}
-          <div className="aspect-[16/9] bg-secondary/50 rounded-lg flex items-center justify-center mb-8">
-            <div className="text-center text-muted-foreground">
-              <MapPin className="h-16 w-16 mx-auto mb-4 opacity-50" />
-              <p className="text-lg font-medium mb-2">Interactive Map Coming Soon</p>
-              <p className="text-sm">
-                Dubai property map with neighborhood highlights and development details
-              </p>
-            </div>
+          {/* Google Map */}
+          <div className="mb-8">
+            <GoogleMapEmbed
+              query="Dubai, UAE"
+              title="Dubai property map"
+            />
           </div>
 
           <div className="text-center">

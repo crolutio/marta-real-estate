@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Property } from "@/lib/types";
 import { formatPrice } from "@/lib/data/properties";
 import { cn } from "@/lib/utils";
@@ -21,27 +20,30 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
           featured && "bg-card shadow-lg"
         )}
       >
-        {/* Image Container */}
-        <div className="relative aspect-[4/3] overflow-hidden rounded-lg img-zoom">
-          <Image
-            src={property.images[0]}
-            alt={property.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          {/* Status Badge */}
-          <div className="absolute top-4 left-4 flex gap-2">
-            <Badge
-              variant={property.status === "For Sale" ? "default" : "secondary"}
-              className="bg-primary/90 text-primary-foreground"
-            >
-              {property.status}
-            </Badge>
-            {property.new && (
-              <Badge className="bg-accent text-accent-foreground">New</Badge>
-            )}
-          </div>
+        {/* Image / Video Container */}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+          {property.video ? (
+            <video
+              src={property.video}
+              muted
+              loop
+              autoPlay
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <Image
+              src={
+                property.images.length > 0
+                  ? property.images[0]
+                  : "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
+              }
+              alt={property.title}
+              fill
+              className="object-cover img-zoom"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          )}
           {/* Price Overlay */}
           <div className="absolute bottom-4 left-4">
             <span className="text-white text-2xl font-semibold drop-shadow-lg">
@@ -65,19 +67,35 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
           </div>
 
           {/* Features */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1.5">
-              <Bed className="h-4 w-4" />
-              {property.bedrooms} Beds
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Bath className="h-4 w-4" />
-              {property.bathrooms} Baths
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Square className="h-4 w-4" />
-              {property.areaSqFt.toLocaleString()} sqft
-            </span>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
+            {property.unitTypes && property.unitSizes ? (
+              <>
+                <span className="flex items-center gap-1.5">
+                  <Bed className="h-4 w-4" />
+                  {property.unitTypes.match(/^(\d+ to \d+)\s*Bed/)?.[1] ?? property.unitTypes.split("|")[0].trim()}
+                  {" Beds"}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Square className="h-4 w-4" />
+                  {property.unitSizes.replace(/\ssq\.ft\s+to\s+/i, " to ")}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="flex items-center gap-1.5">
+                  <Bed className="h-4 w-4" />
+                  {property.bedrooms} Beds
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Bath className="h-4 w-4" />
+                  {property.bathrooms} Baths
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Square className="h-4 w-4" />
+                  {property.areaSqFt.toLocaleString()} sqft
+                </span>
+              </>
+            )}
           </div>
 
           {/* Short Description (only on featured) */}

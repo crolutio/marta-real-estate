@@ -28,6 +28,18 @@ export interface Property {
   status: PropertyStatus;
   featured?: boolean;
   new?: boolean;
+  /** Optional video path (e.g. /properties/slug/video.mp4). When set, gallery can show video only. */
+  video?: string;
+  /** e.g. "Prices From" - shown instead of "Listed Price" when set */
+  priceLabel?: string;
+  /** e.g. "1 to 6 Bed Apartments | 2 to 4 Bed Marina Lofts" - shown in key facts when set */
+  unitTypes?: string;
+  /** e.g. "1,607 sq.ft to 14,364 sq.ft" - shown in key facts when set */
+  unitSizes?: string;
+  /** When set, the location/address on the property page becomes a link to this URL (e.g. Google Maps). */
+  addressLink?: string;
+  /** Optional separate link for the Location tab map (e.g. different Google Maps pin). When set, Location tab uses this for "View on Google Maps". */
+  locationMapLink?: string;
 }
 
 // Form Types

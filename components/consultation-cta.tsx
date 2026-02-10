@@ -13,9 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { AGENCY } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
 
 interface ConsultationCtaProps {
   className?: string;
@@ -44,29 +42,6 @@ export function ConsultationCta({
       [e.target.name]: e.target.value,
     }));
   };
-
-  const generateMessage = () => {
-    return `Hello, I'm ${formData.name}. I would like to schedule a consultation to discuss luxury real estate opportunities.${
-      formData.message ? `\n\nAdditional details: ${formData.message}` : ""
-    }\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
-  };
-
-  const handleEmailSubmit = () => {
-    const subject = encodeURIComponent("Consultation Request");
-    const body = encodeURIComponent(generateMessage());
-    window.open(`mailto:${AGENCY.email}?subject=${subject}&body=${body}`);
-    toast.success("Opening your email client...");
-    setOpen(false);
-  };
-
-  const handleWhatsAppSubmit = () => {
-    const message = encodeURIComponent(generateMessage());
-    window.open(`https://wa.me/${AGENCY.whatsapp}?text=${message}`, "_blank");
-    toast.success("Opening WhatsApp...");
-    setOpen(false);
-  };
-
-  const isFormValid = formData.name.trim() && formData.email.trim();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -150,24 +125,12 @@ export function ConsultationCta({
               onChange={handleInputChange}
             />
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <Button
-              type="button"
-              onClick={handleEmailSubmit}
-              disabled={!isFormValid}
-              className="flex-1"
-            >
-              Send via Email
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleWhatsAppSubmit}
-              disabled={!isFormValid}
-              className="flex-1"
-            >
-              Send via WhatsApp
-            </Button>
+          <div className="pt-4">
+            <p className="text-sm text-muted-foreground text-center">
+              Calendar booking coming soon. We&apos;ll reach out at your email to
+              schedule your consultation.
+            </p>
+            {/* TODO: Replace with Marta's calendar link when integrated */}
           </div>
         </form>
       </DialogContent>

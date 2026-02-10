@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Expand } from "lucide-react";
+import { ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,9 +15,10 @@ import { cn } from "@/lib/utils";
 interface PropertyGalleryProps {
   images: string[];
   title: string;
+  video?: string;
 }
 
-export function PropertyGallery({ images, title }: PropertyGalleryProps) {
+export function PropertyGallery({ images, title, video }: PropertyGalleryProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -43,7 +44,28 @@ export function PropertyGallery({ images, title }: PropertyGalleryProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  if (images.length === 0) return null;
+  const hasVideoOnly = video && images.length === 0;
+  const hasImages = images.length > 0;
+
+  if (hasVideoOnly) {
+    return (
+      <div className="space-y-4">
+        <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-black">
+          <video
+            src={video}
+            controls
+            className="w-full h-full object-contain"
+            playsInline
+            preload="metadata"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    );
+  }
+
+  if (!hasImages) return null;
 
   return (
     <div className="space-y-4">
@@ -64,9 +86,12 @@ export function PropertyGallery({ images, title }: PropertyGalleryProps) {
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black border-none">
+        <DialogContent
+          className="p-0 bg-black border-none sm:max-w-[80vw] sm:max-h-[80vh] sm:w-[80vw] sm:h-[80vh] w-[80vw] h-[80vh] max-w-[80vw] max-h-[80vh]"
+          style={{ width: "80vw", height: "80vh", maxWidth: "80vw", maxHeight: "80vh" }}
+        >
           <DialogTitle className="sr-only">{title} Gallery</DialogTitle>
-          <div className="relative w-full h-[90vh]">
+          <div className="relative w-full h-full min-h-0">
             <Image
               src={images[currentIndex]}
               alt={`${title} - Image ${currentIndex + 1}`}

@@ -11,6 +11,7 @@ import {
   Check,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { GoogleMapEmbed } from "@/components/google-map-embed";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -51,7 +52,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${property.title} - ${formatPrice(property.price, property.currency)}`,
       description: property.shortDescription,
-      images: [property.images[0]],
+      images: property.images.length > 0 ? [property.images[0]] : [],
     },
   };
 }
@@ -103,7 +104,11 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* Gallery */}
-              <PropertyGallery images={property.images} title={property.title} />
+              <PropertyGallery
+                images={property.images}
+                title={property.title}
+                video={property.video}
+              />
 
               {/* Header */}
               <div className="space-y-4">
@@ -125,43 +130,75 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
                   {property.title}
                 </h1>
-                <p className="flex items-center gap-2 text-lg text-muted-foreground">
-                  <MapPin className="h-5 w-5" />
-                  {property.location}
-                  {property.neighborhood && ` · ${property.neighborhood}`}
-                </p>
+                {property.addressLink ? (
+                  <a
+                    href={property.addressLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-lg text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <MapPin className="h-5 w-5" />
+                    {property.location}
+                    {property.neighborhood && ` · ${property.neighborhood}`}
+                  </a>
+                ) : (
+                  <p className="flex items-center gap-2 text-lg text-muted-foreground">
+                    <MapPin className="h-5 w-5" />
+                    {property.location}
+                    {property.neighborhood && ` · ${property.neighborhood}`}
+                  </p>
+                )}
               </div>
 
               {/* Key Facts */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-secondary/30 rounded-lg">
-                <div className="text-center">
-                  <Bed className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                  <p className="font-semibold text-lg">{property.bedrooms}</p>
-                  <p className="text-sm text-muted-foreground">Bedrooms</p>
-                </div>
-                <div className="text-center">
-                  <Bath className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                  <p className="font-semibold text-lg">{property.bathrooms}</p>
-                  <p className="text-sm text-muted-foreground">Bathrooms</p>
-                </div>
-                <div className="text-center">
-                  <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                  <p className="font-semibold text-lg">
-                    {property.areaSqFt.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-muted-foreground">Sq. Ft.</p>
-                </div>
-                <div className="text-center">
-                  <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                  <p className="font-semibold text-lg">{property.type}</p>
-                  <p className="text-sm text-muted-foreground">Type</p>
-                </div>
+                {property.unitTypes ? (
+                  <div className="col-span-2 md:col-span-4 space-y-6">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Unit Types</p>
+                      <p className="font-semibold text-base leading-snug">
+                        {property.unitTypes}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Unit Sizes</p>
+                      <p className="font-semibold text-base leading-snug">
+                        {property.unitSizes}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-center">
+                      <Bed className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.bedrooms}</p>
+                      <p className="text-sm text-muted-foreground">Bedrooms</p>
+                    </div>
+                    <div className="text-center">
+                      <Bath className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.bathrooms}</p>
+                      <p className="text-sm text-muted-foreground">Bathrooms</p>
+                    </div>
+                    <div className="text-center">
+                      <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">
+                        {property.areaSqFt.toLocaleString()}
+                      </p>
+                      <p className="text-sm text-muted-foreground">Sq. Ft.</p>
+                    </div>
+                    <div className="text-center">
+                      <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.type}</p>
+                      <p className="text-sm text-muted-foreground">Type</p>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Mobile Price Card */}
               <div className="lg:hidden p-6 bg-card rounded-lg border shadow-sm">
                 <p className="text-sm text-muted-foreground mb-1">
-                  Listed Price
+                  {property.priceLabel ?? "Listed Price"}
                 </p>
                 <p className="font-serif text-3xl font-semibold mb-4">
                   {formatPrice(property.price, property.currency)}
@@ -216,9 +253,6 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       {property.shortDescription}
                     </p>
-                    <p className="text-muted-foreground/80 text-sm mt-3 font-medium">
-                      We&apos;ll guide you through every aspect of this exceptional property opportunity.
-                    </p>
                     <Separator className="my-6" />
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                       {property.longDescription}
@@ -256,18 +290,22 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
                 <TabsContent value="location" className="pt-6">
                   <div className="space-y-4">
-                    <div className="aspect-[16/9] bg-secondary/50 rounded-lg flex items-center justify-center">
-                      <div className="text-center text-muted-foreground">
-                        <MapPin className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                        <p className="font-medium">{property.location}</p>
-                        {property.neighborhood && (
-                          <p className="text-sm">{property.neighborhood}</p>
-                        )}
-                        <p className="text-sm mt-4">
-                          Interactive map coming soon
-                        </p>
-                      </div>
-                    </div>
+                    <GoogleMapEmbed
+                      query={`${property.location}${property.neighborhood ? `, ${property.neighborhood}` : ""}, Dubai, UAE`}
+                      title={`${property.title} location`}
+                    />
+                    {(property.locationMapLink ?? property.addressLink) && (
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={property.locationMapLink ?? property.addressLink ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MapPin className="h-4 w-4 mr-2" />
+                          View on Google Maps
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </TabsContent>
               </Tabs>

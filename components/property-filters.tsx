@@ -58,11 +58,11 @@ const bedroomOptions = ["any", "1", "2", "3", "4", "5+"];
 
 const priceRanges = [
   { value: "all", label: "Any Price" },
-  { value: "0-5000000", label: "Under $5M" },
-  { value: "5000000-10000000", label: "$5M - $10M" },
-  { value: "10000000-20000000", label: "$10M - $20M" },
-  { value: "20000000-50000000", label: "$20M - $50M" },
-  { value: "50000000+", label: "$50M+" },
+  { value: "0-5000000", label: "Under AED 5M" },
+  { value: "5000000-10000000", label: "AED 5M - 10M" },
+  { value: "10000000-20000000", label: "AED 10M - 20M" },
+  { value: "20000000-50000000", label: "AED 20M - 50M" },
+  { value: "50000000+", label: "AED 50M+" },
 ];
 
 const sortOptions = [
