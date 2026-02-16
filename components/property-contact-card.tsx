@@ -21,7 +21,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
     name: "",
     email: "",
     phone: "",
-    message: `I'm interested in ${property.title} (${formatPrice(property.price, property.currency)}).`,
+    message: "Please share availability and payment plan details.",
   });
 
   const handleInputChange = (
@@ -34,7 +34,16 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
   };
 
   const generateMessage = () => {
-    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price, property.currency)}\n\n${formData.message}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
+    const normalizedDefaultMessage =
+      "please share availability and payment plan details.";
+    const trimmedMessage = formData.message.trim();
+    const customMessage =
+      trimmedMessage &&
+      trimmedMessage.toLowerCase() !== normalizedDefaultMessage
+        ? `\n\n${trimmedMessage}`
+        : "";
+
+    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price, property.currency)}${customMessage}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
   };
 
   const handleEmailSubmit = () => {

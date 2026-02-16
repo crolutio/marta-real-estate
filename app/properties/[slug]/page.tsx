@@ -98,7 +98,10 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
       </div>
 
       {/* Main Content */}
-      <section data-animate="reveal" className="animate-reveal section-padding">
+      <section
+        data-animate="reveal"
+        className="animate-reveal section-padding pt-8 md:pt-12 lg:pt-16"
+      >
         <div className="container-wide">
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Left Column - Main Content */}
