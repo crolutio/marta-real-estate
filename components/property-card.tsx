@@ -16,13 +16,21 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
     <Link href={`/properties/${property.slug}`} className="group block">
       <Card
         className={cn(
-          "overflow-hidden border-0 shadow-none bg-transparent hover-lift",
+          "overflow-hidden border-0 shadow-none bg-transparent hover-lift p-4",
           featured && "bg-card shadow-lg"
         )}
       >
-        {/* Image / Video Container */}
+        {/* Image / Video Container: prefer first image when present (e.g. Bvlgari), else video, else placeholder */}
         <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-          {property.video ? (
+          {property.images.length > 0 ? (
+            <Image
+              src={property.images[0]}
+              alt={property.title}
+              fill
+              className="object-cover img-zoom"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : property.video ? (
             <video
               src={property.video}
               muted
@@ -33,11 +41,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
             />
           ) : (
             <Image
-              src={
-                property.images.length > 0
-                  ? property.images[0]
-                  : "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
-              }
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
               alt={property.title}
               fill
               className="object-cover img-zoom"
@@ -46,14 +50,14 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
           )}
           {/* Price Overlay */}
           <div className="absolute bottom-4 left-4">
-            <span className="text-white text-2xl font-semibold drop-shadow-lg">
+            <span className="inline-block rounded-md bg-accent/90 px-3 py-1.5 text-accent-foreground text-2xl font-semibold drop-shadow-lg">
               {formatPrice(property.price, property.currency)}
             </span>
           </div>
         </div>
 
         {/* Content */}
-        <CardContent className={cn("p-0 pt-4", featured && "p-6 pt-4")}>
+        <CardContent className={cn("px-0 pt-5 pb-0", featured && "p-6 pt-4")}>
           {/* Title & Location */}
           <div className="space-y-1 mb-3">
             <h3 className="font-serif text-xl font-semibold group-hover:text-accent transition-colors">

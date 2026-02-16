@@ -41,7 +41,7 @@ export default function AboutPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section data-animate="reveal" className="animate-reveal relative py-24 md:py-32 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -52,7 +52,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         <div className="relative container-wide">
           <div className="max-w-2xl text-white">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.16em] uppercase text-white font-semibold mb-4">
               About {AGENCY.name}
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
@@ -68,15 +68,15 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Banner */}
-      <section className="bg-primary text-primary-foreground py-12">
+      <section data-animate="reveal" className="animate-reveal bg-accent text-white py-12">
         <div className="container-wide">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <span className="block font-serif text-4xl md:text-5xl font-semibold text-accent">
+                <span className="block font-serif text-4xl md:text-5xl font-semibold text-white">
                   {stat.value}
                 </span>
-                <span className="text-sm md:text-base text-primary-foreground/70">
+                <span className="text-sm md:text-base text-white/90">
                   {stat.label}
                 </span>
               </div>
@@ -86,13 +86,13 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative">
               <div className="aspect-[4/5] relative rounded-lg overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
+                  src="/marta.jpg"
                   alt={AGENCY.name}
                   fill
                   className="object-cover"
@@ -105,10 +105,10 @@ export default function AboutPage() {
 
             <div className="space-y-6">
               <div className="space-y-4">
-                <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium">
+                <p className="text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
                   Marta's Story
                 </p>
-                <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+                <h2 className="font-serif text-4xl md:text-5xl font-semibold text-accent text-display">
                   Passion Meets Expertise
                 </h2>
               </div>
@@ -154,10 +154,10 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-secondary/30">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Marta's Approach
             </p>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
@@ -190,12 +190,12 @@ export default function AboutPage() {
       </section>
 
       {/* Working with Investors */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="space-y-6 order-2 lg:order-1">
               <div className="space-y-4">
-                <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium">
+                <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
                   For Investors
                 </p>
                 <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
@@ -255,7 +255,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
         <div className="container-narrow text-center">
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-6">
             Ready to Begin Your Journey?

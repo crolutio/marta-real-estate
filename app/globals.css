@@ -84,9 +84,9 @@
   --muted: oklch(0.94 0.005 90);
   --muted-foreground: oklch(0.45 0.01 260);
   
-  /* Accent - Gold/Bronze */
-  --accent: oklch(0.75 0.12 70);
-  --accent-foreground: oklch(0.18 0.01 260);
+  /* Accent */
+  --accent: #47605b;
+  --accent-foreground: #f5f7f6;
   
   /* Gold - Warm luxury accent */
   --gold: oklch(0.72 0.14 65);
@@ -98,7 +98,7 @@
   /* Border */
   --border: oklch(0.88 0.01 90);
   --input: oklch(0.88 0.01 90);
-  --ring: oklch(0.72 0.14 65);
+  --ring: #47605b;
   
   /* Chart colors */
   --chart-1: oklch(0.72 0.14 65);
@@ -138,8 +138,8 @@
   --muted: oklch(0.24 0.01 260);
   --muted-foreground: oklch(0.65 0.01 260);
   
-  --accent: oklch(0.75 0.12 70);
-  --accent-foreground: oklch(0.14 0.01 260);
+  --accent: #47605b;
+  --accent-foreground: #f5f7f6;
   
   --gold: oklch(0.75 0.14 65);
   --gold-foreground: oklch(0.14 0.01 260);
@@ -148,7 +148,7 @@
   
   --border: oklch(0.28 0.01 260);
   --input: oklch(0.28 0.01 260);
-  --ring: oklch(0.75 0.14 65);
+  --ring: #47605b;
   
   --sidebar: oklch(0.18 0.01 260);
   --sidebar-foreground: oklch(0.95 0.005 90);
@@ -169,9 +169,9 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
-  /* Smooth scrolling */
+  /* Use default scroll behavior for consistent route resets */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   
   /* Hide scrollbar at all times */
@@ -277,6 +277,59 @@
   .stagger-children > *:nth-child(14) { animation-delay: 0.7s; }
   .stagger-children > *:nth-child(15) { animation-delay: 0.75s; }
   .stagger-children > *:nth-child(16) { animation-delay: 0.8s; }
+
+  /* Scroll-triggered reveal: elements start hidden and animate in when .in-view is added by JS */
+  .animate-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children when parent gets .in-view */
+  .animate-reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .animate-reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; }
+  .animate-reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.1s; }
+  .animate-reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.15s; }
+  .animate-reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.2s; }
+  .animate-reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.25s; }
+  .animate-reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.3s; }
+  .animate-reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.35s; }
+  .animate-reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.4s; }
+  .animate-reveal-stagger.in-view > *:nth-child(9) { transition-delay: 0.45s; }
+  .animate-reveal-stagger.in-view > *:nth-child(10) { transition-delay: 0.5s; }
+  .animate-reveal-stagger.in-view > *:nth-child(11) { transition-delay: 0.55s; }
+  .animate-reveal-stagger.in-view > *:nth-child(12) { transition-delay: 0.6s; }
+  .animate-reveal-stagger.in-view > *:nth-child(13) { transition-delay: 0.65s; }
+  .animate-reveal-stagger.in-view > *:nth-child(14) { transition-delay: 0.7s; }
+  .animate-reveal-stagger.in-view > *:nth-child(15) { transition-delay: 0.75s; }
+  .animate-reveal-stagger.in-view > *:nth-child(16) { transition-delay: 0.8s; }
+  .animate-reveal-stagger.in-view > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Page enter: used when navigating to a new page */
+  .animate-page-enter {
+    animation: pageEnter 0.45s ease-out forwards;
+  }
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 /* Container utility */

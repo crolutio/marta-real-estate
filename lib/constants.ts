@@ -9,11 +9,11 @@ export const AGENCY = {
   phone: "+971 55 754 1884",
   whatsapp: "+971557541884", // Format for wa.me link (no spaces, dashes, or special chars)
   address: {
-    line1: "123 Luxury Avenue, Suite 500",
-    city: "New York",
-    state: "NY",
-    zip: "10001",
-    country: "United States",
+    line1: "Court Tower 1606, D42",
+    city: "Business Bay, Dubai",
+    state: "UAE",
+    zip: "",
+    country: "United Arab Emirates",
   },
   hours: "Mon - Fri: 9:00 AM - 6:00 PM | Sat: By Appointment",
   social: {
@@ -68,27 +68,27 @@ export const FOOTER_LINKS = {
 // Value Propositions
 export const VALUE_PROPS = [
   {
-    title: "Integrity",
+    title: "Your interests first",
     description:
-      "We operate with complete transparency and honesty, ensuring your interests are always our priority.",
+      "No pressure, no pushy sales. We only recommend properties that fit your goals—and we’re upfront when something doesn’t.",
     icon: "Shield",
   },
   {
-    title: "Market Expertise",
+    title: "Dubai & Barcelona roots",
     description:
-      "Deep knowledge of luxury real estate markets, trends, and investment opportunities worldwide.",
+      "Marta brings a decade in Dubai plus a strong track record from Barcelona. You get local knowledge and a global lens.",
     icon: "TrendingUp",
   },
   {
-    title: "Discreet Service",
+    title: "Discretion by default",
     description:
-      "Confidential handling of all transactions with the utmost professionalism and privacy.",
+      "High-profile clients and off-market deals stay confidential. We handle everything with the same care we’d expect for ourselves.",
     icon: "Lock",
   },
   {
-    title: "Investment Guidance",
+    title: "Access, not just listings",
     description:
-      "Strategic advice to maximize returns and build a portfolio of exceptional properties.",
+      "Through long-standing developer and broker relationships, we surface opportunities that don’t appear on portals.",
     icon: "Compass",
   },
 ] as const;

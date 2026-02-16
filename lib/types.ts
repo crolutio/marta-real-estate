@@ -34,12 +34,16 @@ export interface Property {
   priceLabel?: string;
   /** e.g. "1 to 6 Bed Apartments | 2 to 4 Bed Marina Lofts" - shown in key facts when set */
   unitTypes?: string;
-  /** e.g. "1,607 sq.ft to 14,364 sq.ft" - shown in key facts when set */
+  /** e.g. "1,607 to 14,364 ft²" - shown in key facts when set */
   unitSizes?: string;
+  /** e.g. "2 to 6" - bathrooms range when set (key facts) */
+  unitBathsRange?: string;
   /** When set, the location/address on the property page becomes a link to this URL (e.g. Google Maps). */
   addressLink?: string;
   /** Optional separate link for the Location tab map (e.g. different Google Maps pin). When set, Location tab uses this for "View on Google Maps". */
   locationMapLink?: string;
+  /** Optional query for the Location tab embedded map when the address resolves to the wrong place (e.g. "Jumeirah Residences Marsa Al Arab Dubai"). */
+  locationMapQuery?: string;
 }
 
 // Form Types

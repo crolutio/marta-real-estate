@@ -1,21 +1,18 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Building2,
   TrendingUp,
   MapPin,
-  ArrowRight,
   Award,
-  Users,
   Globe,
 } from "lucide-react";
 import { GoogleMapEmbed } from "@/components/google-map-embed";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ConsultationCta } from "@/components/consultation-cta";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "About Dubai",
@@ -26,44 +23,87 @@ const developers = [
   {
     name: "Emaar Properties",
     description: "Dubai's largest developer, known for iconic projects like Burj Khalifa and Dubai Mall.",
-    projects: ["Burj Khalifa", "Dubai Mall", "Dubai Marina", "Business Bay"],
-    logo: "🏗️",
+    projects: [
+      "Burj Khalifa",
+      "The Dubai Mall",
+      "Dubai Marina and Downtown Dubai (master developer)",
+    ],
+    logo: "/developers/emaar.png",
+    logoClassName: "scale-90",
   },
   {
     name: "Dubai Holding",
     description: "State-owned developer focusing on luxury residential and commercial developments.",
-    projects: ["Jumeirah Bay Island", "Dubai Festival City", "Business Bay"],
-    logo: "🏛️",
+    projects: [
+      "Dubai Festival City",
+      "Madinat Jumeirah Living",
+      "City Walk",
+      "Bluewaters Island",
+      "La Mer",
+    ],
+    logo: "/developers/dubai-holding.png",
+    logoClassName: "scale-125",
   },
   {
     name: "Meraas",
     description: "Leading developer of luxury residential communities and hospitality projects.",
-    projects: ["Dubai Marina", "Jumeirah Beach Residence", "Dubai Investment Park"],
-    logo: "🏢",
+    projects: [
+      "City Walk",
+      "Bluewaters Island",
+      "La Mer",
+      "Port de La Mer",
+      "Jumeirah Bay Island",
+    ],
+    logo: "/developers/meraas.png",
   },
   {
     name: "Omniyat",
     description: "Specializes in master-planned communities and sustainable developments.",
-    projects: ["Dubai Studio City", "Dubai South", "Dubai Industrial City"],
-    logo: "🏙️",
+    projects: [
+      "One at Palm Jumeirah",
+      "The Opus (by Zaha Hadid)",
+      "ELA Residences",
+      "Vela",
+      "The Sterling",
+    ],
+    logo: "/developers/omniyat.png",
+    logoClassName: "scale-90",
   },
   {
-    name: "H&H Properties",
+    name: "H&H Development",
     description: "Known for high-end residential developments and hospitality projects.",
-    projects: ["Four Seasons DIFC", "H Hotel", "Palm Jumeirah"],
-    logo: "🏨",
+    projects: [
+      "Four Seasons Resort Dubai at Jumeirah Beach",
+      "Four Seasons Hotel DIFC",
+      "Eden House The Canal",
+    ],
+    logo: "/developers/handh.png",
+    logoClassName: "scale-90",
   },
   {
-    name: "AHS United",
+    name: "AHS Properties",
     description: "Focuses on affordable housing and community development projects.",
-    projects: ["Dubai South", "Dubai Industrial City", "Various residential communities"],
-    logo: "🏘️",
+    projects: [
+      "One Canal",
+      "Casa Canal",
+      "One Crescent (Palm Jumeirah)",
+      "Serenity Mansions",
+    ],
+    logo: "/developers/ahs.png",
+    logoClassName: "scale-90",
   },
   {
     name: "Ellington Properties",
     description: "International developer with luxury residential and commercial projects.",
-    projects: ["Dubai Hills Estate", "Dubai Creek Harbour", "Business Bay"],
-    logo: "🌟",
+    projects: [
+      "Belgravia (I, II, III, Square)",
+      "Wilton Park Residences",
+      "DT1 (Downtown Dubai)",
+      "One River Point",
+      "The Quayside",
+    ],
+    logo: "/developers/ellington.png",
+    logoClassName: "scale-[1.75]",
   },
 ];
 
@@ -198,28 +238,28 @@ const neighborhoods = [
 
 const marketInsights = [
   {
-    title: "Market Growth",
-    description: "Dubai's real estate market has shown consistent growth, with luxury properties appreciating at 5-8% annually.",
+    title: "What we track",
+    description: "We monitor off-plan launches, handover timelines, and secondary-market moves so you can act when it matters—not when a listing appears.",
     icon: TrendingUp,
-    color: "text-green-600",
+    color: "text-accent",
   },
   {
-    title: "Investment Appeal",
-    description: "No capital gains tax, flexible ownership laws, and strong rental yields make Dubai attractive for investors.",
+    title: "Why Dubai still pays",
+    description: "No capital gains or income tax on rental income, 100% freehold in designated areas, and visa pathways linked to property. The framework is built for international buyers.",
     icon: Award,
-    color: "text-blue-600",
+    color: "text-accent",
   },
   {
-    title: "Global Demand",
-    description: "Increasing international interest from Europe, North America, and Asia drives market diversity.",
+    title: "Who’s buying",
+    description: "European, UK, and Asian buyers are driving a large share of demand. We see where interest is focused and where value is still under the radar.",
     icon: Globe,
-    color: "text-purple-600",
+    color: "text-accent",
   },
   {
-    title: "Infrastructure",
-    description: "Major developments like Dubai Creek Harbour and Dubai South promise continued growth.",
+    title: "Where growth is heading",
+    description: "Beyond the usual names, we keep an eye on delivery schedules and infrastructure (metro, roads, amenities) that will shift an area’s appeal in the next 3–5 years.",
     icon: Building2,
-    color: "text-orange-600",
+    color: "text-accent",
   },
 ];
 
@@ -227,7 +267,7 @@ export default function AboutDubaiPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section data-animate="reveal" className="animate-reveal relative py-24 md:py-32 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -238,7 +278,7 @@ export default function AboutDubaiPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         <div className="relative container-wide">
           <div className="max-w-2xl text-white">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Investment Destination
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
@@ -249,31 +289,30 @@ export default function AboutDubaiPage() {
               iconic developments to emerging opportunities, Dubai offers
               unparalleled potential for discerning investors.
             </p>
-            <p className="text-white/80 text-sm mt-4 font-medium">
-              We&apos;ll guide you through the process. We specialize in offering tailored investment opportunities in Dubai&apos;s real estate market.
-            </p>
           </div>
         </div>
       </section>
 
       {/* Market Insights */}
-      <section className="section-padding bg-secondary/30">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
-              Market Intelligence
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+              How we see the market
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
-              Property Insights & Updates
+              Intelligence that informs your move
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {marketInsights.map((insight) => (
+            {marketInsights.map((insight) => {
+              const Icon = insight.icon;
+              return (
               <Card key={insight.title} className="text-center">
                 <CardContent className="p-6">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary mb-4 ${insight.color}`}>
-                    <insight.icon className="h-6 w-6" />
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 mb-4 ${insight.color}`}>
+                    <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-semibold mb-2">{insight.title}</h3>
                   <p className="text-sm text-muted-foreground text-editorial">
@@ -281,16 +320,17 @@ export default function AboutDubaiPage() {
                   </p>
                 </CardContent>
               </Card>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
 
       {/* Premier Developers */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Leading Developers
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
@@ -302,12 +342,15 @@ export default function AboutDubaiPage() {
             {developers.map((developer) => (
               <Card key={developer.name} className="h-full">
                 <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className="text-3xl">{developer.logo}</div>
-                    <div>
-                      <CardTitle className="font-serif text-lg">
-                        {developer.name}
-                      </CardTitle>
+                  <div className="flex items-center justify-center">
+                    <div className="relative h-12 w-36 rounded-md bg-white p-2">
+                      <Image
+                        src={developer.logo}
+                        alt={`${developer.name} logo`}
+                        fill
+                        className={cn("object-contain", developer.logoClassName)}
+                        sizes="144px"
+                      />
                     </div>
                   </div>
                 </CardHeader>
@@ -333,13 +376,13 @@ export default function AboutDubaiPage() {
       </section>
 
       {/* Neighborhoods */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Prime Locations
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+            <h2 className="font-serif text-4xl md:text-5xl font-semibold text-white">
               Key Neighborhoods & Areas
             </h2>
           </div>
@@ -351,7 +394,7 @@ export default function AboutDubaiPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
                       <MapPin className="h-5 w-5 text-accent" />
-                      <CardTitle className="font-serif text-lg">
+                      <CardTitle className="font-serif text-lg text-white">
                         {neighborhood.name}
                       </CardTitle>
                     </div>
@@ -398,10 +441,10 @@ export default function AboutDubaiPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-secondary/30">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Your Questions Answered
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
@@ -413,10 +456,10 @@ export default function AboutDubaiPage() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
+          <div className="max-w-[80vw] mx-auto">
+            <div className="grid gap-6 xl:grid-cols-2">
               {/* Property Ownership */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   What about property ownership in Dubai?
                 </h3>
@@ -426,7 +469,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Residency */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Does buying property give me residency?
                 </h3>
@@ -436,7 +479,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Taxes */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Are there taxes on property purchases in Dubai?
                 </h3>
@@ -456,7 +499,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Off-plan Investment */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Is off-plan property a good investment?
                 </h3>
@@ -474,7 +517,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Why Invest Now */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Why invest in Dubai real estate now?
                 </h3>
@@ -494,7 +537,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Residency Requirements */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Do I need to be a resident to buy real estate in Dubai?
                 </h3>
@@ -504,7 +547,7 @@ export default function AboutDubaiPage() {
               </div>
 
               {/* Bank Account */}
-              <div className="bg-card p-8 rounded-lg shadow-sm">
+              <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
                 <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
                   Do I need to open a bank account to buy off-plan in Dubai?
                 </h3>
@@ -518,7 +561,7 @@ export default function AboutDubaiPage() {
       </section>
 
       {/* Interactive Map Placeholder */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
@@ -549,28 +592,6 @@ export default function AboutDubaiPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-secondary/30">
-        <div className="container-narrow text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
-            Ready to Invest in Dubai?
-          </h2>
-          <p className="text-muted-foreground text-editorial mb-8 max-w-xl mx-auto">
-            With deep market knowledge and extensive developer relationships,
-            we provide unparalleled access to Dubai&apos;s luxury real estate
-            opportunities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg">
-              <Link href="/properties">
-                Browse Properties
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <ConsultationCta size="lg" />
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

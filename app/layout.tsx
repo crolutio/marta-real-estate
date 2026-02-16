@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PageTransition } from "@/components/page-transition";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, AGENCY } from "@/lib/constants";
 
@@ -64,13 +65,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
           <SiteFooter />
         </div>
         <Toaster position="bottom-right" />

@@ -6,14 +6,14 @@ import { AGENCY } from "@/lib/constants";
 
 export function AboutPreview() {
   return (
-    <section className="section-padding overflow-hidden">
+    <section data-animate="reveal" className="animate-reveal section-padding overflow-hidden">
       <div className="container-wide">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="relative">
             <div className="aspect-[4/5] relative rounded-lg overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
+                src="/marta.jpg"
                 alt={`${AGENCY.name} - Luxury Real Estate Specialist`}
                 fill
                 className="object-cover"
@@ -46,7 +46,7 @@ export function AboutPreview() {
           {/* Content Side */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium">
+              <p className="text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
                 About {AGENCY.name}
               </p>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">

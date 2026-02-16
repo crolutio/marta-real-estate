@@ -10,15 +10,15 @@ const iconMap = {
 
 export function ValueProps() {
   return (
-    <section className="section-padding">
+    <section data-animate="reveal" className="animate-reveal section-padding">
       <div className="container-wide">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
-            Why Choose Us
+          <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            Why work with us
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
-            The Pillars of Our Service
+            How we work
           </h2>
         </div>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY, FOOTER_LINKS } from "@/lib/constants";
@@ -14,12 +15,13 @@ export function SiteFooter() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <span className="font-serif text-2xl font-semibold tracking-tight">
-                {AGENCY.name}
-              </span>
-              <span className="block text-xs tracking-widest uppercase text-primary-foreground/60">
-                Real Estate
-              </span>
+              <Image
+                src="/logo-big.webp"
+                alt={AGENCY.fullName}
+                width={640}
+                height={192}
+                className="h-28 w-auto object-contain"
+              />
             </Link>
             <p className="text-primary-foreground/80 max-w-md text-editorial mb-6">
               {AGENCY.description}

@@ -4,11 +4,11 @@ import { TESTIMONIALS } from "@/lib/constants";
 
 export function Testimonials() {
   return (
-    <section className="section-padding bg-primary text-primary-foreground">
+    <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
       <div className="container-wide">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+          <p className="text-white text-xl md:text-2xl tracking-[0.12em] uppercase font-semibold mb-4">
             Client Stories
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">

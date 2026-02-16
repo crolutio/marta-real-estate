@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -25,16 +26,7 @@ import { ConsultationCta } from "@/components/consultation-cta";
 export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   React.useEffect(() => {
     // Load theme from localStorage
@@ -62,27 +54,24 @@ export function SiteHeader() {
 
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      )}
+      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
     >
       <div className="container-wide">
         <nav className="flex h-20 items-center justify-between" aria-label="Main navigation">
           {/* Logo */}
           <Link
             href="/"
-            className="flex flex-col items-start transition-opacity hover:opacity-80"
+            className="transition-opacity hover:opacity-90 flex items-center"
             aria-label={`${AGENCY.fullName} - Home`}
           >
-            <span className="font-serif text-xl md:text-2xl font-semibold tracking-tight">
-              {AGENCY.name}
-            </span>
-            <span className="text-xs text-muted-foreground tracking-widest uppercase">
-              Real Estate
-            </span>
+            <Image
+              src="/logo.webp"
+              alt={AGENCY.fullName}
+              width={220}
+              height={64}
+              className="h-14 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -97,7 +86,7 @@ export function SiteHeader() {
                     ? "text-foreground"
                     : "text-muted-foreground",
                   pathname === link.href &&
-                    "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent"
+                    "after:absolute after:-bottom-0.5 after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-accent"
                 )}
               >
                 {link.label}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationCta } from "@/components/consultation-cta";
@@ -6,7 +7,7 @@ import { AGENCY } from "@/lib/constants";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section data-animate="reveal" className="animate-reveal relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div
@@ -22,6 +23,15 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container-wide text-center text-white pt-20">
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+          <Image
+            src="/logo-big.webp"
+            alt={`${AGENCY.fullName} logo`}
+            width={1260}
+            height={360}
+            className="mx-auto h-60 md:h-72 w-auto object-contain"
+            priority
+          />
+
           {/* Eyebrow */}
           <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
             Spaces Curated for Exceptional Living
@@ -30,7 +40,7 @@ export function Hero() {
           {/* Main Headline */}
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
             Find the Place Where You
-            <span className="block mt-2 text-gold-gradient">Belong</span>
+            <span className="block mt-2 text-white">Belong</span>
           </h1>
 
           {/* Subheadline */}

@@ -5,7 +5,7 @@ import { ConsultationCta } from "@/components/consultation-cta";
 
 export function ContactTeaser() {
   return (
-    <section className="section-padding">
+    <section data-animate="reveal" className="animate-reveal section-padding">
       <div className="container-narrow">
         <div className="bg-secondary/50 rounded-2xl p-8 md:p-12 lg:p-16 text-center">
           <MessageSquare className="h-12 w-12 mx-auto text-accent mb-6" />

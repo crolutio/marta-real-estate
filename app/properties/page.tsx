@@ -9,6 +9,14 @@ import {
 import { properties } from "@/lib/data/properties";
 import { Property } from "@/lib/types";
 
+function getPropertyBedRange(p: Property): { min: number; max: number } {
+  const match = p.unitTypes?.match(/^(\d+)\s+to\s+(\d+)\s*Bed/i);
+  if (match) {
+    return { min: parseInt(match[1], 10), max: parseInt(match[2], 10) };
+  }
+  return { min: p.bedrooms, max: p.bedrooms };
+}
+
 export default function PropertiesPage() {
   const [filters, setFilters] = React.useState<PropertyFiltersType>({
     search: "",
@@ -44,11 +52,16 @@ export default function PropertiesPage() {
       result = result.filter((p) => p.status === filters.status);
     }
 
-    // Bedrooms filter
+    // Bedrooms filter (selected N: show if property offers N beds; 5+ means show if property has 5 or more)
     if (filters.minBeds !== "any") {
-      const minBeds =
+      const selected =
         typeof filters.minBeds === "number" ? filters.minBeds : 5;
-      result = result.filter((p) => p.bedrooms >= minBeds);
+      const is5Plus = selected === 5;
+      result = result.filter((p) => {
+        const { min, max } = getPropertyBedRange(p);
+        if (is5Plus) return max >= 5;
+        return selected >= min && selected <= max;
+      });
     }
 
     // Price range filter
@@ -80,10 +93,10 @@ export default function PropertiesPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Our Collection
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
@@ -102,7 +115,7 @@ export default function PropertiesPage() {
       </section>
 
       {/* Filters & Grid */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           {/* Filters */}
           <div className="mb-8">
@@ -124,7 +137,7 @@ export default function PropertiesPage() {
           {filteredProperties.length > 0 ? (
             <div
               key={filteredProperties.map((p) => p.slug).join(",")}
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children"
+              className="grid gap-8 md:grid-cols-2 stagger-children"
             >
               {filteredProperties.map((property) => (
                 <PropertyCard key={property.slug} property={property} />

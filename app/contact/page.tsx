@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import {
   Mail,
   Phone,
@@ -9,19 +8,12 @@ import {
   MapPin,
   Clock,
   Send,
-  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { AGENCY, FAQ_ITEMS, DUBAI_FAQ_ITEMS } from "@/lib/constants";
+import { AGENCY } from "@/lib/constants";
 import { toast } from "sonner";
 
 export default function ContactPage() {
@@ -70,10 +62,10 @@ export default function ContactPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Get in Touch
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
@@ -92,112 +84,11 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Cards */}
-            <div className="space-y-6">
-              {/* Phone Card */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <Phone className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
-                      <a
-                        href={`tel:${AGENCY.phone}`}
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {AGENCY.phone}
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* WhatsApp Card */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <MessageCircle className="h-6 w-6 text-accent" />
-                    </div>
-                    <div className="flex flex-col gap-3 min-w-0">
-                      <h3 className="font-semibold">WhatsApp</h3>
-                      <Button asChild variant="outline" size="sm" className="w-fit">
-                        <a
-                          href={`https://wa.me/${AGENCY.whatsapp}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Message on WhatsApp
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Email Card */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <Mail className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
-                      <a
-                        href={`mailto:${AGENCY.email}`}
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {AGENCY.email}
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Address Card */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <MapPin className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Office</h3>
-                      <p className="text-muted-foreground">
-                        {AGENCY.address.line1}
-                        <br />
-                        {AGENCY.address.city}, {AGENCY.address.state}{" "}
-                        {AGENCY.address.zip}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Hours Card */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <Clock className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Hours</h3>
-                      <p className="text-muted-foreground">{AGENCY.hours}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
+          <div className="grid lg:grid-cols-[1.2fr_1.3fr] gap-6 items-start">
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <div className="lg:order-2">
               <Card>
                 <CardContent className="p-8">
                   <h2 className="font-serif text-2xl font-semibold mb-6">
@@ -272,63 +163,83 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="section-padding bg-secondary/30">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
-              Common Questions
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
-              Frequently Asked Questions
-            </h2>
-          </div>
+            {/* Contact Details */}
+            <div className="space-y-6 lg:order-1">
+              <Card>
+                <CardContent className="p-8 space-y-6">
+                  <h3 className="font-serif text-2xl font-semibold">Contact Details</h3>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* General FAQ */}
-            <div>
-              <h3 className="font-serif text-2xl font-semibold mb-6 text-center">General Questions</h3>
-              <Accordion type="single" collapsible className="space-y-4">
-                {FAQ_ITEMS.map((item, index) => (
-                  <AccordionItem
-                    key={`general-${index}`}
-                    value={`general-${index}`}
-                    className="bg-card rounded-lg px-6"
-                  >
-                    <AccordionTrigger className="text-left font-semibold hover:no-underline py-6">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-6">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+                  <div className="grid sm:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <Phone className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <p className="font-semibold mb-1">Phone</p>
+                          <a href={`tel:${AGENCY.phone}`} className="text-muted-foreground hover:text-foreground transition-colors">
+                            {AGENCY.phone}
+                          </a>
+                        </div>
+                      </div>
 
-            {/* Dubai FAQ */}
-            <div>
-              <h3 className="font-serif text-2xl font-semibold mb-6 text-center">Dubai Investment Questions</h3>
-              <Accordion type="single" collapsible className="space-y-4">
-                {DUBAI_FAQ_ITEMS.map((item, index) => (
-                  <AccordionItem
-                    key={`dubai-${index}`}
-                    value={`dubai-${index}`}
-                    className="bg-card rounded-lg px-6"
-                  >
-                    <AccordionTrigger className="text-left font-semibold hover:no-underline py-6">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-6">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <Mail className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <p className="font-semibold mb-1">Email</p>
+                          <a href={`mailto:${AGENCY.email}`} className="text-muted-foreground hover:text-foreground transition-colors">
+                            {AGENCY.email}
+                          </a>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <MessageCircle className="h-5 w-5 text-accent" />
+                        </div>
+                        <div className="space-y-2">
+                          <p className="font-semibold">WhatsApp</p>
+                          <Button asChild variant="outline" size="sm">
+                            <a href={`https://wa.me/${AGENCY.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                              Message on WhatsApp
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <MapPin className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <p className="font-semibold mb-1">Office</p>
+                          <p className="text-muted-foreground">
+                            {AGENCY.address.line1}
+                            <br />
+                            {AGENCY.address.city}
+                            {AGENCY.address.state ? `, ${AGENCY.address.state}` : ""}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <Clock className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <p className="font-semibold mb-1">Hours</p>
+                          <p className="text-muted-foreground">{AGENCY.hours}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

@@ -156,9 +156,9 @@ export function PropertyFilters({
           </Select>
 
           <Select
-            value={String(filters.minBeds)}
+            value={filters.minBeds === "any" ? "any" : filters.minBeds === 5 ? "5+" : String(filters.minBeds)}
             onValueChange={(value) =>
-              updateFilter("minBeds", value === "any" ? "any" : parseInt(value))
+              updateFilter("minBeds", value === "any" ? "any" : value === "5+" ? 5 : parseInt(value, 10))
             }
           >
             <SelectTrigger className="w-[120px]">
@@ -167,7 +167,7 @@ export function PropertyFilters({
             <SelectContent>
               {bedroomOptions.map((beds) => (
                 <SelectItem key={beds} value={beds}>
-                  {beds === "any" ? "Any Beds" : `${beds}+ Beds`}
+                  {beds === "any" ? "Any Beds" : beds === "5+" ? "5+ Beds" : `${beds}+ Beds`}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -278,11 +278,11 @@ export function PropertyFilters({
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Bedrooms</label>
                   <Select
-                    value={String(filters.minBeds)}
+                    value={filters.minBeds === "any" ? "any" : filters.minBeds === 5 ? "5+" : String(filters.minBeds)}
                     onValueChange={(value) =>
                       updateFilter(
                         "minBeds",
-                        value === "any" ? "any" : parseInt(value)
+                        value === "any" ? "any" : value === "5+" ? 5 : parseInt(value, 10)
                       )
                     }
                   >
@@ -292,7 +292,7 @@ export function PropertyFilters({
                     <SelectContent>
                       {bedroomOptions.map((beds) => (
                         <SelectItem key={beds} value={beds}>
-                          {beds === "any" ? "Any Beds" : `${beds}+ Beds`}
+                          {beds === "any" ? "Any Beds" : beds === "5+" ? "5+ Beds" : `${beds}+ Beds`}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -389,7 +389,7 @@ export function PropertyFilters({
           )}
           {filters.minBeds !== "any" && (
             <Badge variant="secondary" className="gap-1">
-              {filters.minBeds}+ Beds
+              {filters.minBeds === 5 ? "5+ Beds" : `${filters.minBeds}+ Beds`}
               <button
                 onClick={() => updateFilter("minBeds", "any")}
                 className="ml-1 hover:text-foreground"

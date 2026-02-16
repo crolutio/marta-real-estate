@@ -75,10 +75,10 @@ export default function ServicesPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-4">
+            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Professional Services
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
@@ -97,7 +97,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service) => (
@@ -135,7 +135,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
         <div className="container-wide">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
@@ -148,50 +148,47 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent">1</span>
+            {[
+              {
+                title: "Initial Consultation",
+                description:
+                  "Free consultation to understand your goals and requirements",
+              },
+              {
+                title: "Strategy Development",
+                description:
+                  "Customized plan tailored to your specific needs and timeline",
+              },
+              {
+                title: "Implementation",
+                description:
+                  "Step-by-step execution with regular progress updates",
+              },
+              {
+                title: "Ongoing Support",
+                description:
+                  "Continued assistance and guidance as your Dubai presence grows",
+              },
+            ].map((step, index, arr) => (
+              <div key={step.title} className="text-center relative">
+              <div className="h-16 w-16 rounded-full bg-accent flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-white">{index + 1}</span>
+                </div>
+                <h3 className="font-semibold mb-2">{step.title}</h3>
+              <p className="text-sm text-primary-foreground/70">{step.description}</p>
+                {index < arr.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute -right-7 top-8 h-6 w-6 text-white" />
+                )}
               </div>
-              <h3 className="font-semibold mb-2">Initial Consultation</h3>
-              <p className="text-sm text-primary-foreground/70">
-                Free consultation to understand your goals and requirements
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent">2</span>
-              </div>
-              <h3 className="font-semibold mb-2">Strategy Development</h3>
-              <p className="text-sm text-primary-foreground/70">
-                Customized plan tailored to your specific needs and timeline
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent">3</span>
-              </div>
-              <h3 className="font-semibold mb-2">Implementation</h3>
-              <p className="text-sm text-primary-foreground/70">
-                Step-by-step execution with regular progress updates
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent">4</span>
-              </div>
-              <h3 className="font-semibold mb-2">Ongoing Support</h3>
-              <p className="text-sm text-primary-foreground/70">
-                Continued assistance and guidance as your Dubai presence grows
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-narrow text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
             Ready to Start Your Dubai Journey?
           </h2>
           <p className="text-muted-foreground text-editorial mb-8 max-w-xl mx-auto">

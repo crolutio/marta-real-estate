@@ -10,7 +10,7 @@ export default function PrivacyPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-secondary/30 py-16 md:py-24">
+      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl md:text-5xl font-semibold text-display mb-4">
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
       </section>
 
       {/* Content */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-narrow">
           <div className="prose prose-gray max-w-none">
             <p className="lead text-lg text-muted-foreground">

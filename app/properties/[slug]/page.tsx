@@ -79,7 +79,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
   return (
     <div className="pt-20">
       {/* Breadcrumb */}
-      <div className="bg-secondary/30 py-4">
+      <div data-animate="reveal" className="animate-reveal bg-secondary/30 py-4">
         <div className="container-wide">
           <div className="flex items-center gap-2 text-sm">
             <Link
@@ -98,7 +98,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
       </div>
 
       {/* Main Content */}
-      <section className="section-padding">
+      <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Left Column - Main Content */}
@@ -135,7 +135,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     href={property.addressLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-lg text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-2 text-lg text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <MapPin className="h-5 w-5" />
                     {property.location}
@@ -150,23 +150,36 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 )}
               </div>
 
-              {/* Key Facts */}
+              {/* Key Facts - same side-by-side layout for all properties */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-secondary/30 rounded-lg">
                 {property.unitTypes ? (
-                  <div className="col-span-2 md:col-span-4 space-y-6">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-1">Unit Types</p>
-                      <p className="font-semibold text-base leading-snug">
-                        {property.unitTypes}
+                  <>
+                    <div className="text-center">
+                      <Bed className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">
+                        {(() => {
+                          const m = property.unitTypes?.match(/^(\d+)\s+to\s+(\d+)\s*Bed/i);
+                          return m ? `${m[1]} to ${m[2]}` : property.unitTypes?.split("|")[0]?.trim() ?? "—";
+                        })()}
                       </p>
+                      <p className="text-sm text-muted-foreground">Bedrooms</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-1">Unit Sizes</p>
-                      <p className="font-semibold text-base leading-snug">
-                        {property.unitSizes}
-                      </p>
+                    <div className="text-center">
+                      <Bath className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.unitBathsRange ?? "—"}</p>
+                      <p className="text-sm text-muted-foreground">Bathrooms</p>
                     </div>
-                  </div>
+                    <div className="text-center">
+                      <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.unitSizes}</p>
+                      <p className="text-sm text-muted-foreground">Floor Area</p>
+                    </div>
+                    <div className="text-center">
+                      <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                      <p className="font-semibold text-lg">{property.type}</p>
+                      <p className="text-sm text-muted-foreground">Type</p>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className="text-center">
@@ -235,12 +248,6 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     Highlights
                   </TabsTrigger>
                   <TabsTrigger
-                    value="amenities"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-accent data-[state=active]:bg-transparent px-6 py-3"
-                  >
-                    Amenities
-                  </TabsTrigger>
-                  <TabsTrigger
                     value="location"
                     className="rounded-none border-b-2 border-transparent data-[state=active]:border-accent data-[state=active]:bg-transparent px-6 py-3"
                   >
@@ -274,24 +281,10 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   </ul>
                 </TabsContent>
 
-                <TabsContent value="amenities" className="pt-6">
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {property.amenities.map((amenity: string, index: number) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 bg-secondary/30 rounded-lg"
-                      >
-                        <Check className="h-4 w-4 text-accent shrink-0" />
-                        <span className="text-sm">{amenity}</span>
-                      </div>
-                    ))}
-                  </div>
-                </TabsContent>
-
                 <TabsContent value="location" className="pt-6">
                   <div className="space-y-4">
                     <GoogleMapEmbed
-                      query={`${property.location}${property.neighborhood ? `, ${property.neighborhood}` : ""}, Dubai, UAE`}
+                      query={property.locationMapQuery ?? `${property.location}${property.neighborhood ? `, ${property.neighborhood}` : ""}, Dubai, UAE`}
                       title={`${property.title} location`}
                     />
                     {(property.locationMapLink ?? property.addressLink) && (
@@ -319,12 +312,12 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
           {/* Similar Properties */}
           {similarProperties.length > 0 && (
-            <div className="mt-20">
+            <div data-animate="reveal" className="animate-reveal mt-20">
               <Separator className="mb-12" />
               <div className="space-y-8">
                 <div className="flex items-end justify-between">
                   <div>
-                    <p className="text-sm tracking-[0.2em] uppercase text-accent font-medium mb-2">
+                    <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-2">
                       Similar Properties
                     </p>
                     <h2 className="font-serif text-2xl md:text-3xl font-semibold">
