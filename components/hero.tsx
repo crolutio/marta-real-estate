@@ -53,7 +53,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#1a1a1a] hover:bg-accent hover:text-accent-foreground text-base px-8"
+              className="bg-accent text-white hover:bg-white hover:text-[#1a1a1a] text-base px-8"
             >
               <Link href="/properties">
                 View Properties

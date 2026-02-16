@@ -9,18 +9,18 @@ export function SiteFooter() {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="container-wide section-padding">
+      <div className="container-wide py-8 md:py-18 lg:py-24">
         {/* Main Footer Content */}
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-6">
+            <Link href="/" className="inline-block mb-2">
               <Image
                 src="/logo-big.webp"
                 alt={AGENCY.fullName}
-                width={640}
-                height={192}
-                className="h-28 w-auto object-contain"
+                width={720}
+                height={216}
+                className="h-48 w-auto object-contain"
               />
             </Link>
             <p className="text-primary-foreground/80 max-w-md text-editorial mb-6">
