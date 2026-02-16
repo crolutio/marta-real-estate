@@ -190,9 +190,9 @@
     display: none;
   }
   
-  /* Custom selection color */
+  /* Custom selection color - accent */
   ::selection {
-    background-color: oklch(0.72 0.14 65 / 0.3);
+    background-color: color-mix(in srgb, var(--accent) 35%, transparent);
   }
 }
 

@@ -1,19 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowRight,
-  Award,
-  Users,
-  Globe,
-  TrendingUp,
   Shield,
+  TrendingUp,
   Lock,
   Compass,
   Linkedin,
   Languages,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ConsultationCta } from "@/components/consultation-cta";
 import { AGENCY, VALUE_PROPS } from "@/lib/constants";
@@ -254,35 +248,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
-        <div className="container-narrow text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-6">
-            Ready to Begin Your Journey?
-          </h2>
-          <p className="text-lg text-primary-foreground/80 text-editorial mb-8 max-w-xl mx-auto">
-            Whether you&apos;re buying, selling, or investing, I&apos;m here to guide
-            you every step of the way. Let&apos;s discuss your real estate goals.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ConsultationCta
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-            />
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              <Link href="/contact">
-                Contact Me
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

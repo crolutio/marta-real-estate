@@ -11,7 +11,6 @@ import { GoogleMapEmbed } from "@/components/google-map-embed";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ConsultationCta } from "@/components/consultation-cta";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -582,13 +581,6 @@ export default function AboutDubaiPage() {
             />
           </div>
 
-          <div className="text-center">
-            <p className="text-muted-foreground mb-6">
-              Need help finding the perfect location? Let&apos;s discuss your
-              preferences and explore options together.
-            </p>
-            <ConsultationCta size="lg" />
-          </div>
         </div>
       </section>
 

@@ -115,7 +115,10 @@ export default function PropertiesPage() {
       </section>
 
       {/* Filters & Grid */}
-      <section data-animate="reveal" className="animate-reveal section-padding">
+      <section
+        data-animate="reveal"
+        className="animate-reveal pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32"
+      >
         <div className="container-wide">
           {/* Filters */}
           <div className="mb-8">

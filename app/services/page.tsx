@@ -97,7 +97,10 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section data-animate="reveal" className="animate-reveal section-padding">
+      <section
+        data-animate="reveal"
+        className="animate-reveal pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32"
+      >
         <div className="container-wide">
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service) => (

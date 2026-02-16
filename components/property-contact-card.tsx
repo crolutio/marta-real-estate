@@ -1,11 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { Mail, Phone, MessageCircle, Calendar } from "lucide-react";
+import { Mail, Phone, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY } from "@/lib/constants";
 import { Property } from "@/lib/types";
@@ -21,7 +20,6 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
     name: "",
     email: "",
     phone: "",
-    message: "Please share availability and payment plan details.",
   });
 
   const handleInputChange = (
@@ -34,16 +32,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
   };
 
   const generateMessage = () => {
-    const normalizedDefaultMessage =
-      "please share availability and payment plan details.";
-    const trimmedMessage = formData.message.trim();
-    const customMessage =
-      trimmedMessage &&
-      trimmedMessage.toLowerCase() !== normalizedDefaultMessage
-        ? `\n\n${trimmedMessage}`
-        : "";
-
-    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price, property.currency)}${customMessage}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
+    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price, property.currency)}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
   };
 
   const handleEmailSubmit = () => {
@@ -130,13 +119,6 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
               value={formData.phone}
               onChange={handleInputChange}
             />
-            <Textarea
-              name="message"
-              placeholder="Message"
-              rows={3}
-              value={formData.message}
-              onChange={handleInputChange}
-            />
           </div>
 
           <div className="space-y-2">
@@ -159,14 +141,6 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
             </Button>
           </div>
         </div>
-
-        <Separator />
-
-        {/* Schedule Button */}
-        <Button variant="secondary" className="w-full">
-          <Calendar className="h-4 w-4 mr-2" />
-          Schedule a Viewing
-        </Button>
       </CardContent>
     </Card>
   );
