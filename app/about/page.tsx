@@ -8,7 +8,7 @@ import {
   Linkedin,
   Languages,
 } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
 import { ConsultationCta } from "@/components/consultation-cta";
 import { AGENCY, VALUE_PROPS } from "@/lib/constants";
 
@@ -109,7 +109,7 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-muted-foreground text-editorial">
                 <p>
-                  With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. Originally from Barcelona—where she was already one of the most reputable real estate brokers - she has worked with the region&apos;s most renowned developers and leading real estate firms, gaining invaluable expertise in luxury properties and off-market investments.
+                  With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She has worked with the region&apos;s most renowned developers and leading real estate firms, gaining invaluable expertise in luxury properties and off-market investments.
                 </p>
                 <p>
                   In addition to her real estate background, Marta is a qualified lawyer with a Master of Laws (LL.M.), bringing a rigorous, detail-driven perspective to every transaction. This legal foundation strengthens her ability to protect clients&apos; interests, assess risk with precision, and structure acquisitions with clarity and confidence - particularly in complex, high-stakes deals.
@@ -159,24 +159,21 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUE_PROPS.map((prop) => {
               const Icon = iconMap[prop.icon as keyof typeof iconMap];
               return (
-                <div
-                  key={prop.title}
-                  className="bg-card p-8 rounded-lg hover:shadow-lg transition-shadow"
-                >
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/10 text-accent mb-6">
-                    <Icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold mb-3">
-                    {prop.title}
-                  </h3>
-                  <p className="text-muted-foreground text-editorial">
-                    {prop.description}
-                  </p>
-                </div>
+                <Card key={prop.title} className="text-center">
+                  <CardContent className="p-6">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-serif font-semibold mb-2">{prop.title}</h3>
+                    <p className="text-sm text-muted-foreground text-editorial">
+                      {prop.description}
+                    </p>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>

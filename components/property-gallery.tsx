@@ -26,6 +26,19 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
 
   const hasVideo = !!video;
   const hasImages = images.length > 0;
+
+  // Preload all images and video when entering the property page
+  React.useEffect(() => {
+    images.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+    if (video) {
+      const v = document.createElement("video");
+      v.preload = "auto";
+      v.src = video;
+    }
+  }, [images, video]);
   const totalSlides = hasVideo ? 1 + images.length : images.length;
   const isVideoSlide = hasVideo && currentIndex === 0;
   const currentImageSrc = hasVideo
@@ -103,6 +116,7 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
               fill
               className="object-contain animate-fade-in"
               sizes="92vw"
+              quality={95}
             />
           )}
         </div>
@@ -208,7 +222,8 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
                     alt={`${title} - Image ${currentIndex}`}
                     fill
                     className="object-cover transition-transform group-hover:scale-105 animate-fade-in"
-                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    sizes="(max-width: 1536px) 100vw, 1920px"
+                    quality={95}
                     priority={currentIndex === (hasVideo ? 1 : 0)}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">

@@ -13,12 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { AGENCY, NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ConsultationCta } from "@/components/consultation-cta";
@@ -27,15 +21,12 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
-
   React.useEffect(() => {
-    // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (savedTheme) {
+    if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
       setTheme(savedTheme);
       applyTheme(savedTheme);
     } else {
-      // Default to light
       setTheme("light");
       applyTheme("light");
     }
@@ -47,9 +38,10 @@ export function SiteHeader() {
     localStorage.setItem("theme", newTheme);
   };
 
-  const handleThemeChange = (newTheme: "light" | "dark") => {
-    setTheme(newTheme);
-    applyTheme(newTheme);
+  const handleThemeToggle = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    applyTheme(next);
   };
 
   return (
@@ -96,26 +88,17 @@ export function SiteHeader() {
 
           {/* Desktop CTA & Theme Toggle */}
           <div className="hidden md:flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
-                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">Toggle theme</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => handleThemeChange("light")}>
-                  <Sun className="mr-2 h-4 w-4" />
-                  <span>Light</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
-                  <Moon className="mr-2 h-4 w-4" />
-                  <span>Dark</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <ConsultationCta />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9 relative bg-accent text-accent-foreground hover:bg-black hover:text-white"
+              onClick={handleThemeToggle}
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+            <ConsultationCta className="hover:bg-black hover:text-white" />
           </div>
 
           {/* Mobile Menu */}
@@ -156,24 +139,15 @@ export function SiteHeader() {
                   {/* Mobile Theme Toggle */}
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">Theme</span>
-                    <div className="flex gap-2">
-                      <Button
-                        variant={theme === "light" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => handleThemeChange("light")}
-                        className="h-8 w-8 p-0"
-                      >
-                        <Sun className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant={theme === "dark" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => handleThemeChange("dark")}
-                        className="h-8 w-8 p-0"
-                      >
-                        <Moon className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleThemeToggle}
+                      className="h-8 w-8 p-0 relative bg-accent text-accent-foreground border-accent hover:bg-black hover:text-white hover:border-black"
+                    >
+                      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    </Button>
                   </div>
                   <ConsultationCta className="w-full" />
                 </div>

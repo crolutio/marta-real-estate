@@ -1,3 +1,6 @@
+"use client";
+
+import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
@@ -6,14 +9,34 @@ import { Property } from "@/lib/types";
 import { formatPrice } from "@/lib/data/properties";
 import { cn } from "@/lib/utils";
 
+function preloadPropertyMedia(property: Property) {
+  property.images.forEach((src) => {
+    const img = new window.Image();
+    img.src = src;
+  });
+  if (property.video) {
+    const v = document.createElement("video");
+    v.preload = "auto";
+    v.src = property.video;
+  }
+}
+
 interface PropertyCardProps {
   property: Property;
   featured?: boolean;
 }
 
 export function PropertyCard({ property, featured = false }: PropertyCardProps) {
+  const handleMouseEnter = React.useCallback(() => {
+    preloadPropertyMedia(property);
+  }, [property]);
+
   return (
-    <Link href={`/properties/${property.slug}`} className="group block">
+    <Link
+      href={`/properties/${property.slug}`}
+      className="group block"
+      onMouseEnter={handleMouseEnter}
+    >
       <Card
         className={cn(
           "overflow-hidden border-0 shadow-none bg-transparent hover-lift p-4",

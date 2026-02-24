@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -14,9 +15,9 @@ const inter = Inter({
   display: "swap",
 });
 
-// Serif for headings - elegant, editorial feel
-const playfair = Playfair_Display({
-  subsets: ["latin"],
+// Serif for headings - Didona
+const didona = localFont({
+  src: "../public/fonts/Didona Regular.ttf",
   variable: "--font-serif",
   display: "swap",
 });
@@ -67,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
+        className={`${inter.variable} ${didona.variable} font-sans antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />

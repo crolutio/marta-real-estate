@@ -74,9 +74,9 @@ export const VALUE_PROPS = [
     icon: "Shield",
   },
   {
-    title: "Dubai & Barcelona roots",
+    title: "Dubai roots",
     description:
-      "Marta brings a decade in Dubai plus a strong track record from Barcelona. You get local knowledge and a global lens.",
+      "A decade of Dubai expertise - local market intelligence combined with an international perspective. Marta knows the market inside out and brings a refined, strategic approach to every investment.",
     icon: "TrendingUp",
   },
   {
@@ -88,7 +88,7 @@ export const VALUE_PROPS = [
   {
     title: "Access, not just listings",
     description:
-      "Through long-standing developer and broker relationships, we surface opportunities that don’t appear on portals.",
+      "Through long-standing developer and network, we surface opportunities that don’t appear on portals.",
     icon: "Compass",
   },
 ] as const;

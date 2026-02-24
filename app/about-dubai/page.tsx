@@ -111,134 +111,74 @@ const neighborhoods = [
     name: "Palm Jumeirah",
     description: "Iconic man-made island featuring luxury beachfront residences and world-class amenities.",
     highlights: ["Beachfront living", "Marina access", "High-end developments"],
-    price: "Premium",
     type: "Island",
-  },
-  {
-    name: "Dubai Marina",
-    description: "Vibrant waterfront district with modern skyscrapers, marina, and cosmopolitan lifestyle.",
-    highlights: ["Waterfront promenade", "Dining & entertainment", "Modern architecture"],
-    price: "Mid to Premium",
-    type: "Waterfront",
-  },
-  {
-    name: "Jumeirah Beach Residence",
-    description: "Prestigious beachfront community with white-sand beaches and luxury residences.",
-    highlights: ["Private beaches", "Walking distance to malls", "Family-friendly"],
-    price: "Premium",
-    type: "Beachfront",
-  },
-  {
-    name: "Business Bay",
-    description: "Dubai's central business district with modern architecture and waterfront views.",
-    highlights: ["Business hub", "Modern skyscrapers", "Waterfront location"],
-    price: "Premium",
-    type: "Business District",
   },
   {
     name: "Dubai International Financial Centre",
     description: "Free zone offering tax advantages and proximity to business and leisure amenities.",
     highlights: ["Tax advantages", "Business facilities", "Luxury residences"],
-    price: "Premium",
     type: "Financial District",
   },
   {
     name: "Emirates Hills",
     description: "Exclusive golf community with championship courses and equestrian facilities.",
     highlights: ["Golf courses", "Equestrian facilities", "Exclusive community"],
-    price: "Ultra-Premium",
     type: "Golf Community",
   },
   {
     name: "Dubai Hills Estate",
     description: "Master-planned community with nature trails, parks, and resort-style amenities.",
     highlights: ["Nature trails", "Resort amenities", "Family-oriented"],
-    price: "Premium",
     type: "Estate Community",
   },
   {
     name: "Dubai Harbour",
     description: "New waterfront destination with modern developments and marina lifestyle.",
     highlights: ["Modern architecture", "Marina lifestyle", "Upcoming area"],
-    price: "Mid to Premium",
     type: "Waterfront",
   },
   {
     name: "Downtown Dubai",
     description: "Dubai's vibrant city center featuring Burj Khalifa, Dubai Mall, and world-class dining.",
     highlights: ["Burj Khalifa views", "Premium shopping", "Entertainment district"],
-    price: "Premium",
     type: "City Center",
   },
   {
     name: "Dubai Creek Harbour",
     description: "Luxurious waterfront development with iconic towers, parks, and marina facilities.",
     highlights: ["Creek views", "Mixed-use development", "Modern lifestyle"],
-    price: "Premium",
     type: "Waterfront",
   },
   {
     name: "Sheikh Zayed Road",
     description: "Dubai's main thoroughfare lined with prestigious skyscrapers and business headquarters.",
     highlights: ["Business district", "Iconic architecture", "Central location"],
-    price: "Premium",
     type: "Business Corridor",
-  },
-  {
-    name: "Mohammed Bin Rashid City",
-    description: "Master-planned smart city with integrated communities, parks, and modern amenities.",
-    highlights: ["Smart city features", "Green spaces", "Modern infrastructure"],
-    price: "Mid to Premium",
-    type: "Smart City",
   },
   {
     name: "Dubai Islands",
     description: "Exclusive archipelago development with private islands and luxury residences.",
     highlights: ["Private islands", "Exclusive access", "Waterfront lifestyle"],
-    price: "Ultra-Premium",
     type: "Island Development",
-  },
-  {
-    name: "Pearl Jumeirah",
-    description: "Man-made island inspired by traditional Arabian pearls, offering luxury living.",
-    highlights: ["Island living", "Cultural design", "Premium amenities"],
-    price: "Premium",
-    type: "Island",
   },
   {
     name: "City Walk",
     description: "Pedestrian-friendly district with boutique shopping, dining, and entertainment.",
     highlights: ["Walkable district", "Boutique shopping", "Lifestyle destination"],
-    price: "Premium",
     type: "Lifestyle District",
   },
   {
     name: "Dubai Canal",
     description: "Scenic waterfront corridor connecting Dubai Creek to the Arabian Gulf.",
     highlights: ["Water views", "Recreational activities", "Modern developments"],
-    price: "Mid to Premium",
     type: "Waterfront",
-  },
-  {
-    name: "Jumeirah 1",
-    description: "Historic district in Jumeirah offering traditional Arabian architecture and modern luxury.",
-    highlights: ["Heritage charm", "Beach proximity", "Residential community"],
-    price: "Premium",
-    type: "Heritage District",
-  },
-  {
-    name: "Jumeirah 3",
-    description: "Up-and-coming area with modern developments and proximity to Dubai Marina.",
-    highlights: ["Marina proximity", "Growing community", "Modern residences"],
-    price: "Mid to Premium",
-    type: "Residential District",
   },
 ];
 
 const marketInsights = [
   {
     title: "What we track",
-    description: "We monitor off-plan launches, handover timelines, and secondary-market moves so you can act when it matters—not when a listing appears.",
+    description: "We monitor investment opportunities, off-plan launches, and secondary-market moves so you can act when it matters, not when a listing appears.",
     icon: TrendingUp,
     color: "text-accent",
   },
@@ -256,7 +196,7 @@ const marketInsights = [
   },
   {
     title: "Where growth is heading",
-    description: "Beyond the usual names, we keep an eye on delivery schedules and infrastructure (metro, roads, amenities) that will shift an area’s appeal in the next 3–5 years.",
+    description: "Beyond the usual names, we keep an eye on delivery schedules and infrastructure (metro, roads, masterplans) that will shift an area’s appeal in the next 3–5 years.",
     icon: Building2,
     color: "text-accent",
   },
@@ -266,17 +206,16 @@ export default function AboutDubaiPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section data-animate="reveal" className="animate-reveal relative py-24 md:py-32 overflow-hidden">
+      <section data-animate="reveal" className="animate-reveal relative min-h-[70vh] flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&h=800&fit=crop')",
+            backgroundImage: "url('/dubai.webp')",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
-        <div className="relative container-wide">
-          <div className="max-w-2xl text-white">
+        <div className="relative container-wide py-12 md:py-16">
+          <div className="max-w-2xl bg-black/80 p-8 md:p-10 rounded-lg">
+            <div className="text-white">
             <p className="text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Investment Destination
             </p>
@@ -288,6 +227,7 @@ export default function AboutDubaiPage() {
               iconic developments to emerging opportunities, Dubai offers
               unparalleled potential for discerning investors.
             </p>
+            </div>
           </div>
         </div>
       </section>
@@ -390,25 +330,11 @@ export default function AboutDubaiPage() {
             {neighborhoods.map((neighborhood) => (
               <Card key={neighborhood.name} className="bg-primary-foreground/5 border-primary-foreground/10">
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-accent" />
-                      <CardTitle className="font-serif text-lg text-white">
-                        {neighborhood.name}
-                      </CardTitle>
-                    </div>
-                    <Badge
-                      variant="secondary"
-                      className={`${
-                        neighborhood.price === "Ultra-Premium"
-                          ? "bg-accent text-accent-foreground"
-                          : neighborhood.price === "Premium"
-                          ? "bg-secondary"
-                          : "bg-muted"
-                      }`}
-                    >
-                      {neighborhood.price}
-                    </Badge>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-accent" />
+                    <CardTitle className="font-serif text-lg text-white">
+                      {neighborhood.name}
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>

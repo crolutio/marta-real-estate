@@ -220,12 +220,12 @@
     background-clip: text;
   }
   
-  /* Subtle hover animation */
+  /* Subtle hover animation - small expand */
   .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .hover-lift:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   }
   
