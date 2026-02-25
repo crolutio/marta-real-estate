@@ -38,9 +38,8 @@ export function Hero() {
           </p>
 
           {/* Main Headline */}
-          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
-            Find the Place Where You
-            <span className="block mt-2 text-white">Belong</span>
+          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display text-white">
+            Invest in Dubai with confidence – We guide your journey
           </h1>
 
           {/* Subheadline */}
