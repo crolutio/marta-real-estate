@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { GoogleMapEmbed } from "@/components/google-map-embed";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
@@ -115,8 +114,8 @@ const neighborhoods = [
   },
   {
     name: "Dubai International Financial Centre",
-    description: "Free zone offering tax advantages and proximity to business and leisure amenities.",
-    highlights: ["Tax advantages", "Business facilities", "Luxury residences"],
+    description: "Dubai's financial free zone with its own common law courts, global business hub, and luxury offices and residences.",
+    highlights: ["Common law courts", "Business facilities", "Luxury residences"],
     type: "Financial District",
   },
   {
@@ -294,19 +293,9 @@ export default function AboutDubaiPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-sm mb-4 text-editorial">
+                  <p className="text-muted-foreground text-sm text-editorial">
                     {developer.description}
                   </p>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium">Notable Projects:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {developer.projects.map((project) => (
-                        <Badge key={project} variant="secondary" className="text-xs">
-                          {project}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -355,9 +344,6 @@ export default function AboutDubaiPage() {
                       ))}
                     </ul>
                   </div>
-                  <p className="text-xs text-primary-foreground/60 mt-3">
-                    Type: {neighborhood.type}
-                  </p>
                 </CardContent>
               </Card>
             ))}
