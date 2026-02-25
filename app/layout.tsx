@@ -20,8 +20,8 @@ const mulishSemiBold = localFont({
   display: "swap",
 });
 
-const mulishExtraLight = localFont({
-  src: "../public/fonts/Mulish-ExtraLight.ttf",
+const mulishLight = localFont({
+  src: "../public/fonts/Mulish-Light.ttf",
   variable: "--font-body",
   display: "swap",
 });
@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mulishExtraBold.variable} ${mulishSemiBold.variable} ${mulishExtraLight.variable} font-body antialiased`}
+        className={`${mulishExtraBold.variable} ${mulishSemiBold.variable} ${mulishLight.variable} font-body antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
