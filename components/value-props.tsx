@@ -1,5 +1,6 @@
 import { Shield, TrendingUp, Lock, Compass } from "lucide-react";
 import { VALUE_PROPS } from "@/lib/constants";
+import { Card, CardContent } from "@/components/ui/card";
 
 const iconMap = {
   Shield: Shield,
@@ -22,25 +23,24 @@ export function ValueProps() {
           </h2>
         </div>
 
-        {/* Values Grid */}
+        {/* Values Grid - same style as About Dubai "Intelligence that informs your move" */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 stagger-children">
           {VALUE_PROPS.map((prop) => {
             const Icon = iconMap[prop.icon as keyof typeof iconMap];
             return (
-              <div
-                key={prop.title}
-                className="text-center p-8 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
-              >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/10 text-accent mb-6">
-                  <Icon className="h-7 w-7" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">
-                  {prop.title}
-                </h3>
-                <p className="text-muted-foreground text-editorial">
-                  {prop.description}
-                </p>
-              </div>
+              <Card key={prop.title} className="text-center bg-card shadow-md">
+                <CardContent className="p-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4 mx-auto">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-serif text-xl font-semibold mb-2">
+                    {prop.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground text-editorial">
+                    {prop.description}
+                  </p>
+                </CardContent>
+              </Card>
             );
           })}
         </div>

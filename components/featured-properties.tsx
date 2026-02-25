@@ -31,7 +31,7 @@ export function FeaturedProperties() {
         {/* Properties Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children">
           {featuredProperties.map((property) => (
-            <PropertyCard key={property.slug} property={property} />
+            <PropertyCard key={property.slug} property={property} featured />
           ))}
         </div>
       </div>

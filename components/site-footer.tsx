@@ -20,7 +20,14 @@ export function SiteFooter() {
                 alt={AGENCY.fullName}
                 width={720}
                 height={216}
-                className="h-48 w-auto object-contain"
+                className="h-48 w-auto object-contain dark:hidden"
+              />
+              <Image
+                src="/logo-big-darkmode.webp"
+                alt={AGENCY.fullName}
+                width={720}
+                height={216}
+                className="h-48 w-auto object-contain hidden dark:block"
               />
             </Link>
             <p className="text-primary-foreground/80 max-w-md text-editorial mb-6">

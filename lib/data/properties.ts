@@ -221,6 +221,7 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/search/One+at+Palm+Residences+Palm+Jumeirah+Dubai",
     locationMapQuery: "One at Palm Residences Palm Jumeirah Dubai",
     status: "For Sale",
+    featured: true,
   },
   {
     slug: "the-lana-residences",
@@ -270,6 +271,7 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/search/The+Lana+Marasi+Drive+Business+Bay+Dubai",
     locationMapQuery: "The Lana Marasi Drive Business Bay Dubai",
     status: "For Sale",
+    featured: true,
   },
   {
     slug: "peninsula-residences",
@@ -316,6 +318,7 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/search/Peninsula+Residences/@25.1851268,55.2679682,17z?entry=s",
     locationMapQuery: "Peninsula Residences Business Bay Dubai",
     status: "For Sale",
+    featured: true,
   },
   {
     slug: "baccarat-residences",
@@ -365,7 +368,6 @@ export const properties: Property[] = [
     addressLink: "https://www.google.com/maps/search/Baccarat+Residences+Business+Bay+Dubai",
     locationMapLink: "https://www.google.com/maps/search/Baccarat+Residences+Business+Bay+Dubai",
     status: "For Sale",
-    featured: true,
   },
   {
     slug: "dubai-harbour-residences",

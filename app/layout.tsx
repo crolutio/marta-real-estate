@@ -8,14 +8,14 @@ import { PageTransition } from "@/components/page-transition";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, AGENCY } from "@/lib/constants";
 
-// Sans-serif for body text
+// Sans-serif for body text (Inter)
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-// Serif for headings - Didona
+// Serif for headings only - Didona (use class "font-serif" on titles/headings)
 const didona = localFont({
   src: "../public/fonts/Didona Regular.ttf",
   variable: "--font-serif",
