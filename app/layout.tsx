@@ -15,7 +15,7 @@ const inter = Inter({
   display: "swap",
 });
 
-// Serif for headings only - Didona (use class "font-serif" on titles/headings)
+// Didona - used for all text (body and headings)
 const didona = localFont({
   src: "../public/fonts/Didona Regular.ttf",
   variable: "--font-serif",
@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${didona.variable} font-sans antialiased`}
+        className={`${inter.variable} ${didona.variable} font-serif antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
