@@ -36,7 +36,7 @@ export function ValueProps() {
                   <h3 className="font-subtitle text-xl font-semibold mb-2">
                     {prop.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground text-editorial">
+                  <p className="text-muted-foreground text-editorial">
                     {prop.description}
                   </p>
                 </CardContent>

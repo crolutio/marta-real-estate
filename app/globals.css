@@ -169,7 +169,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-size: 1.0625rem; /* Slightly larger body text (17px) */
+    font-size: 1.125rem; /* Body text (18px) */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   

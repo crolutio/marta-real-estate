@@ -253,7 +253,7 @@ export default function AboutDubaiPage() {
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-semibold mb-2">{insight.title}</h3>
-                  <p className="text-sm text-muted-foreground text-editorial">
+                  <p className="text-muted-foreground text-editorial">
                     {insight.description}
                   </p>
                 </CardContent>
@@ -293,7 +293,7 @@ export default function AboutDubaiPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-sm text-editorial">
+                  <p className="text-muted-foreground text-editorial">
                     {developer.description}
                   </p>
                 </CardContent>
@@ -327,7 +327,7 @@ export default function AboutDubaiPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-primary-foreground/80 text-sm mb-4 text-editorial">
+                  <p className="text-primary-foreground/80 mb-4 text-editorial">
                     {neighborhood.description}
                   </p>
                   <div className="space-y-2">
@@ -361,7 +361,7 @@ export default function AboutDubaiPage() {
             <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
               Frequently Asked Questions
             </h2>
-            <p className="text-muted-foreground text-editorial text-sm max-w-2xl mx-auto mt-4">
+            <p className="text-muted-foreground text-editorial max-w-2xl mx-auto mt-4">
               We understand that investing in Dubai real estate can raise many questions.
               Here are answers to the most common inquiries from our clients.
             </p>

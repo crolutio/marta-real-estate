@@ -169,7 +169,7 @@ export default function AboutPage() {
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="font-subtitle font-semibold mb-2">{prop.title}</h3>
-                    <p className="text-sm text-muted-foreground text-editorial">
+                    <p className="text-muted-foreground text-editorial">
                       {prop.description}
                     </p>
                   </CardContent>
