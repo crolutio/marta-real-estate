@@ -13,7 +13,7 @@ export default function TermsPage() {
       <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl font-semibold text-display mb-4">
+            <h1 className="font-subtitle text-4xl md:text-5xl font-semibold text-display mb-4">
               Terms of Service
             </h1>
             <p className="text-muted-foreground">
@@ -33,7 +33,7 @@ export default function TermsPage() {
               Please read them carefully.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               1. Acceptance of Terms
             </h2>
             <p className="text-muted-foreground">
@@ -42,7 +42,7 @@ export default function TermsPage() {
               agree to abide by these terms, please do not use this website.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               2. Services Description
             </h2>
             <p className="text-muted-foreground">
@@ -52,7 +52,7 @@ export default function TermsPage() {
               applicable laws and regulations.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               3. Property Information
             </h2>
             <p className="text-muted-foreground">
@@ -63,7 +63,7 @@ export default function TermsPage() {
               notice. All measurements and descriptions are approximate.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               4. User Conduct
             </h2>
             <p className="text-muted-foreground mb-4">
@@ -86,7 +86,7 @@ export default function TermsPage() {
               </li>
             </ul>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               5. Intellectual Property
             </h2>
             <p className="text-muted-foreground">
@@ -97,7 +97,7 @@ export default function TermsPage() {
               express written permission.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               6. Limitation of Liability
             </h2>
             <p className="text-muted-foreground">
@@ -108,7 +108,7 @@ export default function TermsPage() {
               provided on this website.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               7. Third-Party Links
             </h2>
             <p className="text-muted-foreground">
@@ -118,7 +118,7 @@ export default function TermsPage() {
               third-party sites.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               8. Confidentiality
             </h2>
             <p className="text-muted-foreground">
@@ -129,7 +129,7 @@ export default function TermsPage() {
               law.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               9. Modifications to Terms
             </h2>
             <p className="text-muted-foreground">
@@ -139,7 +139,7 @@ export default function TermsPage() {
               acceptance of the new terms.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               10. Governing Law
             </h2>
             <p className="text-muted-foreground">
@@ -149,7 +149,7 @@ export default function TermsPage() {
               provisions.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               11. Contact Information
             </h2>
             <p className="text-muted-foreground">

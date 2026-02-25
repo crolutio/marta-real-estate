@@ -8,13 +8,13 @@ export default function NotFound() {
       <div className="container-narrow text-center py-16">
         {/* 404 Display */}
         <div className="mb-8">
-          <span className="font-serif text-8xl md:text-9xl font-bold text-accent/20">
+          <span className="font-subtitle text-8xl md:text-9xl font-bold text-accent/20">
             404
           </span>
         </div>
 
         {/* Content */}
-        <h1 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
+        <h1 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-4">
           Page Not Found
         </h1>
         <p className="text-lg text-muted-foreground text-editorial mb-8 max-w-md mx-auto">

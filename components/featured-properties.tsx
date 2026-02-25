@@ -13,10 +13,10 @@ export function FeaturedProperties() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-4">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
               Featured Collection
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display max-w-xl">
+            <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display max-w-xl">
               Exceptional Properties for Exceptional Clients
             </h2>
           </div>

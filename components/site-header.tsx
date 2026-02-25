@@ -123,7 +123,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[400px]">
               <SheetHeader>
-                <SheetTitle className="text-left font-serif text-xl">
+                <SheetTitle className="text-left font-subtitle text-xl">
                   {AGENCY.name}
                 </SheetTitle>
               </SheetHeader>

@@ -216,10 +216,10 @@ export default function AboutDubaiPage() {
         <div className="relative container-wide py-12 md:py-16">
           <div className="max-w-2xl bg-black/80 p-8 md:p-10 rounded-lg">
             <div className="text-white">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Investment Destination
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Discover Dubai&apos;s Luxury Real Estate Market
             </h1>
             <p className="text-lg text-white/90 text-editorial">
@@ -236,10 +236,10 @@ export default function AboutDubaiPage() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               How we see the market
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
               Intelligence that informs your move
             </h2>
           </div>
@@ -269,10 +269,10 @@ export default function AboutDubaiPage() {
       <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Leading Developers
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
               Premier Development Partners
             </h2>
           </div>
@@ -318,10 +318,10 @@ export default function AboutDubaiPage() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Prime Locations
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold text-white">
+            <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-white">
               Key Neighborhoods & Areas
             </h2>
           </div>
@@ -332,7 +332,7 @@ export default function AboutDubaiPage() {
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-accent" />
-                    <CardTitle className="font-serif text-lg text-white">
+                    <CardTitle className="font-subtitle text-lg text-white">
                       {neighborhood.name}
                     </CardTitle>
                   </div>
@@ -369,10 +369,10 @@ export default function AboutDubaiPage() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Your Questions Answered
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground text-editorial max-w-2xl mx-auto mt-4">
@@ -385,7 +385,7 @@ export default function AboutDubaiPage() {
             <div className="grid gap-6 xl:grid-cols-2">
               {/* Property Ownership */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   What about property ownership in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -395,7 +395,7 @@ export default function AboutDubaiPage() {
 
               {/* Residency */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Does buying property give me residency?
                 </h3>
                 <p className="text-muted-foreground text-editorial">
@@ -405,7 +405,7 @@ export default function AboutDubaiPage() {
 
               {/* Taxes */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Are there taxes on property purchases in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -425,7 +425,7 @@ export default function AboutDubaiPage() {
 
               {/* Off-plan Investment */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Is off-plan property a good investment?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -443,7 +443,7 @@ export default function AboutDubaiPage() {
 
               {/* Why Invest Now */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Why invest in Dubai real estate now?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -463,7 +463,7 @@ export default function AboutDubaiPage() {
 
               {/* Residency Requirements */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Do I need to be a resident to buy real estate in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial">
@@ -473,7 +473,7 @@ export default function AboutDubaiPage() {
 
               {/* Bank Account */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-serif text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
                   Do I need to open a bank account to buy off-plan in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial">
@@ -489,7 +489,7 @@ export default function AboutDubaiPage() {
       <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
+            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-4">
               Dubai Property Map
             </h2>
             <p className="text-muted-foreground text-editorial max-w-2xl mx-auto">

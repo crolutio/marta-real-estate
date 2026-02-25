@@ -46,10 +46,10 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         <div className="relative container-wide">
           <div className="max-w-2xl text-white">
-            <p className="text-base md:text-lg tracking-[0.16em] uppercase text-white font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-white font-semibold mb-4">
               About {AGENCY.name}
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               A Legacy of Excellence in Luxury Real Estate
             </h1>
             <p className="text-lg text-white/90 text-editorial">
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <span className="block font-serif text-4xl md:text-5xl font-semibold text-white">
+                <span className="block font-subtitle text-4xl md:text-5xl font-semibold text-white">
                   {stat.value}
                 </span>
                 <span className="text-sm md:text-base text-white/90">
@@ -99,10 +99,10 @@ export default function AboutPage() {
 
             <div className="space-y-6">
               <div className="space-y-4">
-                <p className="text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
+                <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
                   Marta's Story
                 </p>
-                <h2 className="font-serif text-4xl md:text-5xl font-semibold text-accent text-display">
+                <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-accent text-display">
                   Passion Meets Expertise
                 </h2>
               </div>
@@ -151,10 +151,10 @@ export default function AboutPage() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Marta's Approach
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
+            <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
               Principles That Guide Every Transaction
             </h2>
           </div>
@@ -168,7 +168,7 @@ export default function AboutPage() {
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="font-serif font-semibold mb-2">{prop.title}</h3>
+                    <h3 className="font-subtitle font-semibold mb-2">{prop.title}</h3>
                     <p className="text-sm text-muted-foreground text-editorial">
                       {prop.description}
                     </p>
@@ -186,10 +186,10 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="space-y-6 order-2 lg:order-1">
               <div className="space-y-4">
-                <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
+                <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
                   For Investors
                 </p>
-                <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display">
+                <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
                   Strategic Real Estate Investment Guidance
                 </h2>
               </div>

@@ -8,10 +8,10 @@ export function Testimonials() {
       <div className="container-wide">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <p className="text-primary-foreground text-xl md:text-2xl tracking-[0.12em] uppercase font-semibold mb-4">
+          <p className="font-title text-primary-foreground text-xl md:text-2xl tracking-[0.12em] uppercase font-semibold mb-4">
             Client Stories
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
+          <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
             Trusted by Discerning Clients Worldwide
           </h2>
         </div>

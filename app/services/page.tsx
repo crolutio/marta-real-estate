@@ -76,10 +76,10 @@ export default function ServicesPage() {
       <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Professional Services
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Comprehensive Support for Dubai Investors
             </h1>
             <p className="text-lg text-muted-foreground text-editorial">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                     <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center">
                       <service.icon className="h-6 w-6 text-accent" />
                     </div>
-                    <CardTitle className="font-serif text-xl">
+                    <CardTitle className="font-subtitle text-xl">
                       {service.title}
                     </CardTitle>
                   </div>
@@ -139,7 +139,7 @@ export default function ServicesPage() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
+            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-4">
               Our Process
             </h2>
             <p className="text-primary-foreground/80 text-editorial max-w-2xl mx-auto">
@@ -189,7 +189,7 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-narrow text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-foreground mb-4">
             Ready to Start Your Dubai Journey?
           </h2>
           <p className="text-muted-foreground text-editorial mb-8 max-w-xl mx-auto">

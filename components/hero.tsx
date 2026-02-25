@@ -33,12 +33,12 @@ export function Hero() {
           />
 
           {/* Eyebrow */}
-          <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
+          <p className="font-title text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
             Spaces Curated for Exceptional Living
           </p>
 
           {/* Main Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
+          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display">
             Find the Place Where You
             <span className="block mt-2 text-white">Belong</span>
           </h1>

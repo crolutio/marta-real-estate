@@ -56,16 +56,16 @@ export function ConsultationCta({
           )}
         >
           <Calendar className="mr-2 h-4 w-4" />
-          Schedule a Consultation
+          Book a call
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">
-            Schedule a Consultation
+          <DialogTitle className="font-subtitle text-2xl">
+            Book a call
           </DialogTitle>
           <DialogDescription className="text-editorial">
-            Share your details and we&apos;ll arrange a private consultation to
+            Share your details and we&apos;ll arrange a call to
             discuss your real estate goals.
           </DialogDescription>
         </DialogHeader>
@@ -128,7 +128,7 @@ export function ConsultationCta({
           <div className="pt-4">
             <p className="text-sm text-muted-foreground text-center">
               Calendar booking coming soon. We&apos;ll reach out at your email to
-              schedule your consultation.
+              schedule your call.
             </p>
             {/* TODO: Replace with Marta's calendar link when integrated */}
           </div>

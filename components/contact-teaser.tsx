@@ -10,7 +10,7 @@ export function ContactTeaser() {
         <div className="bg-secondary/50 rounded-2xl p-8 md:p-12 lg:p-16 text-center">
           <MessageSquare className="h-12 w-12 mx-auto text-accent mb-6" />
           
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-display mb-4">
+          <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-4">
             Ready to Find Your Dream Property?
           </h2>
           

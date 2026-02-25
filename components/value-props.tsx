@@ -15,10 +15,10 @@ export function ValueProps() {
       <div className="container-wide">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+          <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
             Why work with us
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
+          <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
             How we work
           </h2>
         </div>
@@ -33,7 +33,7 @@ export function ValueProps() {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4 mx-auto">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">
+                  <h3 className="font-subtitle text-xl font-semibold mb-2">
                     {prop.title}
                   </h3>
                   <p className="text-sm text-muted-foreground text-editorial">

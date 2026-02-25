@@ -57,7 +57,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
           <p className="text-sm text-muted-foreground">
             {property.priceLabel ?? "Listed Price"}
           </p>
-          <CardTitle className="font-serif text-3xl">
+          <CardTitle className="font-subtitle text-3xl">
             {formatPrice(property.price, property.currency)}
           </CardTitle>
         </div>

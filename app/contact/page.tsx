@@ -65,10 +65,10 @@ export default function ContactPage() {
       <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Get in Touch
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Let&apos;s Start a Conversation
             </h1>
             <p className="text-muted-foreground/90 text-xl md:text-2xl font-medium leading-snug mb-4">
@@ -94,7 +94,7 @@ export default function ContactPage() {
             <div className="lg:order-2">
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="font-serif text-2xl font-semibold mb-6">
+                  <h2 className="font-subtitle text-2xl font-semibold mb-6">
                     Send a Message
                   </h2>
                   <form onSubmit={handleEmailSubmit} className="space-y-6">
@@ -171,7 +171,7 @@ export default function ContactPage() {
             <div className="space-y-6 lg:order-1">
               <Card>
                 <CardContent className="p-8 space-y-6">
-                  <h3 className="font-serif text-2xl font-semibold">Contact Details</h3>
+                  <h3 className="font-subtitle text-2xl font-semibold">Contact Details</h3>
 
                   <div className="grid sm:grid-cols-2 gap-8">
                     <div className="space-y-6">

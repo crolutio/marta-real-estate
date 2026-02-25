@@ -96,10 +96,10 @@ export default function PropertiesPage() {
       <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
               Our Collection
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
               Exceptional Properties
             </h1>
             <p className="text-lg text-muted-foreground text-editorial">

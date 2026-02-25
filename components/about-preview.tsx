@@ -24,7 +24,7 @@ export function AboutPreview() {
             <div className="absolute -bottom-6 -right-6 bg-card p-6 rounded-lg shadow-xl max-w-[280px] hidden md:block">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <span className="block font-serif text-3xl font-semibold text-accent">
+                  <span className="block font-subtitle text-3xl font-semibold text-accent">
                     10+
                   </span>
                   <span className="text-sm text-muted-foreground">
@@ -32,7 +32,7 @@ export function AboutPreview() {
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-serif text-3xl font-semibold text-accent">
+                  <span className="block font-subtitle text-3xl font-semibold text-accent">
                     $2B+
                   </span>
                   <span className="text-sm text-muted-foreground">
@@ -46,10 +46,10 @@ export function AboutPreview() {
           {/* Content Side */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
+              <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
                 About {AGENCY.name}
               </p>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
+              <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
                 A Trusted Partner in Luxury Real Estate
               </h2>
             </div>

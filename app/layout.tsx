@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
@@ -8,17 +7,22 @@ import { PageTransition } from "@/components/page-transition";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, AGENCY } from "@/lib/constants";
 
-// Sans-serif for body text (Inter)
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+// Mulish - titles (uppercase labels), subtitles (headings), body
+const mulishExtraBold = localFont({
+  src: "../public/fonts/Mulish-ExtraBold.ttf",
+  variable: "--font-title",
   display: "swap",
 });
 
-// Didona - used for all text (body and headings)
-const didona = localFont({
-  src: "../public/fonts/Didona Regular.ttf",
-  variable: "--font-serif",
+const mulishSemiBold = localFont({
+  src: "../public/fonts/Mulish-SemiBold.ttf",
+  variable: "--font-subtitle",
+  display: "swap",
+});
+
+const mulishExtraLight = localFont({
+  src: "../public/fonts/Mulish-ExtraLight.ttf",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -68,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${didona.variable} font-serif antialiased`}
+        className={`${mulishExtraBold.variable} ${mulishSemiBold.variable} ${mulishExtraLight.variable} font-body antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />

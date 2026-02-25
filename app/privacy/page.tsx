@@ -13,7 +13,7 @@ export default function PrivacyPage() {
       <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl font-semibold text-display mb-4">
+            <h1 className="font-subtitle text-4xl md:text-5xl font-semibold text-display mb-4">
               Privacy Policy
             </h1>
             <p className="text-muted-foreground">
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
               visit our website or use our services.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Information We Collect
             </h2>
             <p className="text-muted-foreground mb-4">
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
               </li>
             </ul>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               How We Use Your Information
             </h2>
             <p className="text-muted-foreground mb-4">
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
               <li>Protect our rights and prevent fraud</li>
             </ul>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Information Sharing
             </h2>
             <p className="text-muted-foreground">
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
               requests and with your consent.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Data Security
             </h2>
             <p className="text-muted-foreground">
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
               guarantee absolute security.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Your Rights
             </h2>
             <p className="text-muted-foreground mb-4">
@@ -108,7 +108,7 @@ export default function PrivacyPage() {
               <li>The right to opt out of marketing communications</li>
             </ul>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Cookies
             </h2>
             <p className="text-muted-foreground">
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
               cookies, but this may limit some features of our website.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Changes to This Policy
             </h2>
             <p className="text-muted-foreground">
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
               will be posted on this page with an updated revision date.
             </p>
 
-            <h2 className="font-serif text-2xl font-semibold mt-12 mb-4">
+            <h2 className="font-subtitle text-2xl font-semibold mt-12 mb-4">
               Contact Us
             </h2>
             <p className="text-muted-foreground">

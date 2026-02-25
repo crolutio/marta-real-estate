@@ -130,7 +130,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     </Badge>
                   )}
                 </div>
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
+                <h1 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
                   {property.title}
                 </h1>
                 {property.addressLink ? (
@@ -216,7 +216,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 <p className="text-sm text-muted-foreground mb-1">
                   {property.priceLabel ?? "Listed Price"}
                 </p>
-                <p className="font-serif text-3xl font-semibold mb-4">
+                <p className="font-subtitle text-3xl font-semibold mb-4">
                   {formatPrice(property.price, property.currency)}
                 </p>
                 <div className="flex gap-3">
@@ -320,10 +320,10 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
               <div className="space-y-8">
                 <div className="flex items-end justify-between">
                   <div>
-                    <p className="text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-2">
+                    <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-2">
                       Similar Properties
                     </p>
-                    <h2 className="font-serif text-2xl md:text-3xl font-semibold">
+                    <h2 className="font-subtitle text-2xl md:text-3xl font-semibold">
                       You May Also Like
                     </h2>
                   </div>

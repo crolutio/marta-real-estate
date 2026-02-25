@@ -83,7 +83,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
         <CardContent className={cn("px-0 pt-5 pb-0", featured && "p-6 pt-4")}>
           {/* Title & Location */}
           <div className="space-y-1 mb-3">
-            <h3 className="font-serif text-xl font-semibold group-hover:text-accent transition-colors">
+            <h3 className="font-subtitle text-xl font-semibold group-hover:text-accent transition-colors">
               {property.title}
             </h3>
             <p className="flex items-center gap-1.5 text-muted-foreground text-sm">
