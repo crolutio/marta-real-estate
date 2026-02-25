@@ -375,17 +375,17 @@ export default function AboutDubaiPage() {
             <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
               Frequently Asked Questions
             </h2>
-            <p className="text-muted-foreground text-editorial max-w-2xl mx-auto mt-4">
+            <p className="text-muted-foreground text-editorial text-sm max-w-2xl mx-auto mt-4">
               We understand that investing in Dubai real estate can raise many questions.
               Here are answers to the most common inquiries from our clients.
             </p>
           </div>
 
-          <div className="max-w-[80vw] mx-auto">
+          <div className="max-w-[80vw] mx-auto text-sm">
             <div className="grid gap-6 xl:grid-cols-2">
               {/* Property Ownership */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   What about property ownership in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -395,7 +395,7 @@ export default function AboutDubaiPage() {
 
               {/* Residency */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Does buying property give me residency?
                 </h3>
                 <p className="text-muted-foreground text-editorial">
@@ -405,7 +405,7 @@ export default function AboutDubaiPage() {
 
               {/* Taxes */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Are there taxes on property purchases in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -425,7 +425,7 @@ export default function AboutDubaiPage() {
 
               {/* Off-plan Investment */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Is off-plan property a good investment?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -443,7 +443,7 @@ export default function AboutDubaiPage() {
 
               {/* Why Invest Now */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Why invest in Dubai real estate now?
                 </h3>
                 <p className="text-muted-foreground text-editorial leading-relaxed">
@@ -463,7 +463,7 @@ export default function AboutDubaiPage() {
 
               {/* Residency Requirements */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Do I need to be a resident to buy real estate in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial">
@@ -473,7 +473,7 @@ export default function AboutDubaiPage() {
 
               {/* Bank Account */}
               <div data-animate="reveal" className="animate-reveal border-l-4 border-accent bg-card p-8 rounded-lg shadow-sm">
-                <h3 className="font-subtitle text-xl font-semibold mb-4 text-accent">
+                <h3 className="font-subtitle text-lg font-semibold mb-4 text-accent">
                   Do I need to open a bank account to buy off-plan in Dubai?
                 </h3>
                 <p className="text-muted-foreground text-editorial">

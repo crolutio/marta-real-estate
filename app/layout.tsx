@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   keywords: [...SEO.defaultKeywords],
   authors: [{ name: AGENCY.fullName }],
   creator: AGENCY.fullName,
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
