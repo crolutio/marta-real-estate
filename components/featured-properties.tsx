@@ -8,7 +8,7 @@ export function FeaturedProperties() {
   const featuredProperties = getFeaturedProperties().slice(0, 6);
 
   return (
-    <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
+    <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/50">
       <div className="container-wide">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -20,16 +20,20 @@ export function FeaturedProperties() {
               Exceptional Properties for Exceptional Clients
             </h2>
           </div>
-          <Button asChild variant="outline" className="self-start md:self-auto">
+          <Button
+            asChild
+            size="lg"
+            className="self-start md:self-auto bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
+          >
             <Link href="/properties">
               View All Properties
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
 
         {/* Properties Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children items-stretch">
           {featuredProperties.map((property) => (
             <PropertyCard key={property.slug} property={property} featured />
           ))}

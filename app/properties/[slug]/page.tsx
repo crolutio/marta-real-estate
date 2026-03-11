@@ -27,6 +27,7 @@ import {
   properties,
   getPropertyBySlug,
   formatPrice,
+  formatPriceForDetail,
 } from "@/lib/data/properties";
 import { AGENCY, SEO } from "@/lib/constants";
 
@@ -50,7 +51,7 @@ export async function generateMetadata({
     title: `${property.title} | ${property.location}`,
     description: property.shortDescription,
     openGraph: {
-      title: `${property.title} - ${formatPrice(property.price, property.currency)}`,
+      title: `${property.title} - ${formatPriceForDetail(property.price, property.currency, { priceFromPlus: property.priceFromPlus, priceMax: property.priceMax })}`,
       description: property.shortDescription,
       images: property.images.length > 0 ? [property.images[0]] : [],
     },
@@ -174,8 +175,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     </div>
                     <div className="text-center">
                       <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                      <p className="font-semibold text-lg">{property.unitSizes}</p>
-                      <p className="text-sm text-muted-foreground">Floor Area</p>
+                      <p className="font-semibold text-lg">{property.unitSizes ?? "—"}</p>
+                      <p className="text-sm text-muted-foreground">Sq. Ft.</p>
                     </div>
                     <div className="text-center">
                       <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
@@ -217,7 +218,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   {property.priceLabel ?? "Listed Price"}
                 </p>
                 <p className="font-subtitle text-3xl font-semibold mb-4">
-                  {formatPrice(property.price, property.currency)}
+                  {formatPriceForDetail(property.price, property.currency, { priceFromPlus: property.priceFromPlus, priceMax: property.priceMax })}
                 </p>
                 <div className="flex gap-3">
                   <Button asChild className="flex-1">

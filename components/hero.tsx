@@ -1,58 +1,52 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ConsultationCta } from "@/components/consultation-cta";
+import { HeroVideoBackground } from "@/components/hero-video-background";
 import { AGENCY } from "@/lib/constants";
+
+const HERO_VIDEOS = [
+  "/videos/marsa/marsa1.mp4",
+  "/videos/marsa/marsa2.mp4",
+  "/videos/marsa/marsa3.mp4",
+  "/videos/marsa/marsa4.mp4",
+  "/videos/marsa/marsa5.mp4",
+  "/videos/marsa/marsa6.mp4",
+];
 
 export function Hero() {
   return (
-    <section data-animate="reveal" className="animate-reveal relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container-wide text-center text-white pt-20">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+    <HeroVideoBackground videos={HERO_VIDEOS} minHeight="min-h-screen" className="pt-20">
+      <div className="container-wide text-center text-white w-full">
+        <div className="max-w-4xl mx-auto space-y-4 md:space-y-6 animate-fade-in">
           <Image
             src="/logo-big.webp"
             alt={`${AGENCY.fullName} logo`}
             width={1260}
             height={360}
-            className="mx-auto h-60 md:h-72 w-auto object-contain"
+            className="mx-auto h-40 md:h-52 w-auto object-contain"
             priority
           />
 
-          {/* Eyebrow */}
           <p className="font-title text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
             Spaces Curated for Exceptional Living
           </p>
 
-          {/* Main Headline */}
           <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display text-white">
             Invest in Dubai with confidence – We guide your journey
           </h1>
 
-          {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-editorial">
             We specialize in high-end homes for clients seeking modern luxury and comfort.
           </p>
 
-          {/* CTA Button */}
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-2">
             <Button
               asChild
               size="lg"
-              className="bg-accent text-white hover:bg-white hover:text-[#1a1a1a] text-base px-8"
+              className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
             >
               <Link href="/properties">
                 View Properties
@@ -62,6 +56,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </HeroVideoBackground>
   );
 }

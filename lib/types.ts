@@ -32,6 +32,10 @@ export interface Property {
   video?: string;
   /** e.g. "Prices From" - shown instead of "Listed Price" when set */
   priceLabel?: string;
+  /** When true, show price with "+" in preview/detail (e.g. "AED 57.5M+") */
+  priceFromPlus?: boolean;
+  /** Max price (AED) - shown only on property detail page as "up to X", not in listing card */
+  priceMax?: number;
   /** e.g. "1 to 6 Bed Apartments | 2 to 4 Bed Marina Lofts" - shown in key facts when set */
   unitTypes?: string;
   /** e.g. "1,607 to 14,364 ft²" - shown in key facts when set */

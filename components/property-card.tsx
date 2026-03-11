@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Property } from "@/lib/types";
-import { formatPrice } from "@/lib/data/properties";
+import { formatPriceForPreview } from "@/lib/data/properties";
 import { cn } from "@/lib/utils";
 
 function preloadPropertyMedia(property: Property) {
@@ -39,7 +39,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
     >
       <Card
         className={cn(
-          "overflow-hidden border-0 shadow-none bg-transparent hover-lift p-4",
+          "overflow-hidden border-0 shadow-none bg-transparent hover-lift p-4 h-full flex flex-col",
           featured && "bg-card shadow-lg"
         )}
       >
@@ -73,14 +73,14 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
           )}
           {/* Price Overlay */}
           <div className="absolute bottom-4 left-4">
-            <span className="inline-block rounded-md bg-accent/90 px-3 py-1.5 text-accent-foreground text-2xl font-semibold drop-shadow-lg">
-              {formatPrice(property.price, property.currency)}
+            <span className="inline-block rounded-md bg-accent/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-accent-foreground text-lg sm:text-2xl font-semibold drop-shadow-lg">
+              {formatPriceForPreview(property.price, property.currency, property.priceFromPlus)}
             </span>
           </div>
         </div>
 
         {/* Content */}
-        <CardContent className={cn("px-0 pt-5 pb-0", featured && "p-6 pt-4")}>
+        <CardContent className={cn("px-0 pt-5 pb-0 flex-1 flex flex-col", featured && "p-6 pt-4")}>
           {/* Title & Location */}
           <div className="space-y-1 mb-3">
             <h3 className="font-subtitle text-xl font-semibold group-hover:text-accent transition-colors">
@@ -95,17 +95,25 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
 
           {/* Features */}
           <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
-            {property.unitTypes && property.unitSizes ? (
+            {property.unitTypes ? (
               <>
                 <span className="flex items-center gap-1.5">
                   <Bed className="h-4 w-4" />
                   {property.unitTypes.match(/^(\d+ to \d+)\s*Bed/)?.[1] ?? property.unitTypes.split("|")[0].trim()}
                   {" Beds"}
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <Square className="h-4 w-4" />
-                  {property.unitSizes.replace(/\ssq\.ft\s+to\s+/i, " to ")}
-                </span>
+                {property.unitBathsRange && (
+                  <span className="flex items-center gap-1.5">
+                    <Bath className="h-4 w-4" />
+                    {property.unitBathsRange} Baths
+                  </span>
+                )}
+                {property.unitSizes && (
+                  <span className="flex items-center gap-1.5">
+                    <Square className="h-4 w-4" />
+                    {property.unitSizes.replace(/\ssq\.ft\s+to\s+/i, " to ") || property.unitSizes}
+                  </span>
+                )}
               </>
             ) : (
               <>
@@ -125,9 +133,9 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
             )}
           </div>
 
-          {/* Short Description (only on featured) */}
+          {/* Short Description (only on featured) - min-height so all cards match and text is visible */}
           {featured && (
-            <p className="mt-3 text-sm text-muted-foreground line-clamp-2">
+            <p className="mt-3 text-sm text-muted-foreground line-clamp-3 min-h-[4rem] flex-1">
               {property.shortDescription}
             </p>
           )}

@@ -63,44 +63,44 @@
 :root {
   --radius: 0.5rem;
   
-  /* Light Gray Background */
-  --background: #dee2e6;
-  --foreground: oklch(0.18 0.01 260);
+  /* Light mode: cool neutral white (no tan) */
+  --background: #f8f9fa;
+  --foreground: oklch(0.20 0.01 260);
   
-  /* Card - slightly warmer white */
-  --card: oklch(0.995 0.003 90);
-  --card-foreground: oklch(0.18 0.01 260);
+  /* Card - pure white */
+  --card: #ffffff;
+  --card-foreground: oklch(0.20 0.01 260);
   
   /* Popover */
-  --popover: oklch(0.995 0.003 90);
-  --popover-foreground: oklch(0.18 0.01 260);
+  --popover: #ffffff;
+  --popover-foreground: oklch(0.20 0.01 260);
   
   /* Primary - Charcoal */
   --primary: oklch(0.22 0.01 260);
-  --primary-foreground: oklch(0.98 0.005 90);
+  --primary-foreground: #ffffff;
   
-  /* Secondary - Light warm gray */
-  --secondary: oklch(0.94 0.005 90);
+  /* Secondary - cool light gray */
+  --secondary: #f1f3f5;
   --secondary-foreground: oklch(0.22 0.01 260);
   
-  /* Muted - Soft gray */
-  --muted: oklch(0.94 0.005 90);
-  --muted-foreground: oklch(0.45 0.01 260);
+  /* Muted - cool neutral */
+  --muted: #f1f3f5;
+  --muted-foreground: oklch(0.48 0.01 260);
   
   /* Accent */
   --accent: #47605b;
-  --accent-foreground: #f5f7f6;
+  --accent-foreground: #f8f9fa;
   
-  /* Gold - Warm luxury accent */
+  /* Gold - luxury accent */
   --gold: oklch(0.72 0.14 65);
   --gold-foreground: oklch(0.18 0.01 260);
   
   /* Destructive */
   --destructive: oklch(0.55 0.2 25);
   
-  /* Border */
-  --border: oklch(0.88 0.01 90);
-  --input: oklch(0.88 0.01 90);
+  /* Border - cool light gray */
+  --border: #e9ecef;
+  --input: #e9ecef;
   --ring: #47605b;
   
   /* Chart colors */
@@ -110,14 +110,14 @@
   --chart-4: oklch(0.65 0.08 35);
   --chart-5: oklch(0.75 0.06 120);
   
-  /* Sidebar */
-  --sidebar: oklch(0.98 0.005 90);
-  --sidebar-foreground: oklch(0.18 0.01 260);
+  /* Sidebar - cool neutral */
+  --sidebar: #ffffff;
+  --sidebar-foreground: oklch(0.20 0.01 260);
   --sidebar-primary: oklch(0.22 0.01 260);
-  --sidebar-primary-foreground: oklch(0.98 0.005 90);
-  --sidebar-accent: oklch(0.94 0.005 90);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f3f5;
   --sidebar-accent-foreground: oklch(0.22 0.01 260);
-  --sidebar-border: oklch(0.88 0.01 90);
+  --sidebar-border: #e9ecef;
   --sidebar-ring: oklch(0.72 0.14 65);
 }
 
@@ -168,7 +168,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-size: 1.125rem; /* Body text (18px) */
     font-feature-settings: "rlig" 1, "calt" 1;
   }

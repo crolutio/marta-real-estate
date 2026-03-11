@@ -11,7 +11,7 @@ const iconMap = {
 
 export function ValueProps() {
   return (
-    <section data-animate="reveal" className="animate-reveal section-padding">
+    <section data-animate="reveal" className="animate-reveal section-padding bg-muted/40">
       <div className="container-wide">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">

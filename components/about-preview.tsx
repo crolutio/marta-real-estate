@@ -6,7 +6,7 @@ import { AGENCY } from "@/lib/constants";
 
 export function AboutPreview() {
   return (
-    <section data-animate="reveal" className="animate-reveal section-padding overflow-hidden">
+    <section data-animate="reveal" className="animate-reveal section-padding overflow-hidden bg-card">
       <div className="container-wide">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
@@ -100,7 +100,11 @@ export function AboutPreview() {
               </div>
             </div>
 
-            <Button asChild size="lg">
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
+            >
               <Link href="/about">
                 Learn More About Me
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -73,9 +73,11 @@ export const properties: Property[] = [
     ],
     video: "/properties/bulgari-residences-jumeirah-bay/Bvlgari_Residence.mp4",
     priceLabel: "Prices From",
-    unitTypes: "1 to 6 Bed Apartments | 2 to 4 Bed Marina Lofts",
+    priceFromPlus: true,
+    priceMax: 75000000,
+    unitTypes: "1 to 3 Bed Apartments | 2 to 4 Bed Marina Lofts",
     unitSizes: "1,607 to 14,364 ft²",
-    unitBathsRange: "2 to 6",
+    unitBathsRange: "2 to 4",
     addressLink: "https://maps.app.goo.gl/51xXCfx5fYqL7V7U9",
     status: "For Sale",
     featured: true,
@@ -85,12 +87,17 @@ export const properties: Property[] = [
     title: "Jumeirah Residences Marsa Al Arab",
     location: "Jumeira St - Umm Suqeim Third - Umm Suqeim 3",
     neighborhood: "Umm Suqeim 3",
-    price: 8500000,
+    price: 57500000,
     currency: "AED",
     bedrooms: 2,
-    bathrooms: 3,
+    bathrooms: 2,
     areaSqFt: 2200,
     type: "Apartment",
+    priceLabel: "Prices From",
+    priceFromPlus: true,
+    priceMax: 130000000,
+    unitTypes: "2 to 3 Bed",
+    unitBathsRange: "2 to 4",
     shortDescription:
       "Prestigious residences at the iconic seven-star hotel with unparalleled luxury and service.",
     longDescription:
@@ -132,13 +139,18 @@ export const properties: Property[] = [
     slug: "four-seasons-residences-jumeirah",
     title: "Four Seasons Private Residences at Jumeirah",
     location: "45th St - Jumeirah - Jumeirah 2 - Dubai",
-    neighborhood: "",
-    price: 18000000,
+    neighborhood: "Jumeirah 2",
+    price: 46000000,
     currency: "AED",
-    bedrooms: 4,
-    bathrooms: 5,
+    bedrooms: 3,
+    bathrooms: 4,
     areaSqFt: 5200,
     type: "Apartment",
+    priceLabel: "Prices From",
+    priceFromPlus: true,
+    priceMax: 175000000,
+    unitTypes: "3 to 6 Bed",
+    unitBathsRange: "4 to 6",
     shortDescription:
       "Exclusive Four Seasons-branded residences in Jumeirah with legendary hospitality and impeccable design.",
     longDescription:
@@ -173,19 +185,24 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/place/Four+Seasons+Private+Residences+Dubai+at+Jumeirah/@25.1922448,55.2318669,5226m/data=!3m1!1e3!4m6!3m5!1s0x3e5f43105c4aebb7:0xddeb758ec0ca9449!8m2!3d25.1943556!4d55.2407499!16s%2Fg%2F11t6lg9gjt?entry=ttu",
     locationMapQuery: "Four Seasons Private Residences Dubai at Jumeirah",
     status: "For Sale",
-    featured: true,
+    featured: false,
   },
   {
     slug: "one-palm-residences",
     title: "One at Palm Residences",
     location: "King Salman Bin Abdulaziz Al Saud St - The Palm Jumeirah",
-    neighborhood: "",
-    price: 9500000,
+    neighborhood: "Palm Jumeirah",
+    price: 28900000,
     currency: "AED",
     bedrooms: 3,
     bathrooms: 4,
     areaSqFt: 3100,
     type: "Apartment",
+    priceLabel: "Prices From",
+    priceFromPlus: true,
+    priceMax: 100000000,
+    unitTypes: "3 to 5 Bed",
+    unitBathsRange: "4 to 5",
     shortDescription:
       "Luxurious waterfront residences on the iconic Palm Jumeirah with stunning marina views.",
     longDescription:
@@ -227,13 +244,18 @@ export const properties: Property[] = [
     slug: "the-lana-residences",
     title: "The Lana Residences",
     location: "Marasi Dr - Business Bay",
-    neighborhood: "",
-    price: 7200000,
+    neighborhood: "Business Bay",
+    price: 30000000,
     currency: "AED",
     bedrooms: 2,
-    bathrooms: 3,
+    bathrooms: 2,
     areaSqFt: 1900,
     type: "Apartment",
+    priceLabel: "Prices From",
+    priceFromPlus: true,
+    priceMax: 120000000,
+    unitTypes: "2 to 4 Bed",
+    unitBathsRange: "2 to 5",
     shortDescription:
       "Sophisticated residences in Business Bay with premium amenities and lifestyle.",
     longDescription:
@@ -271,17 +293,17 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/search/The+Lana+Marasi+Drive+Business+Bay+Dubai",
     locationMapQuery: "The Lana Marasi Drive Business Bay Dubai",
     status: "For Sale",
-    featured: true,
+    featured: false,
   },
   {
     slug: "peninsula-residences",
     title: "Peninsula Residences",
     location: "Signature Tower 1 - Business Bay",
-    neighborhood: "",
-    price: 6500000,
+    neighborhood: "Business Bay",
+    price: 39000000,
     currency: "AED",
-    bedrooms: 2,
-    bathrooms: 3,
+    bedrooms: 4,
+    bathrooms: 5,
     areaSqFt: 1600,
     type: "Apartment",
     shortDescription:
@@ -318,19 +340,24 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/search/Peninsula+Residences/@25.1851268,55.2679682,17z?entry=s",
     locationMapQuery: "Peninsula Residences Business Bay Dubai",
     status: "For Sale",
-    featured: true,
+    featured: false,
   },
   {
     slug: "baccarat-residences",
     title: "Baccarat Residences",
     location: "Baccarat Residences",
     neighborhood: "Business Bay",
-    price: 25000000,
+    price: 20000000,
     currency: "AED",
-    bedrooms: 4,
-    bathrooms: 5,
+    bedrooms: 2,
+    bathrooms: 3,
     areaSqFt: 6800,
     type: "Apartment",
+    priceLabel: "Prices From",
+    priceFromPlus: true,
+    priceMax: 38000000,
+    unitTypes: "2 to 4 Bed",
+    unitBathsRange: "3 to 5",
     shortDescription:
       "Ultra-luxury residences featuring Baccarat crystal craftsmanship and unparalleled elegance.",
     longDescription:
@@ -414,50 +441,6 @@ export const properties: Property[] = [
     locationMapLink: "https://www.google.com/maps/place/Dubai+Harbour+Residences/@25.0939584,55.1362445,889m/data=!3m1!1e3!4m10!1m2!2m1!1sDubai+Harbour+Residences!3m6!1s0x3e5f6b00714342d5:0xab01e3ed667a12ef!8m2!3d25.0939584!4d55.1410081!15sChhEdWJhaSBIYXJib3VyIFJlc2lkZW5jZXOSARNob3VzaW5nX2RldmVsb3BtZW50!16s%2Fg%2F11ldjqx3zn?entry=ttu",
     status: "For Sale",
   },
-  // Villas
-  {
-    slug: "eden-hills-villas",
-    title: "Eden Hills Villas",
-    location: "Eden Hills",
-    neighborhood: "Dubai Hills Estate",
-    price: 22000000,
-    currency: "AED",
-    bedrooms: 6,
-    bathrooms: 7,
-    areaSqFt: 9500,
-    type: "Villa",
-    shortDescription:
-      "Contemporary villas in Dubai Hills Estate with resort-style amenities and lush landscaping.",
-    longDescription:
-      "Eden Hills Villas offer contemporary living in the prestigious Dubai Hills Estate. These modern villas feature sleek design, premium materials, and access to resort-style amenities including swimming pools, fitness centers, and children's facilities. Surrounded by lush landscaping and nature trails, the villas provide residents with a serene lifestyle while maintaining proximity to Dubai's urban conveniences. Each villa offers spacious layouts, private gardens, and comprehensive smart home technology.",
-    highlights: [
-      "Contemporary design",
-      "Resort-style amenities",
-      "Lush landscaping",
-      "Smart home technology",
-      "Private gardens",
-    ],
-    amenities: [
-      "Swimming Pool",
-      "Fitness Center",
-      "Children's Facilities",
-      "Nature Trails",
-      "Concierge Service",
-      "Valet Parking",
-      "Restaurant Access",
-      "Smart Home System",
-    ],
-    images: [
-      propertyImages.villa2,
-      propertyImages.exterior1,
-      propertyImages.pool1,
-      propertyImages.interior1,
-      propertyImages.view1,
-    ],
-    addressLink: "https://www.google.com/maps/search/Eden+Hills+Villas+Dubai+Hills+Dubai",
-    locationMapLink: "https://www.google.com/maps/search/Eden+Hills+Villas+Dubai+Hills+Dubai",
-    status: "For Sale",
-  },
 ];
 
 // Helper functions
@@ -479,4 +462,28 @@ export function formatPrice(price: number, currency: string): string {
     currency: currency,
     maximumFractionDigits: 0,
   }).format(price);
+}
+
+/** Price string for listing card: from price with optional "+", never shows priceMax */
+export function formatPriceForPreview(
+  price: number,
+  currency: string,
+  priceFromPlus?: boolean
+): string {
+  const formatted = formatPrice(price, currency);
+  return priceFromPlus ? `${formatted}+` : formatted;
+}
+
+/** Price string for property detail: from price with optional "+" and "up to priceMax" */
+export function formatPriceForDetail(
+  price: number,
+  currency: string,
+  options?: { priceFromPlus?: boolean; priceMax?: number }
+): string {
+  const formatted = formatPrice(price, currency);
+  const fromStr = options?.priceFromPlus ? `${formatted}+` : formatted;
+  if (options?.priceMax != null) {
+    return `${fromStr} up to ${formatPrice(options.priceMax, currency)}`;
+  }
+  return fromStr;
 }

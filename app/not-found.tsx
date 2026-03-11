@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, Search, ArrowLeft } from "lucide-react";
+import { Home, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
@@ -36,31 +36,6 @@ export default function NotFound() {
               Browse Properties
             </Link>
           </Button>
-        </div>
-
-        {/* Quick Links */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-4">Quick links:</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/about"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/properties"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              All Properties
-            </Link>
-          </div>
         </div>
       </div>
     </div>

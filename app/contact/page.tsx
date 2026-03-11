@@ -145,9 +145,9 @@ export default function ContactPage() {
                         type="submit"
                         size="lg"
                         disabled={!isFormValid}
-                        className="flex-1"
+                        className="flex-1 min-h-12 sm:min-h-0 py-4 sm:py-2 text-base"
                       >
-                        <Send className="h-4 w-4 mr-2" />
+                        <Send className="h-5 w-5 sm:h-4 sm:w-4 mr-2" />
                         Send via Email
                       </Button>
                       <Button
@@ -156,9 +156,9 @@ export default function ContactPage() {
                         size="lg"
                         disabled={!isFormValid}
                         onClick={handleWhatsAppSubmit}
-                        className="flex-1"
+                        className="flex-1 min-h-12 sm:min-h-0 py-4 sm:py-2 text-base"
                       >
-                        <MessageCircle className="h-4 w-4 mr-2" />
+                        <MessageCircle className="h-5 w-5 sm:h-4 sm:w-4 mr-2" />
                         Send via WhatsApp
                       </Button>
                     </div>

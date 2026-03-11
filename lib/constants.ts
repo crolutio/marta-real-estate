@@ -5,7 +5,7 @@ export const AGENCY = {
   tagline: "Exceptional Properties for Discerning Clients",
   description:
     "A boutique real estate agency specializing in luxury properties for high-net-worth individuals seeking exceptional investment opportunities.",
-  email: "info@martaduran.ae",
+  email: "marta@martaduran.ae",
   phone: "+971 55 754 1884",
   whatsapp: "+971557541884", // Format for wa.me link (no spaces, dashes, or special chars)
   address: {
@@ -61,7 +61,7 @@ export const FOOTER_LINKS = {
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
+    { label: "Terms of Use", href: "/terms" },
   ],
 } as const;
 

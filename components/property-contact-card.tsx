@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY } from "@/lib/constants";
 import { Property } from "@/lib/types";
-import { formatPrice } from "@/lib/data/properties";
+import { formatPrice, formatPriceForDetail } from "@/lib/data/properties";
 import { toast } from "sonner";
 
 interface PropertyContactCardProps {
@@ -32,7 +32,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
   };
 
   const generateMessage = () => {
-    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price, property.currency)}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
+    return `Hello, I'm ${formData.name}.\n\nI'm interested in:\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPriceForDetail(property.price, property.currency, { priceFromPlus: property.priceFromPlus, priceMax: property.priceMax })}\n\nContact: ${formData.email}${formData.phone ? `, ${formData.phone}` : ""}`;
   };
 
   const handleEmailSubmit = () => {
@@ -58,7 +58,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
             {property.priceLabel ?? "Listed Price"}
           </p>
           <CardTitle className="font-subtitle text-3xl">
-            {formatPrice(property.price, property.currency)}
+            {formatPriceForDetail(property.price, property.currency, { priceFromPlus: property.priceFromPlus, priceMax: property.priceMax })}
           </CardTitle>
         </div>
       </CardHeader>
