@@ -44,6 +44,7 @@ export const SEO = {
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Properties", href: "/properties" },
+  { label: "Invest", href: "/invest" },
   { label: "About Dubai", href: "/about-dubai" },
   { label: "Services", href: "/services" },
   { label: "Meet Marta", href: "/about" },
@@ -54,6 +55,7 @@ export const NAV_LINKS = [
 export const FOOTER_LINKS = {
   main: [
     { label: "Properties", href: "/properties" },
+    { label: "Invest", href: "/invest" },
     { label: "About Dubai", href: "/about-dubai" },
     { label: "Services", href: "/services" },
     { label: "Meet Marta", href: "/about" },

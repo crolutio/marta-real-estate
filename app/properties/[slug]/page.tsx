@@ -176,7 +176,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     <div className="text-center">
                       <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
                       <p className="font-semibold text-lg">{property.unitSizes ?? "—"}</p>
-                      <p className="text-sm text-muted-foreground">Sq. Ft.</p>
+                      <p className="text-sm text-muted-foreground">Living area</p>
                     </div>
                     <div className="text-center">
                       <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
@@ -199,9 +199,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     <div className="text-center">
                       <Square className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
                       <p className="font-semibold text-lg">
-                        {property.areaSqFt.toLocaleString()}
+                        {property.areaSqFt.toLocaleString()} sq ft
                       </p>
-                      <p className="text-sm text-muted-foreground">Sq. Ft.</p>
+                      <p className="text-sm text-muted-foreground">Living area</p>
                     </div>
                     <div className="text-center">
                       <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />

@@ -34,9 +34,12 @@ export function Hero() {
             Spaces Curated for Exceptional Living
           </p>
 
-          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-display text-white">
-            Invest in Dubai with confidence – We guide your journey
+          <h1 className="font-subtitle text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-display text-white">
+            Invest in Dubai with confidence
           </h1>
+          <p className="font-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-display text-white/95 tracking-wide">
+            We guide your journey
+          </p>
 
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-editorial">
             We specialize in high-end homes for clients seeking modern luxury and comfort.

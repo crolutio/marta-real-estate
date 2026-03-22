@@ -99,8 +99,11 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               <>
                 <span className="flex items-center gap-1.5">
                   <Bed className="h-4 w-4" />
-                  {property.unitTypes.match(/^(\d+ to \d+)\s*Bed/)?.[1] ?? property.unitTypes.split("|")[0].trim()}
-                  {" Beds"}
+                  {(() => {
+                    const first = property.unitTypes.split("|")[0].trim();
+                    const m = first.match(/^(\d+)\s+to\s+(\d+)\s*Bed/i);
+                    return m ? `${m[1]} to ${m[2]} Beds` : first;
+                  })()}
                 </span>
                 {property.unitBathsRange && (
                   <span className="flex items-center gap-1.5">

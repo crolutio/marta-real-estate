@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { PageTransition } from "@/components/page-transition";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, AGENCY } from "@/lib/constants";
@@ -14,8 +15,8 @@ const mulishExtraBold = localFont({
   display: "swap",
 });
 
-const mulishSemiBold = localFont({
-  src: "../public/fonts/Mulish-SemiBold.ttf",
+const playfair = localFont({
+  src: "../public/fonts/Playfair.ttf",
   variable: "--font-subtitle",
   display: "swap",
 });
@@ -75,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mulishExtraBold.variable} ${mulishSemiBold.variable} ${mulishExtraLight.variable} font-body antialiased`}
+        className={`${mulishExtraBold.variable} ${playfair.variable} ${mulishExtraLight.variable} font-body antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
@@ -84,6 +85,7 @@ export default function RootLayout({
         </main>
           <SiteFooter />
         </div>
+        <FloatingWhatsApp />
         <Toaster position="bottom-right" />
       </body>
     </html>
