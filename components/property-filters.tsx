@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,30 +11,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PropertyType, PropertyStatus } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
 export interface PropertyFilters {
   search: string;
-  type: PropertyType | "all";
-  status: PropertyStatus | "all";
-  minBeds: number | "any";
-  priceRange: string;
+  types: PropertyType[];
+  statuses: PropertyStatus[];
+  minBeds: number[];
+  priceRanges: string[];
   sortBy: "price-asc" | "price-desc" | "newest";
 }
 
 interface PropertyFiltersProps {
   filters: PropertyFilters;
-  onFiltersChange: (filters: PropertyFilters) => void;
+  onFiltersChange: React.Dispatch<React.SetStateAction<PropertyFilters>>;
 }
 
 const propertyTypes: (PropertyType | "all")[] = [
@@ -75,32 +67,33 @@ export function PropertyFilters({
   filters,
   onFiltersChange,
 }: PropertyFiltersProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-
   const updateFilter = <K extends keyof PropertyFilters>(
     key: K,
     value: PropertyFilters[K]
   ) => {
-    onFiltersChange({ ...filters, [key]: value });
+    onFiltersChange((prev) => ({ ...prev, [key]: value }));
   };
 
   const clearFilters = () => {
     onFiltersChange({
       search: "",
-      type: "all",
-      status: "all",
-      minBeds: "any",
-      priceRange: "all",
+      types: [],
+      statuses: [],
+      minBeds: [],
+      priceRanges: [],
       sortBy: "newest",
     });
   };
 
-  const activeFilterCount = [
-    filters.type !== "all",
-    filters.status !== "all",
-    filters.minBeds !== "any",
-    filters.priceRange !== "all",
-  ].filter(Boolean).length;
+  const activeFilterCount =
+    (filters.search.trim() ? 1 : 0) +
+    filters.types.length +
+    filters.statuses.length +
+    filters.minBeds.length +
+    filters.priceRanges.length;
+
+  const toggleInArray = <T,>(items: T[], item: T): T[] =>
+    items.includes(item) ? items.filter((i) => i !== item) : [...items, item];
 
   return (
     <div className="space-y-4">
@@ -117,78 +110,16 @@ export function PropertyFilters({
           />
         </div>
 
-        {/* Desktop Filter Dropdowns */}
-        <div className="hidden lg:flex gap-3">
-          <Select
-            value={filters.type}
-            onValueChange={(value) =>
-              updateFilter("type", value as PropertyType | "all")
-            }
+        {/* Desktop Controls */}
+        <div className="hidden lg:flex gap-3 items-center">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={clearFilters}
+            className="h-10"
           >
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="Type" />
-            </SelectTrigger>
-            <SelectContent>
-              {propertyTypes.map((type) => (
-                <SelectItem key={type} value={type}>
-                  {type === "all" ? "All Types" : type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Select
-            value={filters.status}
-            onValueChange={(value) =>
-              updateFilter("status", value as PropertyStatus | "all")
-            }
-          >
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              {statusOptions.map((status) => (
-                <SelectItem key={status} value={status}>
-                  {status === "all" ? "All Status" : status}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Select
-            value={filters.minBeds === "any" ? "any" : filters.minBeds === 5 ? "5+" : String(filters.minBeds)}
-            onValueChange={(value) =>
-              updateFilter("minBeds", value === "any" ? "any" : value === "5+" ? 5 : parseInt(value, 10))
-            }
-          >
-            <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Beds" />
-            </SelectTrigger>
-            <SelectContent>
-              {bedroomOptions.map((beds) => (
-                <SelectItem key={beds} value={beds}>
-                  {beds === "any" ? "Any Beds" : beds === "5+" ? "5+ Beds" : `${beds}+ Beds`}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Select
-            value={filters.priceRange}
-            onValueChange={(value) => updateFilter("priceRange", value)}
-          >
-            <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="Price" />
-            </SelectTrigger>
-            <SelectContent>
-              {priceRanges.map((range) => (
-                <SelectItem key={range.value} value={range.value}>
-                  {range.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
+            Clear all
+          </Button>
           <Separator orientation="vertical" className="h-10" />
 
           <Select
@@ -210,207 +141,198 @@ export function PropertyFilters({
           </Select>
         </div>
 
-        {/* Mobile Filter Button */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="lg:hidden">
-            <Button variant="outline" className="relative">
-              <SlidersHorizontal className="h-4 w-4 mr-2" />
-              Filters
-              {activeFilterCount > 0 && (
-                <Badge
-                  variant="default"
-                  className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
-                >
-                  {activeFilterCount}
-                </Badge>
-              )}
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="bottom" className="h-[80vh]">
-            <SheetHeader>
-              <SheetTitle>Filter Properties</SheetTitle>
-            </SheetHeader>
-            <div className="space-y-6 mt-6 overflow-y-auto">
-              {/* Mobile Filter Options */}
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Property Type</label>
-                  <Select
-                    value={filters.type}
-                    onValueChange={(value) =>
-                      updateFilter("type", value as PropertyType | "all")
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {propertyTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type === "all" ? "All Types" : type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+        <div className="lg:hidden flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={clearFilters}
+            className="h-10"
+          >
+            Clear all
+          </Button>
+          <Select
+            value={filters.sortBy}
+            onValueChange={(value) =>
+              updateFilter("sortBy", value as PropertyFilters["sortBy"])
+            }
+          >
+            <SelectTrigger className="flex-1">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              {sortOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Status</label>
-                  <Select
-                    value={filters.status}
-                    onValueChange={(value) =>
-                      updateFilter("status", value as PropertyStatus | "all")
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {statusOptions.map((status) => (
-                        <SelectItem key={status} value={status}>
-                          {status === "all" ? "All Status" : status}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Bedrooms</label>
-                  <Select
-                    value={filters.minBeds === "any" ? "any" : filters.minBeds === 5 ? "5+" : String(filters.minBeds)}
-                    onValueChange={(value) =>
-                      updateFilter(
-                        "minBeds",
-                        value === "any" ? "any" : value === "5+" ? 5 : parseInt(value, 10)
-                      )
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Beds" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {bedroomOptions.map((beds) => (
-                        <SelectItem key={beds} value={beds}>
-                          {beds === "any" ? "Any Beds" : beds === "5+" ? "5+ Beds" : `${beds}+ Beds`}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Price Range</label>
-                  <Select
-                    value={filters.priceRange}
-                    onValueChange={(value) => updateFilter("priceRange", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Price" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {priceRanges.map((range) => (
-                        <SelectItem key={range.value} value={range.value}>
-                          {range.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <Separator />
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Sort By</label>
-                  <Select
-                    value={filters.sortBy}
-                    onValueChange={(value) =>
-                      updateFilter("sortBy", value as PropertyFilters["sortBy"])
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sort" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {sortOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="flex gap-3 pt-4 border-t">
+      {/* Multi-select Filter Chips */}
+      <div className="grid gap-4">
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Property Type</p>
+          <div className="flex flex-wrap gap-2">
+            {propertyTypes.filter((t) => t !== "all").map((type) => {
+              const selected = filters.types.includes(type as PropertyType);
+              return (
                 <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={clearFilters}
+                  key={type}
+                  variant={selected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() =>
+                    updateFilter("types", toggleInArray(filters.types, type as PropertyType))
+                  }
                 >
-                  Clear All
+                  {type}
                 </Button>
-                <Button className="flex-1" onClick={() => setIsOpen(false)}>
-                  Apply Filters
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Status</p>
+          <div className="flex flex-wrap gap-2">
+            {statusOptions.filter((s) => s !== "all").map((status) => {
+              const selected = filters.statuses.includes(status as PropertyStatus);
+              return (
+                <Button
+                  key={status}
+                  variant={selected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() =>
+                    updateFilter(
+                      "statuses",
+                      toggleInArray(filters.statuses, status as PropertyStatus)
+                    )
+                  }
+                >
+                  {status}
                 </Button>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Bedrooms</p>
+          <div className="flex flex-wrap gap-2">
+            {bedroomOptions.filter((b) => b !== "any").map((beds) => {
+              const value = beds === "5+" ? 5 : parseInt(beds, 10);
+              const selected = filters.minBeds.includes(value);
+              return (
+                <Button
+                  key={beds}
+                  variant={selected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() =>
+                    updateFilter("minBeds", toggleInArray(filters.minBeds, value))
+                  }
+                >
+                  {beds === "5+" ? "5+ Beds" : `${beds} Beds`}
+                </Button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Price Range</p>
+          <div className="flex flex-wrap gap-2">
+            {priceRanges.filter((r) => r.value !== "all").map((range) => {
+              const selected = filters.priceRanges.includes(range.value);
+              return (
+                <Button
+                  key={range.value}
+                  variant={selected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() =>
+                    updateFilter(
+                      "priceRanges",
+                      toggleInArray(filters.priceRanges, range.value)
+                    )
+                  }
+                >
+                  {range.label}
+                </Button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Active Filters */}
       {activeFilterCount > 0 && (
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-sm text-muted-foreground">Active filters:</span>
-          {filters.type !== "all" && (
-            <Badge variant="secondary" className="gap-1">
-              {filters.type}
+          {filters.types.map((type) => (
+            <Badge key={`type-${type}`} variant="secondary" className="gap-1">
+              {type}
               <button
-                onClick={() => updateFilter("type", "all")}
+                onClick={() =>
+                  updateFilter("types", filters.types.filter((t) => t !== type))
+                }
                 className="ml-1 hover:text-foreground"
-                aria-label={`Remove ${filters.type} filter`}
+                aria-label={`Remove ${type} filter`}
               >
                 <X className="h-3 w-3" />
               </button>
             </Badge>
-          )}
-          {filters.status !== "all" && (
-            <Badge variant="secondary" className="gap-1">
-              {filters.status}
+          ))}
+          {filters.statuses.map((status) => (
+            <Badge key={`status-${status}`} variant="secondary" className="gap-1">
+              {status}
               <button
-                onClick={() => updateFilter("status", "all")}
+                onClick={() =>
+                  updateFilter(
+                    "statuses",
+                    filters.statuses.filter((s) => s !== status)
+                  )
+                }
                 className="ml-1 hover:text-foreground"
-                aria-label={`Remove ${filters.status} filter`}
+                aria-label={`Remove ${status} filter`}
               >
                 <X className="h-3 w-3" />
               </button>
             </Badge>
-          )}
-          {filters.minBeds !== "any" && (
-            <Badge variant="secondary" className="gap-1">
-              {filters.minBeds === 5 ? "5+ Beds" : `${filters.minBeds}+ Beds`}
+          ))}
+          {filters.minBeds.map((beds) => (
+            <Badge key={`beds-${beds}`} variant="secondary" className="gap-1">
+              {beds === 5 ? "5+ Beds" : `${beds} Beds`}
               <button
-                onClick={() => updateFilter("minBeds", "any")}
+                onClick={() =>
+                  updateFilter(
+                    "minBeds",
+                    filters.minBeds.filter((b) => b !== beds)
+                  )
+                }
                 className="ml-1 hover:text-foreground"
                 aria-label="Remove bedrooms filter"
               >
                 <X className="h-3 w-3" />
               </button>
             </Badge>
-          )}
-          {filters.priceRange !== "all" && (
-            <Badge variant="secondary" className="gap-1">
-              {priceRanges.find((r) => r.value === filters.priceRange)?.label}
+          ))}
+          {filters.priceRanges.map((rangeValue) => (
+            <Badge key={`price-${rangeValue}`} variant="secondary" className="gap-1">
+              {priceRanges.find((r) => r.value === rangeValue)?.label}
               <button
-                onClick={() => updateFilter("priceRange", "all")}
+                onClick={() =>
+                  updateFilter(
+                    "priceRanges",
+                    filters.priceRanges.filter((r) => r !== rangeValue)
+                  )
+                }
                 className="ml-1 hover:text-foreground"
                 aria-label="Remove price filter"
               >
                 <X className="h-3 w-3" />
               </button>
             </Badge>
-          )}
+          ))}
           <Button
             variant="ghost"
             size="sm"

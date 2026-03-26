@@ -258,14 +258,16 @@ export default function AboutDubaiPage() {
               <Card key={developer.name} className="h-full">
                 <CardHeader>
                   <div className="flex items-center justify-center">
-                    <div className="relative h-12 w-36 rounded-md bg-white p-2">
-                      <Image
-                        src={developer.logo}
-                        alt={`${developer.name} logo`}
-                        fill
-                        className={cn("object-contain", developer.logoClassName)}
-                        sizes="144px"
-                      />
+                    <div className="relative h-16 w-40 rounded-md p-1.5 dark:rounded-lg dark:bg-white dark:ring-1 dark:ring-black/10 dark:shadow-sm">
+                      <div className="absolute inset-x-0 top-1/2 mx-auto h-12 w-36 -translate-y-1/2">
+                        <Image
+                          src={developer.logo}
+                          alt={`${developer.name} logo`}
+                          fill
+                          className={cn("object-contain", developer.logoClassName)}
+                          sizes="144px"
+                        />
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -281,7 +283,7 @@ export default function AboutDubaiPage() {
       </section>
 
       {/* Neighborhoods */}
-      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground dark:[&_*]:text-black">
         <div className="container-wide">
           <div className="text-center mb-12">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">

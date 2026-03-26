@@ -28,9 +28,9 @@ export function ValueProps() {
           {VALUE_PROPS.map((prop) => {
             const Icon = iconMap[prop.icon as keyof typeof iconMap];
             return (
-              <Card key={prop.title} className="text-center bg-card shadow-md">
+              <Card key={prop.title} className="text-center bg-card shadow-md dark:bg-black dark:border-white/10">
                 <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4 mx-auto">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4 mx-auto dark:bg-accent/25">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-subtitle text-xl font-semibold mb-2">

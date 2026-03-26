@@ -89,11 +89,11 @@ export default function ContactPage() {
         className="animate-reveal pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32"
       >
         <div className="container-wide">
-          <div className="grid lg:grid-cols-[1.2fr_1.3fr] gap-6 items-start">
+          <div className="grid lg:grid-cols-[1.2fr_1.3fr] gap-10 items-stretch">
             {/* Contact Form */}
             <div className="lg:order-2">
-              <Card>
-                <CardContent className="p-8">
+              <Card className="h-full">
+                <CardContent className="p-8 h-full">
                   <h2 className="font-subtitle text-2xl font-semibold mb-6">
                     Send a Message
                   </h2>
@@ -168,13 +168,13 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-6 lg:order-1">
-              <Card>
-                <CardContent className="p-8 space-y-6">
+            <div className="lg:order-1 h-full">
+              <Card className="h-full">
+                <CardContent className="p-10 h-full space-y-10">
                   <h3 className="font-subtitle text-2xl font-semibold">Contact Details</h3>
 
-                  <div className="grid sm:grid-cols-2 gap-8">
-                    <div className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-12">
+                    <div className="space-y-10">
                       <div className="flex items-start gap-4">
                         <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
                           <Phone className="h-5 w-5 text-accent" />
@@ -214,7 +214,7 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-10">
                       <div className="flex items-start gap-4">
                         <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
                           <MapPin className="h-5 w-5 text-accent" />

@@ -20,7 +20,8 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     const container = containerRef.current ?? document;
     const root = container === document ? null : container;
-    const elements = (root ?? document).querySelectorAll(REVEAL_SELECTOR);
+    const queryRoot = (root ?? document) as ParentNode;
+    const observed = new WeakSet<Element>();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,8 +34,39 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       { rootMargin: REVEAL_ROOT_MARGIN, threshold: REVEAL_THRESHOLD }
     );
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const observeElement = (el: Element) => {
+      if (observed.has(el)) return;
+      observed.add(el);
+      observer.observe(el);
+    };
+
+    const observeWithin = (node: ParentNode) => {
+      node.querySelectorAll(REVEAL_SELECTOR).forEach(observeElement);
+    };
+
+    // Initial scan
+    observeWithin(queryRoot);
+
+    // Observe dynamically inserted content (e.g. filtered cards)
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof Element)) return;
+          if (node.matches(REVEAL_SELECTOR)) observeElement(node);
+          observeWithin(node);
+        });
+      });
+    });
+
+    mutationObserver.observe(container === document ? document.body : container, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      mutationObserver.disconnect();
+      observer.disconnect();
+    };
   }, [pathname]); // Re-run when route changes so new sections get observed
 
   return (

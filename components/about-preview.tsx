@@ -21,21 +21,21 @@ export function AboutPreview() {
               />
             </div>
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -right-6 bg-card p-6 rounded-lg shadow-xl max-w-[280px] hidden md:block">
+            <div className="absolute -bottom-6 -right-6 bg-black text-white p-6 rounded-lg shadow-xl max-w-[280px] hidden md:block">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <span className="block font-subtitle text-3xl font-semibold text-accent">
+                  <span className="block font-subtitle text-3xl font-semibold text-white">
                     10+
                   </span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-white/85">
                     Years Experience
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-subtitle text-3xl font-semibold text-accent">
+                  <span className="block font-subtitle text-3xl font-semibold text-white">
                     $2B+
                   </span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-white/85">
                     In Transactions
                   </span>
                 </div>

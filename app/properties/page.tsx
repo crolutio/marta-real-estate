@@ -17,75 +17,62 @@ function getPropertyBedRange(p: Property): { min: number; max: number } {
   return { min: p.bedrooms, max: p.bedrooms };
 }
 
-export default function PropertiesPage() {
-  const [filters, setFilters] = React.useState<PropertyFiltersType>({
-    search: "",
-    type: "all",
-    status: "all",
-    minBeds: "any",
-    priceRange: "all",
-    sortBy: "newest",
-  });
+const DEFAULT_FILTERS: PropertyFiltersType = {
+  search: "",
+  types: [],
+  statuses: [],
+  minBeds: [],
+  priceRanges: [],
+  sortBy: "newest",
+};
 
-  // Filter and sort properties
+export default function PropertiesPage() {
+  const [filters, setFilters] = React.useState<PropertyFiltersType>(DEFAULT_FILTERS);
+
   const filteredProperties = React.useMemo(() => {
     let result = [...properties];
 
-    // Search filter
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
+    if (filters.search.trim()) {
+      const q = filters.search.toLowerCase();
       result = result.filter(
         (p) =>
-          p.title.toLowerCase().includes(searchLower) ||
-          p.location.toLowerCase().includes(searchLower) ||
-          p.neighborhood?.toLowerCase().includes(searchLower)
+          p.title.toLowerCase().includes(q) ||
+          p.location.toLowerCase().includes(q) ||
+          (p.neighborhood?.toLowerCase().includes(q) ?? false)
       );
     }
 
-    // Type filter
-    if (filters.type !== "all") {
-      result = result.filter((p) => p.type === filters.type);
+    if (filters.types.length > 0) {
+      result = result.filter((p) => filters.types.includes(p.type));
     }
 
-    // Status filter
-    if (filters.status !== "all") {
-      result = result.filter((p) => p.status === filters.status);
+    if (filters.statuses.length > 0) {
+      result = result.filter((p) => filters.statuses.includes(p.status));
     }
 
-    // Bedrooms filter (selected N: show if property offers N beds; 5+ means show if property has 5 or more)
-    if (filters.minBeds !== "any") {
-      const selected =
-        typeof filters.minBeds === "number" ? filters.minBeds : 5;
-      const is5Plus = selected === 5;
+    if (filters.minBeds.length > 0) {
       result = result.filter((p) => {
         const { min, max } = getPropertyBedRange(p);
-        if (is5Plus) return max >= 5;
-        return selected >= min && selected <= max;
+        return filters.minBeds.some((n) =>
+          n === 5 ? max >= 5 : n >= min && n <= max
+        );
       });
     }
 
-    // Price range filter
-    if (filters.priceRange !== "all") {
-      const [min, max] = filters.priceRange.split("-").map((v) => {
-        if (v.endsWith("+")) return Infinity;
-        return parseInt(v) || 0;
-      });
-      result = result.filter((p) => p.price >= min && p.price <= max);
+    if (filters.priceRanges.length > 0) {
+      result = result.filter((p) =>
+        filters.priceRanges.some((range) => {
+          if (range.endsWith("+")) {
+            return p.price >= (parseInt(range, 10) || 0);
+          }
+          const [lo, hi] = range.split("-").map(Number);
+          return p.price >= lo && p.price <= hi;
+        })
+      );
     }
 
-    // Sort
-    switch (filters.sortBy) {
-      case "price-asc":
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case "price-desc":
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case "newest":
-      default:
-        // Keep original order (newest first in our dummy data)
-        break;
-    }
+    if (filters.sortBy === "price-asc") result.sort((a, b) => a.price - b.price);
+    else if (filters.sortBy === "price-desc") result.sort((a, b) => b.price - a.price);
 
     return result;
   }, [filters]);
@@ -93,7 +80,7 @@ export default function PropertiesPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-16 md:py-24">
+      <section data-animate="reveal" className="animate-reveal bg-secondary/30 py-12 md:py-16">
         <div className="container-wide">
           <div className="max-w-3xl">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
@@ -115,10 +102,7 @@ export default function PropertiesPage() {
       </section>
 
       {/* Filters & Grid */}
-      <section
-        data-animate="reveal"
-        className="animate-reveal pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32"
-      >
+      <section className="pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32">
         <div className="container-wide">
           {/* Filters */}
           <div className="mb-8">
@@ -138,10 +122,7 @@ export default function PropertiesPage() {
 
           {/* Properties Grid */}
           {filteredProperties.length > 0 ? (
-            <div
-              key={filteredProperties.map((p) => p.slug).join(",")}
-              className="grid gap-8 md:grid-cols-2 stagger-children"
-            >
+            <div className="grid gap-8 md:grid-cols-2">
               {filteredProperties.map((property) => (
                 <PropertyCard key={property.slug} property={property} />
               ))}
@@ -157,7 +138,6 @@ export default function PropertiesPage() {
             </div>
           )}
 
-          {/* Pagination Placeholder */}
           {filteredProperties.length > 0 && (
             <div className="mt-12 flex justify-center">
               <p className="text-sm text-muted-foreground">
