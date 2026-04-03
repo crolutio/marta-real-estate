@@ -15,12 +15,12 @@ export default function InvestPage() {
     <div className="pt-20">
       <section className="section-padding bg-background">
         <div className="container-wide max-w-3xl mx-auto text-center">
+          <p className="font-title text-sm md:text-base tracking-[0.2em] uppercase text-accent font-semibold mb-4 md:mb-5">
+            An exclusive selection of real estate projects for investors.
+          </p>
           <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl font-semibold text-display mb-4 md:mb-5">
             Invest in Dubai with real returns
           </h1>
-          <p className="font-title text-sm md:text-base tracking-[0.2em] uppercase text-accent font-semibold mb-3">
-            An exclusive selection of real estate projects for investors.
-          </p>
           <p className="font-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-display tracking-wide text-foreground mb-10 md:mb-12">
             Access carefully selected real estate projects for investors.
           </p>

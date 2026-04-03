@@ -6,11 +6,11 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { AGENCY } from "@/lib/constants";
-import { MARSA_HERO_CLIP_PATHS } from "@/lib/marsa-hero-videos";
+import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/marsa-hero-videos";
 
 export function Hero() {
   return (
-    <HeroVideoBackground videos={MARSA_HERO_CLIP_PATHS} minHeight="min-h-screen" className="pt-20">
+    <HeroVideoBackground videos={HOME_PAGE_HERO_CLIP_PATHS} minHeight="min-h-screen" className="pt-20">
       <div className="container-wide text-center text-white w-full">
         <div className="max-w-4xl mx-auto bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg space-y-4 md:space-y-6 animate-fade-in">
           <Image
