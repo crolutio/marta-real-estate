@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY, FOOTER_LINKS } from "@/lib/constants";
 
@@ -10,7 +10,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container-wide py-8 md:py-18 lg:py-24">
-        {/* Main Footer Content - 3 columns: Logo | Description + LinkedIn (narrow, centered) | Contact */}
+        {/* Main Footer Content - 3 columns: Logo | Description | Contact */}
         <div className="grid gap-8 md:gap-6 grid-cols-1 md:grid-cols-3 text-center md:text-left items-stretch">
           {/* Column 1: Logo */}
           <div className="flex flex-col items-center md:items-start">
@@ -32,20 +32,11 @@ export function SiteFooter() {
             </Link>
           </div>
 
-          {/* Column 2: Description + LinkedIn (narrow, vertically centered) */}
+          {/* Column 2: Description */}
           <div className="flex flex-col items-center md:items-start justify-center">
             <p className="text-primary-foreground/80 max-w-[280px] text-editorial text-sm md:text-base">
               {AGENCY.description}
             </p>
-            <a
-              href={AGENCY.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 h-10 w-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
-              aria-label="Connect on LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
           </div>
 
           {/* Column 3: Contact */}

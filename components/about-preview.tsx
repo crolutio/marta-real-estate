@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Award, Users, Globe, Languages, Linkedin } from "lucide-react";
+import { ArrowRight, Award, Users, Globe, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AGENCY } from "@/lib/constants";
 
@@ -63,25 +63,11 @@ export function AboutPreview() {
               </p>
             </div>
 
-            {/* Languages and LinkedIn */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <div className="flex items-center gap-3">
-                <Languages className="h-5 w-5 text-accent" />
-                <span className="text-sm text-muted-foreground">
-                  Speaks Spanish, English, and German
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <a
-                  href={AGENCY.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
-                >
-                  <Linkedin className="h-5 w-5" />
-                  <span className="text-sm font-medium">LinkedIn</span>
-                </a>
-              </div>
+            <div className="flex items-center gap-3 pt-2">
+              <Languages className="h-5 w-5 text-accent" />
+              <span className="text-sm text-muted-foreground">
+                Speaks Spanish, English, and German
+              </span>
             </div>
 
             {/* Trust Signals */}

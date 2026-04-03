@@ -5,7 +5,6 @@ import {
   TrendingUp,
   Lock,
   Compass,
-  Linkedin,
   Languages,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,7 +27,6 @@ const stats = [
   { value: "10+", label: "Years Experience" },
   { value: "$2B+", label: "In Transactions" },
   { value: "200+", label: "Clients Served" },
-  { value: "50+", label: "Countries" },
 ];
 
 export default function AboutPage() {
@@ -64,7 +62,7 @@ export default function AboutPage() {
       {/* Stats Banner */}
       <section data-animate="reveal" className="animate-reveal bg-accent text-white py-12">
         <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <span className="block font-subtitle text-4xl md:text-5xl font-semibold text-white">
@@ -122,25 +120,11 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Languages and LinkedIn */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <div className="flex items-center gap-3">
-                  <Languages className="h-5 w-5 text-accent" />
-                  <span className="text-sm text-muted-foreground">
-                    Speaks Spanish, English, and German
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <a
-                    href={AGENCY.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                    <span className="text-sm font-medium">LinkedIn Profile</span>
-                  </a>
-                </div>
+              <div className="flex items-center gap-3 pt-4">
+                <Languages className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">
+                  Speaks Spanish, English, and German
+                </span>
               </div>
             </div>
           </div>
