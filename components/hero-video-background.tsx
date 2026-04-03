@@ -21,6 +21,22 @@ export function HeroVideoBackground({
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [firstPlaying, setFirstPlaying] = React.useState(false);
 
+  // Stable ref callbacks — inline refs change identity every render and React re-invokes them
+  // with null then the node, which drops `canplay` listeners and breaks playback on refresh.
+  const videoRefCallbacks = React.useMemo(
+    () =>
+      videos.map(
+        (_, index) => (el: HTMLVideoElement | null) => {
+          refs.current[index] = el;
+          if (el) {
+            el.muted = true;
+            el.defaultMuted = true;
+          }
+        }
+      ),
+    [videos]
+  );
+
   const playNext = React.useCallback(() => {
     setCurrentIndex((prev) => {
       const nextIndex = (prev + 1) % videos.length;
@@ -50,7 +66,7 @@ export function HeroVideoBackground({
     playNext();
   }, [playNext]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const first = refs.current[0];
     if (!first) return;
 
@@ -60,14 +76,34 @@ export function HeroVideoBackground({
       first.play().catch(() => {});
     };
 
-    if (first.readyState >= 3) {
-      kickPlay();
-    } else {
-      first.addEventListener("canplay", kickPlay, { once: true });
-    }
+    // Cached assets may already be playable before listeners attach.
+    const tryPlay = () => {
+      if (first.readyState >= 2) {
+        kickPlay();
+        return true;
+      }
+      return false;
+    };
 
-    return () => first.removeEventListener("canplay", kickPlay);
-  }, []);
+    if (tryPlay()) return;
+
+    const onReady = () => {
+      kickPlay();
+    };
+    first.addEventListener("loadeddata", onReady, { once: true });
+    first.addEventListener("canplay", onReady, { once: true });
+
+    // After paint, catch late cache hits
+    const raf = requestAnimationFrame(() => {
+      tryPlay();
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      first.removeEventListener("loadeddata", onReady);
+      first.removeEventListener("canplay", onReady);
+    };
+  }, [videos]);
 
   if (!videos.length) return null;
 
@@ -79,13 +115,7 @@ export function HeroVideoBackground({
       {videos.map((src, index) => (
         <video
           key={src}
-          ref={(el) => {
-            refs.current[index] = el;
-            if (el) {
-              el.muted = true;
-              el.defaultMuted = true;
-            }
-          }}
+          ref={videoRefCallbacks[index]}
           className="absolute inset-0 w-full h-full object-cover"
           muted
           loop={false}

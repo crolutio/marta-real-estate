@@ -7,7 +7,7 @@ import { AGENCY } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Invest",
-  description: `Invest in Dubai with ${AGENCY.fullName}. From EUR 250,000 with estimated returns and multilingual support from our Dubai-based team.`,
+  description: `Invest in Dubai with ${AGENCY.fullName}. From AED 10,000,000 with estimated returns and multilingual support from our Dubai-based team.`,
 };
 
 export default function InvestPage() {
@@ -15,12 +15,18 @@ export default function InvestPage() {
     <div className="pt-20">
       <section className="section-padding bg-background">
         <div className="container-wide max-w-3xl mx-auto text-center">
-          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl font-semibold text-display mb-10 md:mb-12">
+          <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl font-semibold text-display mb-4 md:mb-5">
             Invest in Dubai with real returns
           </h1>
+          <p className="font-title text-sm md:text-base tracking-[0.2em] uppercase text-accent font-semibold mb-3">
+            An exclusive selection of real estate projects for investors.
+          </p>
+          <p className="font-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-display tracking-wide text-foreground mb-10 md:mb-12">
+            Access carefully selected real estate projects for investors.
+          </p>
 
           <ul className="text-left sm:text-center space-y-4 md:space-y-5 text-lg md:text-xl text-muted-foreground text-editorial max-w-xl sm:mx-auto mb-12 md:mb-14">
-            <li>From EUR 250,000</li>
+            <li>From AED 10,000,000</li>
             <li>Estimated returns: 8–10%</li>
             <li>
               German, Spanish and English-speaking support, with a team based in Dubai
