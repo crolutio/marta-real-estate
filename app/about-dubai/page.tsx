@@ -7,10 +7,8 @@ import {
   Award,
   Globe,
 } from "lucide-react";
-import { GoogleMapEmbed } from "@/components/google-map-embed";
 import { AboutDubaiHero } from "@/components/about-dubai-hero";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -447,31 +445,6 @@ export default function AboutDubaiPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Interactive Map Placeholder */}
-      <section data-animate="reveal" className="animate-reveal section-padding">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-4">
-              Dubai Property Map
-            </h2>
-            <p className="text-muted-foreground text-editorial max-w-2xl mx-auto">
-              Explore Dubai&apos;s neighborhoods and developments through our
-              interactive map. Click on areas to learn more about specific
-              locations and available properties.
-            </p>
-          </div>
-
-          {/* Google Map */}
-          <div className="mb-8">
-            <GoogleMapEmbed
-              query="Dubai, UAE"
-              title="Dubai property map"
-            />
-          </div>
-
         </div>
       </section>
 
