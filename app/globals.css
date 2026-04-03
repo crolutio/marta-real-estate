@@ -173,6 +173,14 @@
     font-size: 1.125rem; /* Body text (18px) */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Form controls do not always inherit body font; align with site typography */
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
   
   /* Use default scroll behavior for consistent route resets */
   html {

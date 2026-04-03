@@ -100,12 +100,12 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
         <div className="relative mx-auto h-full w-full max-w-[1400px]">
           {dialogIsVideoSlide ? (
             <video
-              src={video}
               controls
               className="w-full h-full object-contain animate-fade-in"
               playsInline
               preload="metadata"
             >
+              <source src={video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : (
@@ -165,12 +165,12 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
       <div className="space-y-4">
         <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-black">
           <video
-            src={video}
             controls
             className="w-full h-full object-contain"
             playsInline
             preload="metadata"
           >
+            <source src={video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -189,12 +189,12 @@ export function PropertyGallery({ images, title, video }: PropertyGalleryProps) 
           {isVideoSlide ? (
             <>
               <video
-                src={video}
                 controls
                 className="w-full h-full object-contain"
                 playsInline
                 preload="metadata"
               >
+                <source src={video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <button

@@ -55,13 +55,17 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
             />
           ) : property.video ? (
             <video
-              src={property.video}
+              ref={(el) => {
+                if (el) el.muted = true;
+              }}
               muted
               loop
               autoPlay
               playsInline
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
+            >
+              <source src={property.video} type="video/mp4" />
+            </video>
           ) : (
             <Image
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"

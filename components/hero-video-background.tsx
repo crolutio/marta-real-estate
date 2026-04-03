@@ -22,14 +22,20 @@ export function HeroVideoBackground({
   const [firstPlaying, setFirstPlaying] = React.useState(false);
 
   const playNext = React.useCallback(() => {
-    const nextIndex = (currentIndex + 1) % videos.length;
-    setCurrentIndex(nextIndex);
-    const next = refs.current[nextIndex];
-    if (next) {
-      next.currentTime = 0;
-      next.play().catch(() => {});
-    }
-  }, [currentIndex, videos.length]);
+    setCurrentIndex((prev) => {
+      const nextIndex = (prev + 1) % videos.length;
+      // Defer play until after React applies z-index/opacity for the active clip (iOS Safari).
+      queueMicrotask(() => {
+        const next = refs.current[nextIndex];
+        if (next) {
+          next.muted = true;
+          next.currentTime = 0;
+          next.play().catch(() => {});
+        }
+      });
+      return nextIndex;
+    });
+  }, [videos.length]);
 
   const handlePlaying = React.useCallback(
     (index: number) => {
@@ -46,7 +52,21 @@ export function HeroVideoBackground({
 
   React.useEffect(() => {
     const first = refs.current[0];
-    if (first) first.play().catch(() => {});
+    if (!first) return;
+
+    const kickPlay = () => {
+      first.muted = true;
+      first.defaultMuted = true;
+      first.play().catch(() => {});
+    };
+
+    if (first.readyState >= 3) {
+      kickPlay();
+    } else {
+      first.addEventListener("canplay", kickPlay, { once: true });
+    }
+
+    return () => first.removeEventListener("canplay", kickPlay);
   }, []);
 
   if (!videos.length) return null;
@@ -61,8 +81,11 @@ export function HeroVideoBackground({
           key={src}
           ref={(el) => {
             refs.current[index] = el;
+            if (el) {
+              el.muted = true;
+              el.defaultMuted = true;
+            }
           }}
-          src={src}
           className="absolute inset-0 w-full h-full object-cover"
           muted
           loop={false}
@@ -70,12 +93,19 @@ export function HeroVideoBackground({
           preload={index === 0 ? "auto" : "none"}
           onPlaying={() => handlePlaying(index)}
           onEnded={handleEnded}
+          onError={() => {
+            if (index === 0) setFirstPlaying(true);
+          }}
           style={{
-            zIndex: index === currentIndex ? 0 : -1,
+            // iOS Safari often will not decode or play clips stacked with z-index < 0.
+            zIndex: index === currentIndex ? 2 : 1,
             opacity: index === currentIndex ? 1 : 0,
+            visibility: index === currentIndex ? "visible" : "hidden",
             pointerEvents: index === currentIndex ? "auto" : "none",
           }}
-        />
+        >
+          <source src={src} type="video/mp4" />
+        </video>
       ))}
 
       {/* Dark overlay */}

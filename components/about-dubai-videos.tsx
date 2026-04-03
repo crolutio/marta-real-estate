@@ -40,8 +40,11 @@ export function AboutDubaiVideos() {
               <video
                 ref={(el) => {
                   refs.current[index] = el;
+                  if (el && index === 0) {
+                    el.muted = true;
+                    el.defaultMuted = true;
+                  }
                 }}
-                src={src}
                 className="w-full aspect-video object-contain"
                 controls
                 playsInline
@@ -49,7 +52,9 @@ export function AboutDubaiVideos() {
                 muted={index === 0}
                 autoPlay={index === 0}
                 onPlaying={() => handlePlaying(index)}
-              />
+              >
+                <source src={src} type="video/mp4" />
+              </video>
             </div>
           ))}
         </div>
