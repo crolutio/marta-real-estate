@@ -173,13 +173,13 @@ export default function AboutBarcelonaPage() {
         </div>
       </section>
 
-      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground dark:[&_*]:text-black">
+      <section data-animate="reveal" className="animate-reveal section-padding bg-primary text-primary-foreground dark:bg-muted dark:text-foreground">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-primary-foreground dark:text-accent font-semibold mb-4">
               Prime locations
             </p>
-            <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-white">
+            <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-primary-foreground dark:text-foreground">
               Key neighborhoods &amp; areas
             </h2>
           </div>
@@ -188,29 +188,29 @@ export default function AboutBarcelonaPage() {
             {neighborhoods.map((neighborhood) => (
               <Card
                 key={neighborhood.name}
-                className="bg-primary-foreground/5 border-primary-foreground/10"
+                className="bg-primary-foreground/5 border-primary-foreground/10 dark:bg-background/50 dark:border-border"
               >
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-accent" />
-                    <CardTitle className="font-subtitle text-lg text-white">
+                    <CardTitle className="font-subtitle text-lg text-primary-foreground dark:text-foreground">
                       {neighborhood.name}
                     </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-primary-foreground/80 mb-4 text-editorial">
+                  <p className="text-primary-foreground/80 dark:text-foreground/85 mb-4 text-editorial">
                     {neighborhood.description}
                   </p>
                   <div className="space-y-2">
-                    <p className="text-sm font-medium text-primary-foreground/90">
+                    <p className="text-sm font-medium text-primary-foreground/90 dark:text-foreground/90">
                       Key highlights:
                     </p>
                     <ul className="space-y-1">
                       {neighborhood.highlights.map((highlight) => (
                         <li
                           key={highlight}
-                          className="flex items-center gap-2 text-sm text-primary-foreground/70"
+                          className="flex items-center gap-2 text-sm text-primary-foreground/70 dark:text-foreground/75"
                         >
                           <div className="h-1.5 w-1.5 rounded-full bg-accent" />
                           {highlight}

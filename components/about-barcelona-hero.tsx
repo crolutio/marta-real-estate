@@ -10,6 +10,7 @@ export function AboutBarcelonaHero() {
       videos={MARSA_HERO_CLIP_PATHS}
       minHeight="min-h-screen"
       className="pt-20"
+      crossfade={false}
     >
       <div className="container-wide w-full">
         <div className="max-w-2xl bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg">

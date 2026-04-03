@@ -9,6 +9,11 @@ interface HeroVideoBackgroundProps {
   className?: string;
   /** Min height e.g. min-h-screen or min-h-[70vh] */
   minHeight?: string;
+  /**
+   * When true (default), two-layer crossfade between clips — best for long homepage reels.
+   * When false, one video swaps `src` on ended — cleaner for shorter About heroes (no long blend).
+   */
+  crossfade?: boolean;
 }
 
 const CROSSFADE_MS = 750;
@@ -22,6 +27,7 @@ export function HeroVideoBackground({
   children,
   className = "",
   minHeight = "min-h-screen",
+  crossfade = true,
 }: HeroVideoBackgroundProps) {
   const n = videos.length;
   const [firstPlaying, setFirstPlaying] = React.useState(false);
@@ -39,6 +45,20 @@ export function HeroVideoBackground({
       >
         {children}
       </SingleClipHero>
+    );
+  }
+
+  if (!crossfade) {
+    return (
+      <DirectSwapHero
+        videos={videos}
+        minHeight={minHeight}
+        className={className}
+        onFirstPlaying={() => setFirstPlaying(true)}
+        firstPlaying={firstPlaying}
+      >
+        {children}
+      </DirectSwapHero>
     );
   }
 
@@ -111,6 +131,89 @@ function SingleClipHero({
         autoPlay
         loop
         onPlaying={onFirstPlaying}
+        onError={onFirstPlaying}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 z-[1]" />
+      {!firstPlaying && (
+        <div className="absolute inset-0 z-[2] flex items-center justify-center bg-black/30">
+          <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
+        </div>
+      )}
+      <div className="relative z-10 flex-1 flex items-center justify-center min-h-0 w-full px-4 py-6 overflow-y-auto">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+/** One `<video>`; advance `src` on `ended`. Stable ref — no crossfade overlay. */
+function DirectSwapHero({
+  videos,
+  minHeight,
+  className,
+  children,
+  onFirstPlaying,
+  firstPlaying,
+}: {
+  videos: string[];
+  minHeight: string;
+  className: string;
+  children: React.ReactNode;
+  onFirstPlaying: () => void;
+  firstPlaying: boolean;
+}) {
+  const n = videos.length;
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const src = videos[currentIndex % n];
+
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
+  const setVideoRef = React.useCallback((el: HTMLVideoElement | null) => {
+    videoRef.current = el;
+    if (el) {
+      el.muted = true;
+      el.defaultMuted = true;
+    }
+  }, []);
+
+  React.useLayoutEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const kick = () => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.play().catch(() => {});
+    };
+    if (v.readyState >= 2) {
+      kick();
+      return;
+    }
+    const onReady = () => kick();
+    v.addEventListener("loadeddata", onReady, { once: true });
+    v.addEventListener("canplay", onReady, { once: true });
+    const raf = requestAnimationFrame(() => {
+      if (v.readyState >= 2) kick();
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      v.removeEventListener("loadeddata", onReady);
+      v.removeEventListener("canplay", onReady);
+    };
+  }, [src]);
+
+  return (
+    <section
+      className={`relative flex flex-col overflow-hidden ${minHeight} ${className}`}
+    >
+      <video
+        ref={setVideoRef}
+        src={src}
+        className="absolute inset-0 z-0 w-full h-full object-cover"
+        muted
+        playsInline
+        preload="auto"
+        loop={false}
+        onPlaying={onFirstPlaying}
+        onEnded={() => setCurrentIndex((i) => (i + 1) % n)}
         onError={onFirstPlaying}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 z-[1]" />
