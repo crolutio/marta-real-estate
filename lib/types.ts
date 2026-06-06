@@ -9,6 +9,12 @@ export type PropertyType =
   | "Townhouse";
 export type Currency = "USD" | "EUR" | "GBP" | "AED";
 
+/** Used by the Invest page category tabs (Dubai opportunities). */
+export type InvestCategory =
+  | "affordable-luxury"
+  | "luxury"
+  | "ultra-luxury";
+
 export interface Property {
   slug: string;
   title: string;
@@ -48,6 +54,12 @@ export interface Property {
   locationMapLink?: string;
   /** Optional query for the Location tab embedded map when the address resolves to the wrong place (e.g. "Jumeirah Residences Marsa Al Arab Dubai"). */
   locationMapQuery?: string;
+  /** Invest page tab grouping (optional). */
+  investCategory?: InvestCategory;
+  /** Public path to a sales brochure PDF (e.g. `/brochure.pdf`). */
+  salesOfferPdf?: string;
+  /** Short label for the PDF block on the property page (default: sales offer). */
+  salesOfferPdfTitle?: string;
 }
 
 // Form Types

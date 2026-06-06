@@ -17,7 +17,7 @@ export function Testimonials() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid gap-8 md:grid-cols-3 stagger-children">
+        <div className="grid gap-8 md:grid-cols-3">
           {TESTIMONIALS.map((testimonial) => (
             <Card
               key={testimonial.id}

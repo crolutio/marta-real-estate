@@ -59,7 +59,8 @@ export function InvestAnalysisForm() {
   return (
     <section
       id="personalized-analysis"
-      className="scroll-mt-24 bg-[#15251f] text-white py-20 md:py-28"
+      data-animate="reveal"
+      className="animate-reveal scroll-mt-24 bg-accent text-white py-20 md:py-28"
     >
       <div className="container-narrow max-w-lg mx-auto px-4 text-center">
         <TriLineIcon className="mx-auto mb-8 h-14 w-auto text-white/90" />

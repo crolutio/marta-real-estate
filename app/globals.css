@@ -141,8 +141,9 @@
   --muted: oklch(0.30 0.01 260);
   --muted-foreground: oklch(0.88 0.02 170);
   
-  --accent: oklch(0.62 0.08 170);
-  --accent-foreground: oklch(0.98 0.005 90);
+  /* Match light mode accent (no lighter teal in dark mode) */
+  --accent: #47605b;
+  --accent-foreground: #f8f9fa;
   
   --gold: oklch(0.75 0.14 65);
   --gold-foreground: oklch(0.14 0.01 260);
@@ -151,7 +152,7 @@
   
   --border: oklch(0.34 0.01 260);
   --input: oklch(0.34 0.01 260);
-  --ring: oklch(0.52 0.06 170);
+  --ring: #47605b;
   
   --sidebar: oklch(0.26 0.01 260);
   --sidebar-foreground: oklch(0.98 0.005 90);

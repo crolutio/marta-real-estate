@@ -11,7 +11,7 @@ interface HeroVideoBackgroundProps {
   minHeight?: string;
   /**
    * When true (default), two-layer crossfade between clips — best for long homepage reels.
-   * When false, one video swaps `src` on ended — cleaner for shorter About heroes (no long blend).
+   * When false, two-layer hard cuts (no fade), which avoids blend artifacts on some videos.
    */
   crossfade?: boolean;
 }
@@ -50,7 +50,7 @@ export function HeroVideoBackground({
 
   if (!crossfade) {
     return (
-      <DirectSwapHero
+      <CutSwitchHero
         videos={videos}
         minHeight={minHeight}
         className={className}
@@ -58,7 +58,7 @@ export function HeroVideoBackground({
         firstPlaying={firstPlaying}
       >
         {children}
-      </DirectSwapHero>
+      </CutSwitchHero>
     );
   }
 
@@ -133,9 +133,8 @@ function SingleClipHero({
         onPlaying={onFirstPlaying}
         onError={onFirstPlaying}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 z-[1]" />
       {!firstPlaying && (
-        <div className="absolute inset-0 z-[2] flex items-center justify-center bg-black/30">
+        <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
       )}
@@ -146,8 +145,8 @@ function SingleClipHero({
   );
 }
 
-/** One `<video>`; advance `src` on `ended`. Stable ref — no crossfade overlay. */
-function DirectSwapHero({
+/** Two layers with instant cut (no opacity blend). */
+function CutSwitchHero({
   videos,
   minHeight,
   className,
@@ -163,20 +162,41 @@ function DirectSwapHero({
   firstPlaying: boolean;
 }) {
   const n = videos.length;
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const src = videos[currentIndex % n];
+  const refs = React.useRef<[HTMLVideoElement | null, HTMLVideoElement | null]>([
+    null,
+    null,
+  ]);
+  const transitioning = React.useRef(false);
+  const [slotClip, setSlotClip] = React.useState<[number, number]>([0, 1]);
+  const [frontLayer, setFrontLayer] = React.useState<0 | 1>(0);
+  const [z, setZ] = React.useState<[number, number]>([2, 1]);
 
-  const videoRef = React.useRef<HTMLVideoElement | null>(null);
-  const setVideoRef = React.useCallback((el: HTMLVideoElement | null) => {
-    videoRef.current = el;
-    if (el) {
-      el.muted = true;
-      el.defaultMuted = true;
-    }
-  }, []);
+  const refCallbacks = React.useMemo(
+    () =>
+      [
+        (el: HTMLVideoElement | null) => {
+          refs.current[0] = el;
+          if (el) {
+            el.muted = true;
+            el.defaultMuted = true;
+          }
+        },
+        (el: HTMLVideoElement | null) => {
+          refs.current[1] = el;
+          if (el) {
+            el.muted = true;
+            el.defaultMuted = true;
+          }
+        },
+      ] as const,
+    []
+  );
+
+  const src0 = videos[slotClip[0] % n];
+  const src1 = videos[slotClip[1] % n];
 
   React.useLayoutEffect(() => {
-    const v = videoRef.current;
+    const v = refs.current[0];
     if (!v) return;
     const kick = () => {
       v.muted = true;
@@ -198,27 +218,104 @@ function DirectSwapHero({
       v.removeEventListener("loadeddata", onReady);
       v.removeEventListener("canplay", onReady);
     };
-  }, [src]);
+  }, []);
 
   return (
     <section
       className={`relative flex flex-col overflow-hidden ${minHeight} ${className}`}
     >
-      <video
-        ref={setVideoRef}
-        src={src}
-        className="absolute inset-0 z-0 w-full h-full object-cover"
-        muted
-        playsInline
-        preload="auto"
-        loop={false}
-        onPlaying={onFirstPlaying}
-        onEnded={() => setCurrentIndex((i) => (i + 1) % n)}
-        onError={onFirstPlaying}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 z-[1]" />
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={refCallbacks[0]}
+          src={src0}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: z[0] }}
+          muted
+          playsInline
+          preload="auto"
+          loop={false}
+          onPlaying={onFirstPlaying}
+          onEnded={() => {
+            if (frontLayer !== 0 || transitioning.current) return;
+            const incoming = 1 as 0 | 1;
+            const vIn = refs.current[incoming];
+            const vOut = refs.current[0];
+            if (!vIn || !vOut) return;
+            transitioning.current = true;
+            vIn.currentTime = 0;
+            const switchNow = () => {
+              setZ([2, 3]);
+              setFrontLayer(incoming);
+              vOut.pause();
+              vOut.currentTime = 0;
+              setSlotClip((prev) => [((prev[1] + 1) % n) as number, prev[1]]);
+              transitioning.current = false;
+            };
+            const afterPlay = () => {
+              if (typeof vIn.requestVideoFrameCallback === "function") {
+                vIn.requestVideoFrameCallback(() => switchNow());
+              } else {
+                switchNow();
+              }
+            };
+            const p = vIn.play();
+            if (p !== undefined) {
+              p.then(afterPlay).catch(() => {
+                transitioning.current = false;
+              });
+            } else {
+              afterPlay();
+            }
+          }}
+          onError={onFirstPlaying}
+        />
+        <video
+          ref={refCallbacks[1]}
+          src={src1}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: z[1] }}
+          muted
+          playsInline
+          preload="auto"
+          loop={false}
+          onPlaying={onFirstPlaying}
+          onEnded={() => {
+            if (frontLayer !== 1 || transitioning.current) return;
+            const incoming = 0 as 0 | 1;
+            const vIn = refs.current[incoming];
+            const vOut = refs.current[1];
+            if (!vIn || !vOut) return;
+            transitioning.current = true;
+            vIn.currentTime = 0;
+            const switchNow = () => {
+              setZ([3, 2]);
+              setFrontLayer(incoming);
+              vOut.pause();
+              vOut.currentTime = 0;
+              setSlotClip((prev) => [prev[0], ((prev[0] + 1) % n) as number]);
+              transitioning.current = false;
+            };
+            const afterPlay = () => {
+              if (typeof vIn.requestVideoFrameCallback === "function") {
+                vIn.requestVideoFrameCallback(() => switchNow());
+              } else {
+                switchNow();
+              }
+            };
+            const p = vIn.play();
+            if (p !== undefined) {
+              p.then(afterPlay).catch(() => {
+                transitioning.current = false;
+              });
+            } else {
+              afterPlay();
+            }
+          }}
+          onError={onFirstPlaying}
+        />
+      </div>
       {!firstPlaying && (
-        <div className="absolute inset-0 z-[2] flex items-center justify-center bg-black/30">
+        <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
       )}
@@ -421,10 +518,9 @@ function CrossfadeHero({
         />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 z-[4]" />
 
       {!firstPlaying && (
-        <div className="absolute inset-0 z-[5] flex items-center justify-center bg-black/30">
+        <div className="absolute inset-0 z-[5] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
       )}

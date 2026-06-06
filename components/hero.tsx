@@ -12,7 +12,10 @@ export function Hero() {
   return (
     <HeroVideoBackground videos={HOME_PAGE_HERO_CLIP_PATHS} minHeight="min-h-screen" className="pt-20">
       <div className="container-wide text-center text-white w-full">
-        <div className="max-w-4xl mx-auto bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg space-y-4 md:space-y-6 animate-fade-in">
+        <div
+          data-animate="reveal"
+          className="max-w-4xl mx-auto bg-black/65 p-5 sm:p-6 md:p-8 rounded-lg space-y-4 md:space-y-6 animate-reveal"
+        >
           <Image
             src="/logo-big.webp"
             alt={`${AGENCY.fullName} logo`}

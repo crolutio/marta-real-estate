@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { InvestOpportunitiesCategories } from "@/components/invest-opportunities-categories";
+import { InvestPageHeroCtas } from "@/components/invest-page-hero-ctas";
 import { InvestAnalysisForm } from "@/components/invest-analysis-form";
 import { AGENCY } from "@/lib/constants";
 
@@ -13,11 +15,24 @@ export const metadata: Metadata = {
 export default function InvestPage() {
   return (
     <div className="pt-20">
-      <section className="section-padding bg-background">
+      <section
+        data-animate="reveal"
+        className="animate-reveal section-padding bg-secondary border-b border-border/70"
+      >
         <div className="container-wide max-w-3xl mx-auto text-center">
-          <p className="font-title text-sm md:text-base tracking-[0.2em] uppercase text-accent font-semibold mb-4 md:mb-5">
-            An exclusive selection of real estate projects for investors.
-          </p>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-4 md:mb-5">
+            <span
+              className="h-px w-8 sm:w-12 md:w-16 bg-accent shrink-0"
+              aria-hidden
+            />
+            <p className="font-title text-sm md:text-base tracking-[0.2em] uppercase text-accent font-semibold">
+              An exclusive selection of real estate projects for investors.
+            </p>
+            <span
+              className="h-px w-8 sm:w-12 md:w-16 bg-accent shrink-0"
+              aria-hidden
+            />
+          </div>
           <h1 className="font-subtitle text-4xl sm:text-5xl md:text-6xl font-semibold text-display mb-4 md:mb-5">
             Invest in Dubai with real returns
           </h1>
@@ -33,30 +48,14 @@ export default function InvestPage() {
             </li>
           </ul>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
-            >
-              <a href="#personalized-analysis">
-                Get personalized advice
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-base px-8 border-foreground/20">
-              <a href="#investment-opportunities">
-                View investment opportunities
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-          </div>
+          <InvestPageHeroCtas />
         </div>
       </section>
 
       <section
         id="investment-opportunities"
-        className="scroll-mt-24 section-padding bg-secondary/40 border-t border-border"
+        data-animate="reveal"
+        className="animate-reveal scroll-mt-24 section-padding bg-secondary/40 border-t border-border"
       >
         <div className="container-wide max-w-3xl mx-auto text-center">
           <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display mb-6">
@@ -79,6 +78,8 @@ export default function InvestPage() {
           </Button>
         </div>
       </section>
+
+      <InvestOpportunitiesCategories />
 
       <InvestAnalysisForm />
     </div>

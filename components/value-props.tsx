@@ -24,7 +24,7 @@ export function ValueProps() {
         </div>
 
         {/* Values Grid - same style as About Dubai "Intelligence that informs your move" */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 stagger-children">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {VALUE_PROPS.map((prop) => {
             const Icon = iconMap[prop.icon as keyof typeof iconMap];
             return (

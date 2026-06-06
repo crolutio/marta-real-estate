@@ -8,7 +8,7 @@ export function FeaturedProperties() {
   const featuredProperties = getFeaturedProperties().slice(0, 6);
 
   return (
-    <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/50">
+    <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/50 overflow-visible">
       <div className="container-wide">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -33,7 +33,7 @@ export function FeaturedProperties() {
         </div>
 
         {/* Properties Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children items-stretch">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch overflow-visible py-2">
           {featuredProperties.map((property) => (
             <PropertyCard key={property.slug} property={property} featured />
           ))}

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Property } from "@/lib/types";
 import { formatPriceForPreview } from "@/lib/data/properties";
 import { cn } from "@/lib/utils";
@@ -34,12 +34,12 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
   return (
     <Link
       href={`/properties/${property.slug}`}
-      className="group block"
+      className="block"
       onMouseEnter={handleMouseEnter}
     >
-      <Card
+      <div
         className={cn(
-          "overflow-hidden border-0 shadow-none bg-transparent hover-lift p-4 h-full flex flex-col",
+          "overflow-hidden border-0 shadow-none bg-transparent p-4 h-full flex flex-col rounded-xl",
           featured && "bg-card shadow-lg"
         )}
       >
@@ -50,7 +50,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               src={property.images[0]}
               alt={property.title}
               fill
-              className="object-cover img-zoom"
+              className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : property.video ? (
@@ -62,7 +62,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               loop
               autoPlay
               playsInline
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="absolute inset-0 w-full h-full object-cover"
             >
               <source src={property.video} type="video/mp4" />
             </video>
@@ -71,7 +71,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
               alt={property.title}
               fill
-              className="object-cover img-zoom"
+              className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           )}
@@ -87,7 +87,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
         <CardContent className={cn("px-0 pt-5 pb-0 flex-1 flex flex-col", featured && "p-6 pt-4")}>
           {/* Title & Location */}
           <div className="space-y-1 mb-3">
-            <h3 className="font-subtitle text-xl font-semibold group-hover:text-accent transition-colors">
+            <h3 className="font-subtitle text-xl font-semibold">
               {property.title}
             </h3>
             <p className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -142,12 +142,12 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
 
           {/* Short Description (only on featured) - min-height so all cards match and text is visible */}
           {featured && (
-            <p className="mt-3 text-sm text-muted-foreground line-clamp-3 min-h-[4rem] flex-1">
+            <p className="mt-3 text-base md:text-lg text-muted-foreground line-clamp-3 min-h-[4rem] flex-1">
               {property.shortDescription}
             </p>
           )}
         </CardContent>
-      </Card>
+      </div>
     </Link>
   );
 }

@@ -9,6 +9,7 @@ import {
   Building2,
   ArrowLeft,
   Check,
+  FileText,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { GoogleMapEmbed } from "@/components/google-map-embed";
@@ -212,6 +213,39 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 )}
               </div>
 
+              {property.salesOfferPdf && (
+                <div className="rounded-xl border border-border bg-gradient-to-br from-secondary/50 via-background to-secondary/30 p-6 md:p-8 shadow-sm">
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex gap-4 text-left">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent">
+                        <FileText className="h-6 w-6" aria-hidden />
+                      </div>
+                      <div>
+                        <h3 className="font-subtitle text-lg font-semibold mb-1">
+                          {property.salesOfferPdfTitle ?? "Sales offer"}
+                        </h3>
+                        <p className="text-sm text-muted-foreground text-editorial max-w-md">
+                          Official brochure with pricing guidance, layouts, and payment information.
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="shrink-0 bg-accent text-accent-foreground hover:bg-black hover:text-white w-full sm:w-auto"
+                    >
+                      <a
+                        href={encodeURI(property.salesOfferPdf)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View PDF
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               {/* Mobile Price Card */}
               <div className="lg:hidden p-6 bg-card rounded-lg border shadow-sm">
                 <p className="text-sm text-muted-foreground mb-1">
@@ -288,7 +322,12 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 <TabsContent value="location" className="pt-6">
                   <div className="space-y-4">
                     <GoogleMapEmbed
-                      query={property.locationMapQuery ?? `${property.location}${property.neighborhood ? `, ${property.neighborhood}` : ""}, Dubai, UAE`}
+                      query={
+                        property.locationMapQuery ??
+                        `${property.location}${
+                          property.neighborhood ? `, ${property.neighborhood}` : ""
+                        }${property.currency === "EUR" ? ", Spain" : ", Dubai, UAE"}`
+                      }
                       title={`${property.title} location`}
                     />
                     {(property.locationMapLink ?? property.addressLink) && (
@@ -314,7 +353,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
             </div>
           </div>
 
-          {/* Similar Properties */}
+          {/* Other properties */}
           {similarProperties.length > 0 && (
             <div data-animate="reveal" className="animate-reveal mt-20">
               <Separator className="mb-12" />
@@ -322,7 +361,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 <div className="flex items-end justify-between">
                   <div>
                     <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-2">
-                      Similar Properties
+                      Other Properties
                     </p>
                     <h2 className="font-subtitle text-2xl md:text-3xl font-semibold">
                       You May Also Like

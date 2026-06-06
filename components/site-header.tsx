@@ -44,6 +44,12 @@ export function SiteHeader() {
     applyTheme(next);
   };
 
+  const scrollToTopOnHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
@@ -53,6 +59,7 @@ export function SiteHeader() {
           {/* Logo */}
           <Link
             href="/"
+            onClick={scrollToTopOnHome}
             className="transition-opacity hover:opacity-90 flex items-center"
             aria-label={`${AGENCY.fullName} - Home`}
           >
@@ -80,6 +87,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={link.href === "/" ? scrollToTopOnHome : undefined}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-accent relative py-2",
                   pathname === link.href
@@ -132,7 +140,10 @@ export function SiteHeader() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      if (link.href === "/") scrollToTopOnHome(e);
+                      setIsOpen(false);
+                    }}
                     className={cn(
                       "text-lg font-medium transition-colors hover:text-accent",
                       pathname === link.href

@@ -12,7 +12,10 @@ export function AboutDubaiHero() {
       crossfade={false}
     >
       <div className="container-wide w-full">
-        <div className="max-w-2xl bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg">
+        <div
+          data-animate="reveal"
+          className="max-w-2xl bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg animate-reveal"
+        >
           <div className="text-white">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
               Investment Destination

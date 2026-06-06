@@ -46,8 +46,8 @@ export const NAV_LINKS = [
   { label: "Invest", href: "/invest" },
   { label: "About Dubai", href: "/about-dubai" },
   { label: "Services", href: "/services" },
-  { label: "About Barcelona", href: "/about-barcelona" },
-  { label: "Meet Marta", href: "/about" },
+  { label: "About Spain", href: "/about-spain" },
+  { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -58,8 +58,8 @@ export const FOOTER_LINKS = {
     { label: "Invest", href: "/invest" },
     { label: "About Dubai", href: "/about-dubai" },
     { label: "Services", href: "/services" },
-    { label: "About Barcelona", href: "/about-barcelona" },
-    { label: "Meet Marta", href: "/about" },
+    { label: "About Spain", href: "/about-spain" },
+    { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
   legal: [

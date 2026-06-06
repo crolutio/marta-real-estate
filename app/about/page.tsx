@@ -12,7 +12,7 @@ import { ConsultationCta } from "@/components/consultation-cta";
 import { AGENCY, VALUE_PROPS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us",
   description: `Learn about ${AGENCY.fullName} - A trusted partner in luxury real estate with over 15 years of experience serving high-net-worth individuals worldwide.`,
 };
 
@@ -80,52 +80,36 @@ export default function AboutPage() {
       {/* Story Section */}
       <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative">
-              <div className="aspect-[4/5] relative rounded-lg overflow-hidden">
-                <Image
-                  src="/marta.jpg"
-                  alt={AGENCY.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-              {/* Decorative element */}
-              <div className="absolute -bottom-6 -right-6 w-2/3 h-2/3 border-2 border-accent rounded-lg -z-10 hidden md:block" />
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="space-y-4">
+              <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
+                Marta&apos;s Story
+              </p>
+              <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-accent text-display">
+                Passion Meets Expertise
+              </h2>
             </div>
 
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
-                  Marta's Story
-                </p>
-                <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-accent text-display">
-                  Passion Meets Expertise
-                </h2>
-              </div>
+            <div className="space-y-4 text-muted-foreground text-editorial">
+              <p>
+                With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She has worked with the region&apos;s most renowned developers and leading real estate firms, gaining invaluable expertise in luxury properties and off-market investments.
+              </p>
+              <p>
+                In addition to her real estate background, Marta is a qualified lawyer with a Master of Laws (LL.M.), bringing a rigorous, detail-driven perspective to every transaction. This legal foundation strengthens her ability to protect clients&apos; interests, assess risk with precision, and structure acquisitions with clarity and confidence - particularly in complex, high-stakes deals.
+              </p>
+              <p>
+                Throughout her career, Marta has built a reputation for market intelligence, discretion, and a meticulous approach to portfolio curation. Her ability to navigate market cycles with precision has enabled her clients to optimize returns and build enduring wealth.
+              </p>
+              <p>
+                Driven by a vision to elevate the real estate experience, she founded Marta Duran Realty - a firm that reflects her commitment to personalized service, integrity, and a results-driven mindset. Under her leadership, Marta Duran Realty stands as a trusted partner for discerning investors, offering exclusive access to Dubai&apos;s most coveted properties and delivering a refined, highly strategic approach to real estate investment.
+              </p>
+            </div>
 
-              <div className="space-y-4 text-muted-foreground text-editorial">
-                <p>
-                  With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She has worked with the region&apos;s most renowned developers and leading real estate firms, gaining invaluable expertise in luxury properties and off-market investments.
-                </p>
-                <p>
-                  In addition to her real estate background, Marta is a qualified lawyer with a Master of Laws (LL.M.), bringing a rigorous, detail-driven perspective to every transaction. This legal foundation strengthens her ability to protect clients&apos; interests, assess risk with precision, and structure acquisitions with clarity and confidence - particularly in complex, high-stakes deals.
-                </p>
-                <p>
-                  Throughout her career, Marta has built a reputation for market intelligence, discretion, and a meticulous approach to portfolio curation. Her ability to navigate market cycles with precision has enabled her clients to optimize returns and build enduring wealth.
-                </p>
-                <p>
-                  Driven by a vision to elevate the real estate experience, she founded Marta Duran Realty - a firm that reflects her commitment to personalized service, integrity, and a results-driven mindset. Under her leadership, Marta Duran Realty stands as a trusted partner for discerning investors, offering exclusive access to Dubai&apos;s most coveted properties and delivering a refined, highly strategic approach to real estate investment.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-4">
-                <Languages className="h-5 w-5 text-accent" />
-                <span className="text-sm text-muted-foreground">
-                  Speaks Spanish, English, and German
-                </span>
-              </div>
+            <div className="flex items-center gap-3 pt-4">
+              <Languages className="h-5 w-5 text-accent" />
+              <span className="text-sm text-muted-foreground">
+                Speaks Spanish, English, and German
+              </span>
             </div>
           </div>
         </div>
@@ -136,7 +120,7 @@ export default function AboutPage() {
         <div className="container-wide">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
-              Marta's Approach
+              Marta&apos;s Approach
             </p>
             <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
               Principles That Guide Every Transaction
