@@ -8,6 +8,7 @@ import {
   Languages,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { AboutPreview } from "@/components/about-preview";
 import { ConsultationCta } from "@/components/consultation-cta";
 import { AGENCY, VALUE_PROPS } from "@/lib/constants";
 
@@ -76,6 +77,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <AboutPreview />
 
       {/* Story Section */}
       <section data-animate="reveal" className="animate-reveal section-padding">

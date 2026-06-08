@@ -17,7 +17,7 @@ export function Hero() {
           className="max-w-4xl mx-auto bg-black/65 p-5 sm:p-6 md:p-8 rounded-lg space-y-4 md:space-y-6 animate-reveal"
         >
           <Image
-            src="/logo-big.webp"
+            src="/logo.webp"
             alt={`${AGENCY.fullName} logo`}
             width={1260}
             height={360}
@@ -25,19 +25,11 @@ export function Hero() {
             priority
           />
 
-          <p className="font-title text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
-            Spaces Curated for Exceptional Living
-          </p>
-
           <h1 className="font-subtitle text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-display text-white">
             Invest in Dubai with confidence
           </h1>
           <p className="font-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-display text-white/95 tracking-wide">
             We guide your journey
-          </p>
-
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-editorial">
-            We specialize in high-end homes for clients seeking modern luxury and comfort.
           </p>
 
           <div className="flex justify-center pt-2">

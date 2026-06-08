@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { InvestOpportunitiesCategories } from "@/components/invest-opportunities-categories";
 import { InvestPageHeroCtas } from "@/components/invest-page-hero-ctas";
 import { InvestAnalysisForm } from "@/components/invest-analysis-form";
 import { AGENCY } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Invest",
-  description: `Invest in Dubai with ${AGENCY.fullName}. From AED 10,000,000 with estimated returns and multilingual support from our Dubai-based team.`,
+  description: `Invest in Dubai with ${AGENCY.fullName}. Estimated returns and multilingual support from our Dubai-based team.`,
 };
 
 export default function InvestPage() {
@@ -41,7 +40,6 @@ export default function InvestPage() {
           </p>
 
           <ul className="text-left sm:text-center space-y-4 md:space-y-5 text-lg md:text-xl text-muted-foreground text-editorial max-w-xl sm:mx-auto mb-12 md:mb-14">
-            <li>From AED 10,000,000</li>
             <li>Estimated returns: 8–10%</li>
             <li>
               German, Spanish and English-speaking support, with a team based in Dubai
@@ -78,8 +76,6 @@ export default function InvestPage() {
           </Button>
         </div>
       </section>
-
-      <InvestOpportunitiesCategories />
 
       <InvestAnalysisForm />
     </div>

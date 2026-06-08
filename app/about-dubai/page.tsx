@@ -375,10 +375,10 @@ export default function AboutDubaiPage() {
                   Dubai is highly tax-efficient:
                 </p>
                 <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
-                  <li>• <strong>No property tax</strong></li>
-                  <li>• <strong>No capital gains tax</strong></li>
-                  <li>• <strong>No inheritance tax</strong></li>
-                  <li>• <strong>No income tax on rental income</strong></li>
+                  <li>• No property tax</li>
+                  <li>• No capital gains tax</li>
+                  <li>• No inheritance tax</li>
+                  <li>• No income tax on rental income</li>
                   <li>• Only a one-time transfer fee applies at purchase: 4% DLD fees to the Dubai Land Department</li>
                 </ul>
                 <p className="text-muted-foreground text-editorial mt-4">
@@ -395,9 +395,9 @@ export default function AboutDubaiPage() {
                   Off-plan properties often offer:
                 </p>
                 <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
-                  <li>• <strong>Lower entry prices</strong> compared to completed developments</li>
-                  <li>• <strong>Flexible payment plans</strong> during construction</li>
-                  <li>• <strong>Strong capital appreciation potential</strong> as the project completes</li>
+                  <li>• Lower entry prices compared to completed developments</li>
+                  <li>• Flexible payment plans during construction</li>
+                  <li>• Strong capital appreciation potential as the project completes</li>
                 </ul>
                 <p className="text-muted-foreground text-editorial mt-4">
                   They are especially attractive for investors looking to maximize returns over the medium to long term. We carefully select developments from trusted developers to ensure project completion and quality standards.
@@ -413,11 +413,11 @@ export default function AboutDubaiPage() {
                   Dubai combines:
                 </p>
                 <ul className="text-muted-foreground text-editorial space-y-2 mt-3 ml-6">
-                  <li>• <strong>Strong economic growth</strong> driven by diversification</li>
-                  <li>• <strong>Global investor demand</strong> from around the world</li>
-                  <li>• <strong>Political and financial stability</strong> in the region</li>
-                  <li>• <strong>High rental yields</strong> compared to other global markets</li>
-                  <li>• <strong>Long-term capital appreciation</strong> potential</li>
+                  <li>• Strong economic growth driven by diversification</li>
+                  <li>• Global investor demand from around the world</li>
+                  <li>• Political and financial stability in the region</li>
+                  <li>• High rental yields compared to other global markets</li>
+                  <li>• Long-term capital appreciation potential</li>
                 </ul>
                 <p className="text-muted-foreground text-editorial mt-4">
                   Current market conditions present excellent opportunities for discerning investors. We stay ahead of market trends to identify the best opportunities for our clients.

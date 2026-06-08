@@ -1,7 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Award, Users, Globe, Languages } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Award, Users, Globe, Languages } from "lucide-react";
 import { AGENCY } from "@/lib/constants";
 
 export function AboutPreview() {
@@ -10,32 +8,32 @@ export function AboutPreview() {
       <div className="container-wide">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
-          <div className="relative">
-            <div className="aspect-[4/5] relative rounded-lg overflow-hidden">
+          <div className="relative mx-auto lg:mx-0 w-full max-w-xs sm:max-w-sm">
+            <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
               <Image
                 src="/marta.jpg"
                 alt={`${AGENCY.name} - Luxury Real Estate Specialist`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 80vw, 384px"
               />
             </div>
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -right-6 bg-black text-white p-6 rounded-lg shadow-xl max-w-[280px] hidden md:block">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="absolute -bottom-4 -right-4 bg-black text-white p-4 rounded-lg shadow-xl max-w-[220px] hidden md:block">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="text-center">
-                  <span className="block font-subtitle text-3xl font-semibold text-white">
+                  <span className="block font-subtitle text-2xl font-semibold text-white">
                     10+
                   </span>
-                  <span className="text-sm text-white/85">
+                  <span className="text-xs text-white/85">
                     Years Experience
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-subtitle text-3xl font-semibold text-white">
+                  <span className="block font-subtitle text-2xl font-semibold text-white">
                     $2B+
                   </span>
-                  <span className="text-sm text-white/85">
+                  <span className="text-xs text-white/85">
                     In Transactions
                   </span>
                 </div>
@@ -56,7 +54,7 @@ export function AboutPreview() {
 
             <div className="space-y-4 text-muted-foreground text-editorial">
               <p>
-                With over a decade of experience in Dubai&apos;s real estate market, Marta Duran has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She combines her real estate expertise with a Master of Laws (LL.M.) qualification to provide comprehensive guidance as your Dubai expert.
+                Marta Duran is the CEO and owner of the company. With over a decade of experience in Dubai&apos;s real estate market, she has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She combines her real estate expertise with a Master of Laws (LL.M.) qualification to provide comprehensive guidance as your Dubai expert.
               </p>
               <p>
                 Whether you&apos;re seeking a primary residence, vacation retreat, or investment opportunity, Marta offers exclusive access to Dubai&apos;s most coveted properties with a refined, strategic approach to real estate investment. You&apos;ll feel completely supported throughout your entire journey.
@@ -85,17 +83,6 @@ export function AboutPreview() {
                 <span className="text-sm font-medium">Global Network</span>
               </div>
             </div>
-
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
-            >
-              <Link href="/about">
-                Learn More About Me
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </div>

@@ -1,29 +1,5 @@
 ## ADDED Requirements
 
-### Requirement: About Us navigation label
-
-The site navigation and footer SHALL display the link label "About Us" for the agency page at `/about`.
-
-#### Scenario: Header nav shows About Us
-
-- **WHEN** a visitor views any page with the site header
-- **THEN** the navigation includes "About Us" with href `/about`
-- **AND** the label "Meet Marta" is not shown
-
-#### Scenario: Footer shows About Us
-
-- **WHEN** a visitor views the site footer
-- **THEN** the footer links include "About Us" with href `/about`
-
-### Requirement: About page metadata
-
-The `/about` page metadata title SHALL be "About Us" (or equivalent including "About Us"), not framed as "Meet Marta."
-
-#### Scenario: Browser title reflects About Us
-
-- **WHEN** a visitor opens `/about`
-- **THEN** the document title exposed via Next.js metadata includes "About Us"
-
 ### Requirement: About Marta Duran section on About Us
 
 The `/about` page SHALL include an "About Marta Duran" section (moved from the former homepage preview) with Marta's portrait image, biographical summary, trust signals, and a link to learn more or equivalent CTA consistent with the former homepage block.
@@ -53,6 +29,8 @@ The homepage SHALL NOT render the About Marta Duran preview section (`AboutPrevi
 - **WHEN** a visitor views `/`
 - **THEN** the About Marta Duran two-column section with portrait is not present
 - **AND** `AboutPreview` is not imported or rendered on the homepage
+
+## MODIFIED Requirements
 
 ### Requirement: Marta's Story without portrait image
 

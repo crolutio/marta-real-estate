@@ -68,15 +68,7 @@ export function SiteHeader() {
               alt={AGENCY.fullName}
               width={220}
               height={64}
-              className="h-14 w-auto object-contain dark:hidden"
-              priority
-            />
-            <Image
-              src="/logo-darkmode.webp"
-              alt={AGENCY.fullName}
-              width={220}
-              height={64}
-              className="h-14 w-auto object-contain hidden dark:block"
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>

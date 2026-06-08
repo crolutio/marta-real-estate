@@ -16,18 +16,11 @@ export function SiteFooter() {
           <div className="flex flex-col items-center md:items-start">
             <Link href="/" className="inline-block mb-2">
               <Image
-                src="/logo-big.webp"
+                src="/logo.webp"
                 alt={AGENCY.fullName}
                 width={720}
                 height={216}
-                className="h-32 w-auto object-contain dark:hidden sm:h-40 md:h-48"
-              />
-              <Image
-                src="/logo-big-darkmode.webp"
-                alt={AGENCY.fullName}
-                width={720}
-                height={216}
-                className="h-32 w-auto object-contain hidden dark:block sm:h-40 md:h-48"
+                className="h-32 w-auto object-contain sm:h-40 md:h-48"
               />
             </Link>
           </div>
