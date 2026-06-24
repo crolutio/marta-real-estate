@@ -19,8 +19,52 @@ import { ConsultationCta } from "@/components/consultation-cta";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isOpen, setIsOpen] = React.useState(false);
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
+  const [showNavLogo, setShowNavLogo] = React.useState(!isHomePage);
+
+  React.useEffect(() => {
+    if (!isHomePage) {
+      setShowNavLogo(true);
+      return;
+    }
+
+    setShowNavLogo(false);
+
+    let observer: IntersectionObserver | null = null;
+    let rafId = 0;
+    let retries = 0;
+
+    const observe = () => {
+      const heroLogo = document.getElementById("hero-logo");
+      if (!heroLogo) {
+        retries += 1;
+        if (retries < 20) {
+          rafId = requestAnimationFrame(observe);
+        } else {
+          setShowNavLogo(true);
+        }
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setShowNavLogo(!entry.isIntersecting);
+        },
+        { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+      );
+      observer.observe(heroLogo);
+    };
+
+    observe();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      observer?.disconnect();
+    };
+  }, [isHomePage]);
+
   React.useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
@@ -60,8 +104,15 @@ export function SiteHeader() {
           <Link
             href="/"
             onClick={scrollToTopOnHome}
-            className="transition-opacity hover:opacity-90 flex items-center"
-            aria-label={`${AGENCY.fullName} - Home`}
+            aria-label={showNavLogo ? `${AGENCY.fullName} - Home` : undefined}
+            aria-hidden={!showNavLogo}
+            tabIndex={showNavLogo ? 0 : -1}
+            className={cn(
+              "flex shrink-0 items-center overflow-hidden transition-all duration-300 ease-in-out hover:opacity-90",
+              showNavLogo
+                ? "pointer-events-auto w-[11rem] opacity-100"
+                : "pointer-events-none w-0 opacity-0"
+            )}
           >
             <Image
               src="/logo.webp"

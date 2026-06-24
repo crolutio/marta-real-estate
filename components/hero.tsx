@@ -10,29 +10,34 @@ import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/marsa-hero-videos";
 
 export function Hero() {
   return (
-    <HeroVideoBackground videos={HOME_PAGE_HERO_CLIP_PATHS} minHeight="min-h-screen" className="pt-20">
-      <div className="container-wide text-center text-white w-full">
+    <HeroVideoBackground
+      videos={HOME_PAGE_HERO_CLIP_PATHS}
+      minHeight="min-h-screen"
+      className="pt-20"
+    >
+      <div className="container-wide w-full">
         <div
           data-animate="reveal"
-          className="max-w-4xl mx-auto bg-black/65 p-5 sm:p-6 md:p-8 rounded-lg space-y-4 md:space-y-6 animate-reveal"
+          className="max-w-2xl bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg animate-reveal"
         >
-          <Image
-            src="/logo.webp"
-            alt={`${AGENCY.fullName} logo`}
-            width={1260}
-            height={360}
-            className="mx-auto h-40 md:h-52 w-auto object-contain"
-            priority
-          />
+          <div className="text-white">
+            <Image
+              id="hero-logo"
+              src="/logo.webp"
+              alt={`${AGENCY.fullName} logo`}
+              width={1260}
+              height={360}
+              className="h-32 md:h-40 w-auto object-contain mb-6 md:mb-8"
+              priority
+            />
 
-          <h1 className="font-subtitle text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-display text-white">
-            Invest in Dubai with confidence
-          </h1>
-          <p className="font-subtitle text-xl sm:text-2xl md:text-3xl font-semibold text-display text-white/95 tracking-wide">
-            We guide your journey
-          </p>
+            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
+              We guide your journey
+            </p>
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+              Invest in Dubai with confidence
+            </h1>
 
-          <div className="flex justify-center pt-2">
             <Button
               asChild
               size="lg"

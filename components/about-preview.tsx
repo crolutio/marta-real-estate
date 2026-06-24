@@ -6,7 +6,7 @@ export function AboutPreview() {
   return (
     <section data-animate="reveal" className="animate-reveal section-padding overflow-hidden bg-card">
       <div className="container-wide">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-6 lg:gap-10 items-center">
           {/* Image Side */}
           <div className="relative mx-auto lg:mx-0 w-full max-w-xs sm:max-w-sm">
             <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
@@ -19,21 +19,21 @@ export function AboutPreview() {
               />
             </div>
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-4 -right-4 bg-black text-white p-4 rounded-lg shadow-xl max-w-[220px] hidden md:block">
-              <div className="grid grid-cols-2 gap-3">
+            <div className="absolute -bottom-3 -right-3 bg-black text-white p-3 rounded-lg shadow-xl max-w-[180px] hidden md:block">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="text-center">
-                  <span className="block font-subtitle text-2xl font-semibold text-white">
+                  <span className="block font-subtitle text-xl font-semibold text-white">
                     10+
                   </span>
-                  <span className="text-xs text-white/85">
+                  <span className="text-[10px] leading-tight text-white/85">
                     Years Experience
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-subtitle text-2xl font-semibold text-white">
+                  <span className="block font-subtitle text-xl font-semibold text-white">
                     $2B+
                   </span>
-                  <span className="text-xs text-white/85">
+                  <span className="text-[10px] leading-tight text-white/85">
                     In Transactions
                   </span>
                 </div>
@@ -42,7 +42,7 @@ export function AboutPreview() {
           </div>
 
           {/* Content Side */}
-          <div className="space-y-8">
+          <div className="space-y-8 min-w-0 w-full">
             <div className="space-y-4">
               <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
                 About {AGENCY.name}

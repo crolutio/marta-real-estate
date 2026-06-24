@@ -14,6 +14,17 @@ interface HeroVideoBackgroundProps {
    * When false, two-layer hard cuts (no fade), which avoids blend artifacts on some videos.
    */
   crossfade?: boolean;
+  /** Pin hero content to the top-left instead of centering in the viewport. */
+  contentAlign?: "center" | "start";
+}
+
+const CONTENT_SHELL =
+  "relative z-10 flex-1 flex min-h-0 w-full px-4 sm:px-6 overflow-y-auto";
+
+function contentShellClass(contentAlign: "center" | "start") {
+  return contentAlign === "start"
+    ? `${CONTENT_SHELL} items-start justify-start pt-8 md:pt-12 lg:pt-16 pb-8`
+    : `${CONTENT_SHELL} items-center justify-center py-6`;
 }
 
 const CROSSFADE_MS = 750;
@@ -28,6 +39,7 @@ export function HeroVideoBackground({
   className = "",
   minHeight = "min-h-screen",
   crossfade = true,
+  contentAlign = "center",
 }: HeroVideoBackgroundProps) {
   const n = videos.length;
   const [firstPlaying, setFirstPlaying] = React.useState(false);
@@ -40,6 +52,7 @@ export function HeroVideoBackground({
         src={videos[0]}
         minHeight={minHeight}
         className={className}
+        contentAlign={contentAlign}
         onFirstPlaying={() => setFirstPlaying(true)}
         firstPlaying={firstPlaying}
       >
@@ -54,6 +67,7 @@ export function HeroVideoBackground({
         videos={videos}
         minHeight={minHeight}
         className={className}
+        contentAlign={contentAlign}
         onFirstPlaying={() => setFirstPlaying(true)}
         firstPlaying={firstPlaying}
       >
@@ -67,6 +81,7 @@ export function HeroVideoBackground({
       videos={videos}
       minHeight={minHeight}
       className={className}
+      contentAlign={contentAlign}
       onFirstPlaying={() => setFirstPlaying(true)}
       firstPlaying={firstPlaying}
     >
@@ -79,6 +94,7 @@ function SingleClipHero({
   src,
   minHeight,
   className,
+  contentAlign,
   children,
   onFirstPlaying,
   firstPlaying,
@@ -86,6 +102,7 @@ function SingleClipHero({
   src: string;
   minHeight: string;
   className: string;
+  contentAlign: "center" | "start";
   children: React.ReactNode;
   onFirstPlaying: () => void;
   firstPlaying: boolean;
@@ -138,7 +155,7 @@ function SingleClipHero({
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
       )}
-      <div className="relative z-10 flex-1 flex items-center justify-center min-h-0 w-full px-4 py-6 overflow-y-auto">
+      <div className={contentShellClass(contentAlign)}>
         {children}
       </div>
     </section>
@@ -150,6 +167,7 @@ function CutSwitchHero({
   videos,
   minHeight,
   className,
+  contentAlign,
   children,
   onFirstPlaying,
   firstPlaying,
@@ -157,6 +175,7 @@ function CutSwitchHero({
   videos: string[];
   minHeight: string;
   className: string;
+  contentAlign: "center" | "start";
   children: React.ReactNode;
   onFirstPlaying: () => void;
   firstPlaying: boolean;
@@ -319,7 +338,7 @@ function CutSwitchHero({
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
       )}
-      <div className="relative z-10 flex-1 flex items-center justify-center min-h-0 w-full px-4 py-6 overflow-y-auto">
+      <div className={contentShellClass(contentAlign)}>
         {children}
       </div>
     </section>
@@ -330,6 +349,7 @@ function CrossfadeHero({
   videos,
   minHeight,
   className,
+  contentAlign,
   children,
   onFirstPlaying,
   firstPlaying,
@@ -337,6 +357,7 @@ function CrossfadeHero({
   videos: string[];
   minHeight: string;
   className: string;
+  contentAlign: "center" | "start";
   children: React.ReactNode;
   onFirstPlaying: () => void;
   firstPlaying: boolean;
@@ -525,7 +546,7 @@ function CrossfadeHero({
         </div>
       )}
 
-      <div className="relative z-10 flex-1 flex items-center justify-center min-h-0 w-full px-4 py-6 overflow-y-auto">
+      <div className={contentShellClass(contentAlign)}>
         {children}
       </div>
     </section>
