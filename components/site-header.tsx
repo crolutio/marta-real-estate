@@ -115,7 +115,7 @@ export function SiteHeader() {
             )}
           >
             <Image
-              src="/logo.webp"
+              src={theme === "dark" ? "/logo.webp" : "/logo-black.webp"}
               alt={AGENCY.fullName}
               width={220}
               height={64}

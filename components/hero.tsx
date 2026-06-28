@@ -18,7 +18,7 @@ export function Hero() {
       <div className="container-wide w-full">
         <div
           data-animate="reveal"
-          className="max-w-2xl bg-black/80 p-5 sm:p-6 md:p-8 rounded-lg animate-reveal"
+          className="max-w-2xl animate-reveal"
         >
           <div className="text-white">
             <Image
