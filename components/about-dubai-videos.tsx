@@ -2,13 +2,13 @@
 
 import * as React from "react";
 
-const MARSA_VIDEOS = [
-  "/videos/marsa/marsa1.mp4",
-  "/videos/marsa/marsa2.mp4",
-  "/videos/marsa/marsa3.mp4",
-  "/videos/marsa/marsa4.mp4",
-  "/videos/marsa/marsa5.mp4",
-  "/videos/marsa/marsa6.mp4",
+const GALLERY_VIDEOS = [
+  "/videos/hero/hero-horizontal-1.mp4",
+  "/videos/hero/hero-horizontal-2.mp4",
+  "/videos/hero/hero-horizontal-3.mp4",
+  "/videos/hero/hero-horizontal-4.mp4",
+  "/videos/hero/hero-horizontal-5.mp4",
+  "/videos/hero/hero-horizontal-6.mp4",
 ];
 
 export function AboutDubaiVideos() {
@@ -32,7 +32,7 @@ export function AboutDubaiVideos() {
         </div>
 
         <div className="space-y-6 md:space-y-8">
-          {MARSA_VIDEOS.map((src, index) => (
+          {GALLERY_VIDEOS.map((src, index) => (
             <div
               key={src}
               className="relative w-full rounded-lg overflow-hidden bg-black shadow-lg"

@@ -14,17 +14,28 @@ interface HeroVideoBackgroundProps {
    * When false, two-layer hard cuts (no fade), which avoids blend artifacts on some videos.
    */
   crossfade?: boolean;
-  /** Pin hero content to the top-left instead of centering in the viewport. */
-  contentAlign?: "center" | "start";
+  /**
+   * Vertical placement of hero content:
+   * - "center" (default): centered in the viewport at every breakpoint
+   * - "start": pinned to the top at every breakpoint
+   * - "top-mobile": pinned to the top on mobile, centered on `md+`
+   */
+  contentAlign?: ContentAlign;
 }
+
+type ContentAlign = "center" | "start" | "top-mobile";
 
 const CONTENT_SHELL =
   "relative z-10 flex-1 flex min-h-0 w-full px-4 sm:px-6 overflow-y-auto";
 
-function contentShellClass(contentAlign: "center" | "start") {
-  return contentAlign === "start"
-    ? `${CONTENT_SHELL} items-start justify-start pt-8 md:pt-12 lg:pt-16 pb-8`
-    : `${CONTENT_SHELL} items-center justify-center py-6`;
+function contentShellClass(contentAlign: ContentAlign) {
+  if (contentAlign === "start") {
+    return `${CONTENT_SHELL} items-start justify-start pt-8 md:pt-12 lg:pt-16 pb-8`;
+  }
+  if (contentAlign === "top-mobile") {
+    return `${CONTENT_SHELL} items-start justify-center pt-8 pb-8 md:items-center md:pt-0 md:py-6`;
+  }
+  return `${CONTENT_SHELL} items-center justify-center py-6`;
 }
 
 const CROSSFADE_MS = 750;
@@ -42,7 +53,7 @@ export function HeroVideoBackground({
   contentAlign = "center",
 }: HeroVideoBackgroundProps) {
   const n = videos.length;
-  const [firstPlaying, setFirstPlaying] = React.useState(false);
+  const noop = React.useCallback(() => {}, []);
 
   if (!n) return null;
 
@@ -53,8 +64,7 @@ export function HeroVideoBackground({
         minHeight={minHeight}
         className={className}
         contentAlign={contentAlign}
-        onFirstPlaying={() => setFirstPlaying(true)}
-        firstPlaying={firstPlaying}
+        onFirstPlaying={noop}
       >
         {children}
       </SingleClipHero>
@@ -68,8 +78,7 @@ export function HeroVideoBackground({
         minHeight={minHeight}
         className={className}
         contentAlign={contentAlign}
-        onFirstPlaying={() => setFirstPlaying(true)}
-        firstPlaying={firstPlaying}
+        onFirstPlaying={noop}
       >
         {children}
       </CutSwitchHero>
@@ -82,8 +91,7 @@ export function HeroVideoBackground({
       minHeight={minHeight}
       className={className}
       contentAlign={contentAlign}
-      onFirstPlaying={() => setFirstPlaying(true)}
-      firstPlaying={firstPlaying}
+      onFirstPlaying={noop}
     >
       {children}
     </CrossfadeHero>
@@ -97,17 +105,16 @@ function SingleClipHero({
   contentAlign,
   children,
   onFirstPlaying,
-  firstPlaying,
 }: {
   src: string;
   minHeight: string;
   className: string;
-  contentAlign: "center" | "start";
+  contentAlign: ContentAlign;
   children: React.ReactNode;
   onFirstPlaying: () => void;
-  firstPlaying: boolean;
 }) {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
+  const [buffering, setBuffering] = React.useState(true);
 
   React.useLayoutEffect(() => {
     const v = videoRef.current;
@@ -147,10 +154,20 @@ function SingleClipHero({
         preload="auto"
         autoPlay
         loop
-        onPlaying={onFirstPlaying}
-        onError={onFirstPlaying}
+        onPlaying={() => {
+          onFirstPlaying();
+          setBuffering(false);
+        }}
+        onCanPlay={() => setBuffering(false)}
+        onTimeUpdate={() => setBuffering(false)}
+        onWaiting={() => setBuffering(true)}
+        onStalled={() => setBuffering(true)}
+        onError={() => {
+          onFirstPlaying();
+          setBuffering(false);
+        }}
       />
-      {!firstPlaying && (
+      {buffering && (
         <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
@@ -170,15 +187,13 @@ function CutSwitchHero({
   contentAlign,
   children,
   onFirstPlaying,
-  firstPlaying,
 }: {
   videos: string[];
   minHeight: string;
   className: string;
-  contentAlign: "center" | "start";
+  contentAlign: ContentAlign;
   children: React.ReactNode;
   onFirstPlaying: () => void;
-  firstPlaying: boolean;
 }) {
   const n = videos.length;
   const refs = React.useRef<[HTMLVideoElement | null, HTMLVideoElement | null]>([
@@ -189,6 +204,28 @@ function CutSwitchHero({
   const [slotClip, setSlotClip] = React.useState<[number, number]>([0, 1]);
   const [frontLayer, setFrontLayer] = React.useState<0 | 1>(0);
   const [z, setZ] = React.useState<[number, number]>([2, 1]);
+  const [buffering, setBuffering] = React.useState(true);
+
+  // Spinner reflects only the visible (front) layer's buffering state.
+  const handlePlaying = React.useCallback(
+    (layer: 0 | 1) => {
+      onFirstPlaying();
+      if (layer === frontLayer) setBuffering(false);
+    },
+    [onFirstPlaying, frontLayer]
+  );
+  const handleReady = React.useCallback(
+    (layer: 0 | 1) => {
+      if (layer === frontLayer) setBuffering(false);
+    },
+    [frontLayer]
+  );
+  const handleWaiting = React.useCallback(
+    (layer: 0 | 1) => {
+      if (layer === frontLayer) setBuffering(true);
+    },
+    [frontLayer]
+  );
 
   const refCallbacks = React.useMemo(
     () =>
@@ -239,6 +276,80 @@ function CutSwitchHero({
     };
   }, []);
 
+  // Advance from the just-ended front layer to the hidden layer with an instant
+  // cut. The commit (z/front/slot swap) runs on the first presented frame of the
+  // incoming clip, with timeout fallbacks so playback can never get permanently
+  // stuck if `requestVideoFrameCallback` or the `play()` promise never fire.
+  const advance = React.useCallback(
+    (fromLayer: 0 | 1) => {
+      if (fromLayer !== frontLayer || transitioning.current) return;
+      const incoming = (1 - fromLayer) as 0 | 1;
+      const vIn = refs.current[incoming];
+      const vOut = refs.current[fromLayer];
+      if (!vIn || !vOut) return;
+
+      transitioning.current = true;
+      vIn.currentTime = 0;
+
+      let committed = false;
+      const commit = () => {
+        if (committed) return;
+        committed = true;
+        setZ(incoming === 0 ? [3, 2] : [2, 3]);
+        setFrontLayer(incoming);
+        vOut.pause();
+        vOut.currentTime = 0;
+        setSlotClip((prev) =>
+          fromLayer === 0
+            ? [((prev[1] + 1) % n) as number, prev[1]]
+            : [prev[0], ((prev[0] + 1) % n) as number]
+        );
+        transitioning.current = false;
+      };
+
+      const scheduleCommit = () => {
+        if (typeof vIn.requestVideoFrameCallback === "function") {
+          vIn.requestVideoFrameCallback(() => commit());
+        }
+        // Fallback: commit even if the frame callback never fires.
+        window.setTimeout(commit, 150);
+      };
+
+      const playAndCommit = () => {
+        const p = vIn.play();
+        if (p !== undefined) {
+          p.then(scheduleCommit).catch(scheduleCommit);
+        } else {
+          scheduleCommit();
+        }
+        // Hard fallback in case the play() promise never settles.
+        window.setTimeout(scheduleCommit, 300);
+      };
+
+      // Only cut once the incoming clip is buffered enough to play through,
+      // otherwise the switch would reveal a stalling video (visible stutter).
+      if (vIn.readyState >= 3) {
+        playAndCommit();
+      } else {
+        // Genuine buffering wait — show the spinner until the next clip is ready.
+        setBuffering(true);
+        let started = false;
+        const start = () => {
+          if (started) return;
+          started = true;
+          vIn.removeEventListener("canplay", start);
+          vIn.removeEventListener("canplaythrough", start);
+          playAndCommit();
+        };
+        vIn.addEventListener("canplay", start, { once: true });
+        vIn.addEventListener("canplaythrough", start, { once: true });
+        // Safety: don't wait forever if readiness events never fire.
+        window.setTimeout(start, 1500);
+      }
+    },
+    [frontLayer, n]
+  );
+
   return (
     <section
       className={`relative flex flex-col overflow-hidden ${minHeight} ${className}`}
@@ -252,41 +363,15 @@ function CutSwitchHero({
           muted
           playsInline
           preload="auto"
+          autoPlay
           loop={false}
-          onPlaying={onFirstPlaying}
-          onEnded={() => {
-            if (frontLayer !== 0 || transitioning.current) return;
-            const incoming = 1 as 0 | 1;
-            const vIn = refs.current[incoming];
-            const vOut = refs.current[0];
-            if (!vIn || !vOut) return;
-            transitioning.current = true;
-            vIn.currentTime = 0;
-            const switchNow = () => {
-              setZ([2, 3]);
-              setFrontLayer(incoming);
-              vOut.pause();
-              vOut.currentTime = 0;
-              setSlotClip((prev) => [((prev[1] + 1) % n) as number, prev[1]]);
-              transitioning.current = false;
-            };
-            const afterPlay = () => {
-              if (typeof vIn.requestVideoFrameCallback === "function") {
-                vIn.requestVideoFrameCallback(() => switchNow());
-              } else {
-                switchNow();
-              }
-            };
-            const p = vIn.play();
-            if (p !== undefined) {
-              p.then(afterPlay).catch(() => {
-                transitioning.current = false;
-              });
-            } else {
-              afterPlay();
-            }
-          }}
-          onError={onFirstPlaying}
+          onPlaying={() => handlePlaying(0)}
+          onCanPlay={() => handleReady(0)}
+          onTimeUpdate={() => handleReady(0)}
+          onWaiting={() => handleWaiting(0)}
+          onStalled={() => handleWaiting(0)}
+          onEnded={() => advance(0)}
+          onError={() => setBuffering(false)}
         />
         <video
           ref={refCallbacks[1]}
@@ -297,43 +382,16 @@ function CutSwitchHero({
           playsInline
           preload="auto"
           loop={false}
-          onPlaying={onFirstPlaying}
-          onEnded={() => {
-            if (frontLayer !== 1 || transitioning.current) return;
-            const incoming = 0 as 0 | 1;
-            const vIn = refs.current[incoming];
-            const vOut = refs.current[1];
-            if (!vIn || !vOut) return;
-            transitioning.current = true;
-            vIn.currentTime = 0;
-            const switchNow = () => {
-              setZ([3, 2]);
-              setFrontLayer(incoming);
-              vOut.pause();
-              vOut.currentTime = 0;
-              setSlotClip((prev) => [prev[0], ((prev[0] + 1) % n) as number]);
-              transitioning.current = false;
-            };
-            const afterPlay = () => {
-              if (typeof vIn.requestVideoFrameCallback === "function") {
-                vIn.requestVideoFrameCallback(() => switchNow());
-              } else {
-                switchNow();
-              }
-            };
-            const p = vIn.play();
-            if (p !== undefined) {
-              p.then(afterPlay).catch(() => {
-                transitioning.current = false;
-              });
-            } else {
-              afterPlay();
-            }
-          }}
-          onError={onFirstPlaying}
+          onPlaying={() => handlePlaying(1)}
+          onCanPlay={() => handleReady(1)}
+          onTimeUpdate={() => handleReady(1)}
+          onWaiting={() => handleWaiting(1)}
+          onStalled={() => handleWaiting(1)}
+          onEnded={() => advance(1)}
+          onError={() => setBuffering(false)}
         />
       </div>
-      {!firstPlaying && (
+      {buffering && (
         <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
@@ -352,15 +410,13 @@ function CrossfadeHero({
   contentAlign,
   children,
   onFirstPlaying,
-  firstPlaying,
 }: {
   videos: string[];
   minHeight: string;
   className: string;
-  contentAlign: "center" | "start";
+  contentAlign: ContentAlign;
   children: React.ReactNode;
   onFirstPlaying: () => void;
-  firstPlaying: boolean;
 }) {
   const n = videos.length;
   const refs = React.useRef<[HTMLVideoElement | null, HTMLVideoElement | null]>([
@@ -373,6 +429,28 @@ function CrossfadeHero({
   const [frontLayer, setFrontLayer] = React.useState<0 | 1>(0);
   const [opacity, setOpacity] = React.useState<[number, number]>([1, 0]);
   const [z, setZ] = React.useState<[number, number]>([2, 1]);
+  const [buffering, setBuffering] = React.useState(true);
+
+  // Spinner reflects only the visible (front) layer's buffering state.
+  const handlePlaying = React.useCallback(
+    (layer: 0 | 1) => {
+      onFirstPlaying();
+      if (layer === frontLayer) setBuffering(false);
+    },
+    [onFirstPlaying, frontLayer]
+  );
+  const handleReady = React.useCallback(
+    (layer: 0 | 1) => {
+      if (layer === frontLayer) setBuffering(false);
+    },
+    [frontLayer]
+  );
+  const handleWaiting = React.useCallback(
+    (layer: 0 | 1) => {
+      if (layer === frontLayer) setBuffering(true);
+    },
+    [frontLayer]
+  );
 
   const refCallbacks = React.useMemo(
     () =>
@@ -516,9 +594,13 @@ function CrossfadeHero({
           playsInline
           preload="auto"
           loop={false}
-          onPlaying={onFirstPlaying}
+          onPlaying={() => handlePlaying(0)}
+          onCanPlay={() => handleReady(0)}
+          onTimeUpdate={() => handleReady(0)}
+          onWaiting={() => handleWaiting(0)}
+          onStalled={() => handleWaiting(0)}
           onEnded={() => handleLayerEnded(0)}
-          onError={onFirstPlaying}
+          onError={() => setBuffering(false)}
         />
         <video
           ref={refCallbacks[1]}
@@ -533,14 +615,18 @@ function CrossfadeHero({
           playsInline
           preload="auto"
           loop={false}
-          onPlaying={onFirstPlaying}
+          onPlaying={() => handlePlaying(1)}
+          onCanPlay={() => handleReady(1)}
+          onTimeUpdate={() => handleReady(1)}
+          onWaiting={() => handleWaiting(1)}
+          onStalled={() => handleWaiting(1)}
           onEnded={() => handleLayerEnded(1)}
-          onError={onFirstPlaying}
+          onError={() => setBuffering(false)}
         />
       </div>
 
 
-      {!firstPlaying && (
+      {buffering && (
         <div className="absolute inset-0 z-[5] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>

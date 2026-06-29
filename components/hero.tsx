@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { AGENCY } from "@/lib/constants";
-import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/marsa-hero-videos";
+import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/hero-videos";
 
 export function Hero() {
   return (
@@ -14,11 +14,12 @@ export function Hero() {
       videos={HOME_PAGE_HERO_CLIP_PATHS}
       minHeight="min-h-screen"
       className="pt-20"
+      crossfade={false}
     >
       <div className="container-wide w-full">
         <div
           data-animate="reveal"
-          className="max-w-2xl animate-reveal"
+          className="max-w-2xl animate-reveal mx-auto md:mx-0 text-center md:text-left"
         >
           <div className="text-white">
             <Image
@@ -27,7 +28,7 @@ export function Hero() {
               alt={`${AGENCY.fullName} logo`}
               width={1260}
               height={360}
-              className="h-32 md:h-40 w-auto object-contain mb-6 md:mb-8"
+              className="h-48 md:h-60 w-auto object-contain object-center md:object-left object-top mb-2 md:mb-3 mx-auto md:mx-0"
               priority
             />
 
@@ -38,16 +39,18 @@ export function Hero() {
               Invest in Dubai with confidence
             </h1>
 
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
-            >
-              <Link href="/properties">
-                View Properties
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+            <div className="flex justify-center md:justify-start">
+              <Button
+                asChild
+                size="lg"
+                className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
+              >
+                <Link href="/properties">
+                  View Properties
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
