@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/components/language-provider";
 
 interface ConsultationCtaProps {
   className?: string;
@@ -26,6 +27,8 @@ export function ConsultationCta({
   variant = "default",
   size = "default",
 }: ConsultationCtaProps) {
+  const { dict } = useTranslation();
+  const c = dict.consultation;
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
     name: "",
@@ -56,29 +59,28 @@ export function ConsultationCta({
           )}
         >
           <Calendar className="mr-2 h-4 w-4" />
-          Book a call
+          {c.button}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="font-subtitle text-2xl">
-            Book a call
+            {c.title}
           </DialogTitle>
           <DialogDescription className="text-editorial">
-            Share your details and we&apos;ll arrange a call to
-            discuss your real estate goals.
+            {c.description}
           </DialogDescription>
         </DialogHeader>
         <form className="space-y-4 mt-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">
-                Name <span className="text-destructive">*</span>
+                {c.name} <span className="text-destructive">*</span>
               </label>
               <Input
                 id="name"
                 name="name"
-                placeholder="Your name"
+                placeholder={c.namePlaceholder}
                 value={formData.name}
                 onChange={handleInputChange}
                 required
@@ -86,13 +88,13 @@ export function ConsultationCta({
             </div>
             <div className="space-y-2">
               <label htmlFor="phone" className="text-sm font-medium">
-                Phone
+                {c.phone}
               </label>
               <Input
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="+1 (555) 000-0000"
+                placeholder={c.phonePlaceholder}
                 value={formData.phone}
                 onChange={handleInputChange}
               />
@@ -100,13 +102,13 @@ export function ConsultationCta({
           </div>
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium">
-              Email <span className="text-destructive">*</span>
+              {c.email} <span className="text-destructive">*</span>
             </label>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="your@email.com"
+              placeholder={c.emailPlaceholder}
               value={formData.email}
               onChange={handleInputChange}
               required
@@ -114,12 +116,12 @@ export function ConsultationCta({
           </div>
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium">
-              Message (optional)
+              {c.message}
             </label>
             <Textarea
               id="message"
               name="message"
-              placeholder="Tell us about your real estate interests..."
+              placeholder={c.messagePlaceholder}
               rows={3}
               value={formData.message}
               onChange={handleInputChange}
@@ -127,8 +129,7 @@ export function ConsultationCta({
           </div>
           <div className="pt-4">
             <p className="text-sm text-muted-foreground text-center">
-              Calendar booking coming soon. We&apos;ll reach out at your email to
-              schedule your call.
+              {c.note}
             </p>
             {/* TODO: Replace with Marta's calendar link when integrated */}
           </div>

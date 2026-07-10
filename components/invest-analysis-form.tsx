@@ -3,6 +3,7 @@
 import * as React from "react";
 import { AGENCY } from "@/lib/constants";
 import { toast } from "sonner";
+import { useTranslation } from "@/components/language-provider";
 
 function TriLineIcon({ className }: { className?: string }) {
   return (
@@ -21,6 +22,8 @@ function TriLineIcon({ className }: { className?: string }) {
 }
 
 export function InvestAnalysisForm() {
+  const { dict } = useTranslation();
+  const f = dict.investForm;
   const [form, setForm] = React.useState({
     name: "",
     phone: "",
@@ -35,7 +38,7 @@ export function InvestAnalysisForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim()) {
-      toast.error("Please add your name and email.");
+      toast.error(f.errorNameEmail);
       return;
     }
     const body = [
@@ -50,7 +53,7 @@ export function InvestAnalysisForm() {
     window.open(
       `mailto:${AGENCY.email}?subject=${subject}&body=${encodeURIComponent(body)}`
     );
-    toast.success("Opening your email client…");
+    toast.success(f.openingEmail);
   };
 
   const inputClass =
@@ -66,7 +69,7 @@ export function InvestAnalysisForm() {
         <TriLineIcon className="mx-auto mb-8 h-14 w-auto text-white/90" />
 
         <h2 className="font-subtitle text-3xl sm:text-4xl md:text-[2.35rem] font-semibold leading-tight text-balance text-white mb-12 md:mb-14">
-          Ready to analyze your investment in Dubai?
+          {f.heading}
         </h2>
 
         <form onSubmit={handleSubmit} className="text-left space-y-10">
@@ -75,14 +78,14 @@ export function InvestAnalysisForm() {
               htmlFor="invest-name"
               className="block text-xs tracking-[0.2em] uppercase text-[#c9b896] font-medium mb-2"
             >
-              Name
+              {f.name}
             </label>
             <input
               id="invest-name"
               name="name"
               type="text"
               autoComplete="name"
-              placeholder="Your name"
+              placeholder={f.namePlaceholder}
               value={form.name}
               onChange={update}
               className={inputClass}
@@ -94,14 +97,14 @@ export function InvestAnalysisForm() {
               htmlFor="invest-phone"
               className="block text-xs tracking-[0.2em] uppercase text-[#c9b896] font-medium mb-2"
             >
-              Phone
+              {f.phone}
             </label>
             <input
               id="invest-phone"
               name="phone"
               type="tel"
               autoComplete="tel"
-              placeholder="Your phone"
+              placeholder={f.phonePlaceholder}
               value={form.phone}
               onChange={update}
               className={inputClass}
@@ -112,14 +115,14 @@ export function InvestAnalysisForm() {
               htmlFor="invest-email"
               className="block text-xs tracking-[0.2em] uppercase text-[#c9b896] font-medium mb-2"
             >
-              Email
+              {f.email}
             </label>
             <input
               id="invest-email"
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="Your email"
+              placeholder={f.emailPlaceholder}
               value={form.email}
               onChange={update}
               className={inputClass}
@@ -131,13 +134,13 @@ export function InvestAnalysisForm() {
               htmlFor="invest-capital"
               className="block text-xs tracking-[0.2em] uppercase text-[#c9b896] font-medium mb-2"
             >
-              Estimated capital
+              {f.capital}
             </label>
             <input
               id="invest-capital"
               name="capital"
               type="text"
-              placeholder="Your estimated capital"
+              placeholder={f.capitalPlaceholder}
               value={form.capital}
               onChange={update}
               className={inputClass}
@@ -148,7 +151,7 @@ export function InvestAnalysisForm() {
             type="submit"
             className="w-full mt-4 py-4 px-6 bg-[#c9b896] text-[#15251f] text-xs sm:text-sm font-semibold tracking-[0.12em] uppercase transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9b896]"
           >
-            Request personalized analysis
+            {f.submit}
           </button>
         </form>
       </div>

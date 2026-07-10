@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PropertyCard } from "@/components/property-card";
 import { getFeaturedProperties } from "@/lib/data/properties";
+import { useTranslation } from "@/components/language-provider";
 
 export function FeaturedProperties() {
+  const { dict } = useTranslation();
   const featuredProperties = getFeaturedProperties().slice(0, 6);
 
   return (
@@ -14,10 +18,10 @@ export function FeaturedProperties() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-4">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold">
-              Featured Collection
+              {dict.home.featured.eyebrow}
             </p>
             <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display max-w-xl">
-              Exceptional Properties for Exceptional Clients
+              {dict.home.featured.title}
             </h2>
           </div>
           <Button
@@ -26,7 +30,7 @@ export function FeaturedProperties() {
             className="self-start md:self-auto bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
           >
             <Link href="/properties">
-              View All Properties
+              {dict.home.featured.viewAll}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

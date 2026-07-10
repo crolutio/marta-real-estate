@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { AGENCY } from "@/lib/constants";
 import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/hero-videos";
+import { useTranslation } from "@/components/language-provider";
 
 export function Hero() {
+  const { t } = useTranslation();
   return (
     <HeroVideoBackground
       videos={HOME_PAGE_HERO_CLIP_PATHS}
@@ -33,10 +35,10 @@ export function Hero() {
             />
 
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
-              We guide your journey
+              {t("hero.eyebrow")}
             </p>
             <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              Invest in Dubai with confidence
+              {t("hero.headline")}
             </h1>
 
             <div className="flex justify-center md:justify-start">
@@ -46,7 +48,7 @@ export function Hero() {
                 className="bg-accent text-accent-foreground hover:bg-black hover:text-white text-base px-8"
               >
                 <Link href="/properties">
-                  View Properties
+                  {t("hero.cta")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

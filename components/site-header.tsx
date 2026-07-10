@@ -16,9 +16,25 @@ import {
 import { AGENCY, NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ConsultationCta } from "@/components/consultation-cta";
+import { useTranslation } from "@/components/language-provider";
+import { LanguageSwitcher } from "@/components/language-switcher";
+
+const NAV_LABEL_KEYS: Record<string, string> = {
+  "/": "nav.home",
+  "/properties": "nav.properties",
+  "/invest": "nav.invest",
+  "/about-dubai": "nav.aboutDubai",
+  "/services": "nav.services",
+  "/about-spain": "nav.aboutSpain",
+  "/about": "nav.aboutUs",
+  "/contact": "nav.contact",
+};
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { t } = useTranslation();
+  const navLabel = (link: (typeof NAV_LINKS)[number]) =>
+    t(NAV_LABEL_KEYS[link.href] ?? link.label);
   const isHomePage = pathname === "/";
   const [isOpen, setIsOpen] = React.useState(false);
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
@@ -99,7 +115,21 @@ export function SiteHeader() {
       className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
     >
       <div className="container-wide">
-        <nav className="flex h-20 items-center justify-between" aria-label="Main navigation">
+        <nav className="relative flex h-20 items-center justify-between" aria-label="Main navigation">
+          {/* Mobile centered language switcher & theme toggle */}
+          <div className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1">
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9 relative bg-accent text-accent-foreground hover:bg-black hover:text-white"
+              onClick={handleThemeToggle}
+              aria-label={t("header.theme")}
+            >
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+          </div>
           {/* Logo */}
           <Link
             href="/"
@@ -140,13 +170,14 @@ export function SiteHeader() {
                     "after:absolute after:-bottom-0.5 after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-accent"
                 )}
               >
-                {link.label}
+                {navLabel(link)}
               </Link>
             ))}
           </div>
 
           {/* Desktop CTA & Theme Toggle */}
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             <Button
               variant="ghost"
               size="icon"
@@ -174,9 +205,15 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[400px] px-6 pt-6 pb-8">
               <SheetHeader>
-                <SheetTitle className="text-left font-subtitle text-xl">
-                  {AGENCY.name}
-                </SheetTitle>
+                <SheetTitle className="sr-only">{AGENCY.fullName}</SheetTitle>
+                <Image
+                  src={theme === "dark" ? "/logo.webp" : "/logo-black.webp"}
+                  alt={AGENCY.fullName}
+                  width={440}
+                  height={128}
+                  className="h-32 w-auto object-contain"
+                  priority
+                />
               </SheetHeader>
               <nav className="flex flex-col gap-6 mt-8 px-1" aria-label="Mobile navigation">
                 {NAV_LINKS.map((link) => (
@@ -194,13 +231,13 @@ export function SiteHeader() {
                         : "text-muted-foreground"
                     )}
                   >
-                    {link.label}
+                    {navLabel(link)}
                   </Link>
                 ))}
                 <div className="pt-6 border-t border-border space-y-4">
                   {/* Mobile Theme Toggle */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Theme</span>
+                    <span className="text-sm font-medium">{t("header.theme")}</span>
                     <Button
                       variant="outline"
                       size="sm"

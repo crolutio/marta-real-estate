@@ -6,8 +6,10 @@ import {
   BARCELONA_HORIZONTAL_CLIPS,
   BARCELONA_VERTICAL_CLIPS,
 } from "@/lib/barcelona-videos";
+import { useTranslation } from "@/components/language-provider";
 
 export function AboutSpainHero() {
+  const { dict } = useTranslation();
   const [orientation, setOrientation] = React.useState<"horizontal" | "vertical">(
     "horizontal"
   );
@@ -41,16 +43,13 @@ export function AboutSpainHero() {
         >
           <div className="text-white">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
-              Mediterranean living
+              {dict.aboutSpainHero.eyebrow}
             </p>
             <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              Spain luxury real estate
+              {dict.aboutSpainHero.title}
             </h1>
             <p className="hidden md:block text-lg text-white/90 text-editorial">
-              From Barcelona&apos;s Eixample grid to the sea, Spain pairs world-class architecture with an
-              outdoor, design-led lifestyle. The country attracts global buyers seeking EU connectivity,
-              culture, and carefully restored residences in walkable neighborhoods—with clear upside
-              when architecture, light, and service levels align.
+              {dict.aboutSpainHero.body}
             </p>
           </div>
         </div>

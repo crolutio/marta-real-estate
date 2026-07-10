@@ -10,12 +10,15 @@ import { AGENCY } from "@/lib/constants";
 import { Property } from "@/lib/types";
 import { formatPrice, formatPriceForDetail } from "@/lib/data/properties";
 import { toast } from "sonner";
+import { useTranslation } from "@/components/language-provider";
 
 interface PropertyContactCardProps {
   property: Property;
 }
 
 export function PropertyContactCard({ property }: PropertyContactCardProps) {
+  const { dict } = useTranslation();
+  const t = dict.properties;
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -39,13 +42,13 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
     const subject = encodeURIComponent(`Inquiry: ${property.title}`);
     const body = encodeURIComponent(generateMessage());
     window.open(`mailto:${AGENCY.email}?subject=${subject}&body=${body}`);
-    toast.success("Opening your email client...");
+    toast.success(t.contactCard.openingEmail);
   };
 
   const handleWhatsAppSubmit = () => {
     const message = encodeURIComponent(generateMessage());
     window.open(`https://wa.me/${AGENCY.whatsapp}?text=${message}`, "_blank");
-    toast.success("Opening WhatsApp...");
+    toast.success(t.contactCard.openingWhatsApp);
   };
 
   const isFormValid = formData.name.trim() && formData.email.trim();
@@ -55,7 +58,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
       <CardHeader className="pb-4">
         <div className="space-y-1">
           <p className="text-sm text-muted-foreground">
-            {property.priceLabel ?? "Listed Price"}
+            {property.priceLabel ?? t.detail.listedPrice}
           </p>
           <CardTitle className="font-subtitle text-3xl">
             {formatPriceForDetail(property.price, property.currency, { priceFromPlus: property.priceFromPlus, priceMax: property.priceMax })}
@@ -73,7 +76,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
             }}
           >
             <Phone className="h-4 w-4 mr-2" />
-            Call
+            {t.contactCard.call}
           </Button>
           <Button
             variant="outline"
@@ -89,7 +92,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
             }}
           >
             <MessageCircle className="h-4 w-4 mr-2" />
-            WhatsApp
+            {t.contactCard.whatsapp}
           </Button>
         </div>
 
@@ -97,25 +100,25 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
 
         {/* Contact Form */}
         <div className="space-y-4">
-          <h3 className="font-semibold">Request Details</h3>
+          <h3 className="font-semibold">{t.contactCard.requestDetails}</h3>
           <div className="space-y-3">
             <Input
               name="name"
-              placeholder="Your name *"
+              placeholder={t.contactCard.namePlaceholder}
               value={formData.name}
               onChange={handleInputChange}
             />
             <Input
               name="email"
               type="email"
-              placeholder="Email address *"
+              placeholder={t.contactCard.emailPlaceholder}
               value={formData.email}
               onChange={handleInputChange}
             />
             <Input
               name="phone"
               type="tel"
-              placeholder="Phone (optional)"
+              placeholder={t.contactCard.phonePlaceholder}
               value={formData.phone}
               onChange={handleInputChange}
             />
@@ -128,7 +131,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
               disabled={!isFormValid}
             >
               <Mail className="h-4 w-4 mr-2" />
-              Send via Email
+              {t.contactCard.sendEmail}
             </Button>
             <Button
               variant="outline"
@@ -137,7 +140,7 @@ export function PropertyContactCard({ property }: PropertyContactCardProps) {
               disabled={!isFormValid}
             >
               <MessageCircle className="h-4 w-4 mr-2" />
-              Send via WhatsApp
+              {t.contactCard.sendWhatsApp}
             </Button>
           </div>
         </div>

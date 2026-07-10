@@ -1,11 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { AGENCY, FOOTER_LINKS } from "@/lib/constants";
+import { useTranslation } from "@/components/language-provider";
+
+const LEGAL_LABEL_KEYS: Record<string, string> = {
+  "/privacy": "footer.privacy",
+  "/terms": "footer.terms",
+};
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -28,13 +37,13 @@ export function SiteFooter() {
           {/* Column 2: Description */}
           <div className="flex flex-col items-center md:items-start justify-center">
             <p className="text-primary-foreground/80 max-w-[280px] text-editorial text-sm md:text-base">
-              {AGENCY.description}
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Column 3: Contact */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-semibold mb-6 tracking-wide">Contact</h3>
+            <h3 className="font-semibold mb-6 tracking-wide">{t("footer.contact")}</h3>
             <ul className="space-y-4 flex flex-col items-center md:items-start">
               <li>
                 <a
@@ -71,7 +80,7 @@ export function SiteFooter() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60 text-center md:text-left">
           <p>
-            © {currentYear} {AGENCY.fullName}. All rights reserved.
+            © {currentYear} {t("footer.copyrightName")}. {t("footer.rightsReserved")}
           </p>
           <div className="flex gap-6">
             {FOOTER_LINKS.legal.map((link) => (
@@ -80,7 +89,7 @@ export function SiteFooter() {
                 href={link.href}
                 className="hover:text-primary-foreground transition-colors"
               >
-                {link.label}
+                {t(LEGAL_LABEL_KEYS[link.href] ?? link.label)}
               </Link>
             ))}
           </div>

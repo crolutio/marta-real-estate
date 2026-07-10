@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PropertyType, PropertyStatus } from "@/lib/types";
+import { useTranslation } from "@/components/language-provider";
 
 export interface PropertyFilters {
   search: string;
@@ -49,24 +50,26 @@ const statusOptions: (PropertyStatus | "all")[] = [
 const bedroomOptions = ["any", "1", "2", "3", "4", "5+"];
 
 const priceRanges = [
-  { value: "all", label: "Any Price" },
-  { value: "0-5000000", label: "Under AED 5M" },
-  { value: "5000000-10000000", label: "AED 5M - 10M" },
-  { value: "10000000-20000000", label: "AED 10M - 20M" },
-  { value: "20000000-50000000", label: "AED 20M - 50M" },
-  { value: "50000000+", label: "AED 50M+" },
-];
+  { value: "all", key: "anyPrice" },
+  { value: "0-5000000", key: "under5" },
+  { value: "5000000-10000000", key: "r5_10" },
+  { value: "10000000-20000000", key: "r10_20" },
+  { value: "20000000-50000000", key: "r20_50" },
+  { value: "50000000+", key: "over50" },
+] as const;
 
 const sortOptions = [
-  { value: "newest", label: "Newest First" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "price-asc", label: "Price: Low to High" },
-];
+  { value: "newest", key: "newest" },
+  { value: "price-desc", key: "priceDesc" },
+  { value: "price-asc", key: "priceAsc" },
+] as const;
 
 export function PropertyFilters({
   filters,
   onFiltersChange,
 }: PropertyFiltersProps) {
+  const { dict } = useTranslation();
+  const P = dict.properties;
   const updateFilter = <K extends keyof PropertyFilters>(
     key: K,
     value: PropertyFilters[K]
@@ -103,7 +106,7 @@ export function PropertyFilters({
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search by name or location..."
+            placeholder={P.searchPlaceholder}
             value={filters.search}
             onChange={(e) => updateFilter("search", e.target.value)}
             className="pl-10"
@@ -118,7 +121,7 @@ export function PropertyFilters({
             onClick={clearFilters}
             className="h-10"
           >
-            Clear all
+            {P.clearAll}
           </Button>
           <Separator orientation="vertical" className="h-10" />
 
@@ -134,7 +137,7 @@ export function PropertyFilters({
             <SelectContent>
               {sortOptions.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
-                  {option.label}
+                  {P.sort[option.key]}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -148,7 +151,7 @@ export function PropertyFilters({
             onClick={clearFilters}
             className="h-10"
           >
-            Clear all
+            {P.clearAll}
           </Button>
           <Select
             value={filters.sortBy}
@@ -162,7 +165,7 @@ export function PropertyFilters({
             <SelectContent>
               {sortOptions.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
-                  {option.label}
+                  {P.sort[option.key]}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -173,7 +176,7 @@ export function PropertyFilters({
       {/* Multi-select Filter Chips */}
       <div className="grid gap-4">
         <div className="space-y-2">
-          <p className="text-sm font-medium">Property Type</p>
+          <p className="text-sm font-medium">{P.filterType}</p>
           <div className="flex flex-wrap gap-2">
             {propertyTypes.filter((t) => t !== "all").map((type) => {
               const selected = filters.types.includes(type as PropertyType);
@@ -186,7 +189,7 @@ export function PropertyFilters({
                     updateFilter("types", toggleInArray(filters.types, type as PropertyType))
                   }
                 >
-                  {type}
+                  {P.types[type] ?? type}
                 </Button>
               );
             })}
@@ -194,7 +197,7 @@ export function PropertyFilters({
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">Status</p>
+          <p className="text-sm font-medium">{P.filterStatus}</p>
           <div className="flex flex-wrap gap-2">
             {statusOptions.filter((s) => s !== "all").map((status) => {
               const selected = filters.statuses.includes(status as PropertyStatus);
@@ -210,7 +213,7 @@ export function PropertyFilters({
                     )
                   }
                 >
-                  {status}
+                  {P.statuses[status] ?? status}
                 </Button>
               );
             })}
@@ -218,7 +221,7 @@ export function PropertyFilters({
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">Bedrooms</p>
+          <p className="text-sm font-medium">{P.filterBedrooms}</p>
           <div className="flex flex-wrap gap-2">
             {bedroomOptions.filter((b) => b !== "any").map((beds) => {
               const value = beds === "5+" ? 5 : parseInt(beds, 10);
@@ -232,7 +235,7 @@ export function PropertyFilters({
                     updateFilter("minBeds", toggleInArray(filters.minBeds, value))
                   }
                 >
-                  {beds === "5+" ? "5+ Beds" : `${beds} Beds`}
+                  {beds === "5+" ? P.bedsPlus : `${beds} ${P.bedsSuffix}`}
                 </Button>
               );
             })}
@@ -240,7 +243,7 @@ export function PropertyFilters({
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">Price Range</p>
+          <p className="text-sm font-medium">{P.filterPrice}</p>
           <div className="flex flex-wrap gap-2">
             {priceRanges.filter((r) => r.value !== "all").map((range) => {
               const selected = filters.priceRanges.includes(range.value);
@@ -256,7 +259,7 @@ export function PropertyFilters({
                     )
                   }
                 >
-                  {range.label}
+                  {P.priceRanges[range.key]}
                 </Button>
               );
             })}
@@ -267,10 +270,10 @@ export function PropertyFilters({
       {/* Active Filters */}
       {activeFilterCount > 0 && (
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm text-muted-foreground">Active filters:</span>
+          <span className="text-sm text-muted-foreground">{P.activeFilters}</span>
           {filters.types.map((type) => (
             <Badge key={`type-${type}`} variant="secondary" className="gap-1">
-              {type}
+              {P.types[type] ?? type}
               <button
                 onClick={() =>
                   updateFilter("types", filters.types.filter((t) => t !== type))
@@ -284,7 +287,7 @@ export function PropertyFilters({
           ))}
           {filters.statuses.map((status) => (
             <Badge key={`status-${status}`} variant="secondary" className="gap-1">
-              {status}
+              {P.statuses[status] ?? status}
               <button
                 onClick={() =>
                   updateFilter(
@@ -301,7 +304,7 @@ export function PropertyFilters({
           ))}
           {filters.minBeds.map((beds) => (
             <Badge key={`beds-${beds}`} variant="secondary" className="gap-1">
-              {beds === 5 ? "5+ Beds" : `${beds} Beds`}
+              {beds === 5 ? P.bedsPlus : `${beds} ${P.bedsSuffix}`}
               <button
                 onClick={() =>
                   updateFilter(
@@ -318,7 +321,10 @@ export function PropertyFilters({
           ))}
           {filters.priceRanges.map((rangeValue) => (
             <Badge key={`price-${rangeValue}`} variant="secondary" className="gap-1">
-              {priceRanges.find((r) => r.value === rangeValue)?.label}
+              {(() => {
+                const r = priceRanges.find((r) => r.value === rangeValue);
+                return r ? P.priceRanges[r.key] : rangeValue;
+              })()}
               <button
                 onClick={() =>
                   updateFilter(
@@ -339,7 +345,7 @@ export function PropertyFilters({
             onClick={clearFilters}
             className="text-muted-foreground hover:text-foreground"
           >
-            Clear all
+            {P.clearAll}
           </Button>
         </div>
       )}

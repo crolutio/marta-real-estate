@@ -8,6 +8,7 @@ import {
 } from "@/components/property-filters";
 import { properties } from "@/lib/data/properties";
 import { Property } from "@/lib/types";
+import { useTranslation } from "@/components/language-provider";
 
 function getPropertyBedRange(p: Property): { min: number; max: number } {
   const match = p.unitTypes?.match(/^(\d+)\s+to\s+(\d+)\s*Bed/i);
@@ -27,6 +28,8 @@ const DEFAULT_FILTERS: PropertyFiltersType = {
 };
 
 export default function PropertiesPage() {
+  const { dict } = useTranslation();
+  const P = dict.properties;
   const [filters, setFilters] = React.useState<PropertyFiltersType>(DEFAULT_FILTERS);
 
   const filteredProperties = React.useMemo(() => {
@@ -84,18 +87,16 @@ export default function PropertiesPage() {
         <div className="container-wide">
           <div className="max-w-3xl">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
-              Our Collection
+              {P.hero.eyebrow}
             </p>
             <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              Exceptional Properties
+              {P.hero.title}
             </h1>
             <p className="text-lg text-muted-foreground text-editorial">
-              Explore our curated selection of luxury properties, from stunning
-              penthouses to grand estates. Each property has been carefully
-              selected to meet the highest standards of quality and exclusivity.
+              {P.hero.body}
             </p>
             <p className="text-muted-foreground/80 text-sm mt-4 font-medium">
-              We&apos;ll guide you through every detail to ensure you find the perfect property for your needs.
+              {P.hero.note}
             </p>
           </div>
         </div>
@@ -115,11 +116,13 @@ export default function PropertiesPage() {
           {/* Results Count */}
           <div className="mb-6">
             <p className="text-muted-foreground">
-              Showing{" "}
+              {P.results.showing}{" "}
               <span className="font-medium text-foreground">
                 {filteredProperties.length}
               </span>{" "}
-              {filteredProperties.length === 1 ? "property" : "properties"}
+              {filteredProperties.length === 1
+                ? P.results.propertySingular
+                : P.results.propertyPlural}
             </p>
           </div>
 
@@ -133,10 +136,10 @@ export default function PropertiesPage() {
           ) : (
             <div className="text-center py-16">
               <p className="text-lg text-muted-foreground mb-4">
-                No properties match your criteria.
+                {P.results.noResults}
               </p>
               <p className="text-sm text-muted-foreground">
-                Try adjusting your filters to see more results.
+                {P.results.noResultsHint}
               </p>
             </div>
           )}
@@ -144,7 +147,10 @@ export default function PropertiesPage() {
           {filteredProperties.length > 0 && (
             <div className="mt-12 flex justify-center">
               <p className="text-sm text-muted-foreground">
-                Showing all {filteredProperties.length} properties
+                {P.results.showingAll.replace(
+                  "{count}",
+                  String(filteredProperties.length)
+                )}
               </p>
             </div>
           )}

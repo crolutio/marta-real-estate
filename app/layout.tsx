@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { PageTransition } from "@/components/page-transition";
+import { LanguageProvider } from "@/components/language-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, AGENCY } from "@/lib/constants";
 
@@ -78,14 +79,16 @@ export default function RootLayout({
       <body
         className={`${mulishExtraBold.variable} ${playfair.variable} ${mulishExtraLight.variable} font-body antialiased`}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-          <SiteFooter />
-        </div>
-        <FloatingWhatsApp />
+        <LanguageProvider>
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <SiteFooter />
+          </div>
+          <FloatingWhatsApp />
+        </LanguageProvider>
         <Toaster position="bottom-right" />
       </body>
     </html>

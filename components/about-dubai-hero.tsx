@@ -6,8 +6,10 @@ import {
   ABOUT_DUBAI_HERO_CLIP_PATHS,
   ABOUT_DUBAI_HERO_VERTICAL_CLIP,
 } from "@/lib/hero-videos";
+import { useTranslation } from "@/components/language-provider";
 
 export function AboutDubaiHero() {
+  const { dict } = useTranslation();
   const [orientation, setOrientation] = React.useState<"horizontal" | "vertical">(
     "horizontal"
   );
@@ -41,15 +43,13 @@ export function AboutDubaiHero() {
         >
           <div className="text-white">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
-              Investment Destination
+              {dict.aboutDubaiHero.eyebrow}
             </p>
             <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              Discover Dubai&apos;s Luxury Real Estate Market
+              {dict.aboutDubaiHero.title}
             </h1>
             <p className="hidden md:block text-lg text-white/90 text-editorial">
-              Explore the world&apos;s most dynamic real estate market. From
-              iconic developments to emerging opportunities, Dubai offers
-              unparalleled potential for discerning investors.
+              {dict.aboutDubaiHero.body}
             </p>
           </div>
         </div>

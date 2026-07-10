@@ -15,8 +15,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { AGENCY } from "@/lib/constants";
 import { toast } from "sonner";
+import { useTranslation } from "@/components/language-provider";
 
 export default function ContactPage() {
+  const { dict } = useTranslation();
+  const c = dict.contactPage;
   const [formData, setFormData] = React.useState({
     name: "",
     subject: "",
@@ -40,11 +43,11 @@ export default function ContactPage() {
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      formData.subject || "Inquiry from Website"
+      formData.subject || c.form.defaultSubject
     );
     const body = encodeURIComponent(generateEmailBody());
     window.open(`mailto:${AGENCY.email}?subject=${subject}&body=${body}`);
-    toast.success("Opening your email client...");
+    toast.success(c.form.openingEmail);
   };
 
   const handleWhatsAppSubmit = () => {
@@ -54,7 +57,7 @@ export default function ContactPage() {
         : generateEmailBody()
     );
     window.open(`https://wa.me/${AGENCY.whatsapp}?text=${message}`, "_blank");
-    toast.success("Opening WhatsApp...");
+    toast.success(c.form.openingWhatsApp);
   };
 
   const isFormValid = formData.name.trim() && formData.message.trim();
@@ -66,18 +69,16 @@ export default function ContactPage() {
         <div className="container-wide">
           <div className="max-w-3xl">
             <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
-              Get in Touch
+              {c.hero.eyebrow}
             </p>
             <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              Let&apos;s Start a Conversation
+              {c.hero.title}
             </h1>
             <p className="text-muted-foreground/90 text-xl md:text-2xl font-medium leading-snug mb-4">
-              Whether you&apos;re looking to buy, sell, or invest in luxury real
-              estate, we&apos;re here to provide personalized guidance and expert
-              insight. Reach out to begin your journey.
+              {c.hero.body1}
             </p>
             <p className="text-lg md:text-xl text-muted-foreground text-editorial font-medium leading-snug">
-              You&apos;re in expert hands. We&apos;ll take care of every detail to ensure a smooth, successful experience.
+              {c.hero.body2}
             </p>
           </div>
         </div>
@@ -95,17 +96,17 @@ export default function ContactPage() {
               <Card className="h-full">
                 <CardContent className="p-8 h-full">
                   <h2 className="font-subtitle text-2xl font-semibold mb-6">
-                    Send a Message
+                    {c.form.heading}
                   </h2>
                   <form onSubmit={handleEmailSubmit} className="space-y-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium">
-                        Name <span className="text-destructive">*</span>
+                        {c.form.name} <span className="text-destructive">*</span>
                       </label>
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Your name"
+                        placeholder={c.form.namePlaceholder}
                         value={formData.name}
                         onChange={handleInputChange}
                         required
@@ -114,12 +115,12 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label htmlFor="subject" className="text-sm font-medium">
-                        Subject
+                        {c.form.subject}
                       </label>
                       <Input
                         id="subject"
                         name="subject"
-                        placeholder="What is this regarding?"
+                        placeholder={c.form.subjectPlaceholder}
                         value={formData.subject}
                         onChange={handleInputChange}
                       />
@@ -127,12 +128,12 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium">
-                        Message <span className="text-destructive">*</span>
+                        {c.form.message} <span className="text-destructive">*</span>
                       </label>
                       <Textarea
                         id="message"
                         name="message"
-                        placeholder="How can I help you?"
+                        placeholder={c.form.messagePlaceholder}
                         rows={6}
                         value={formData.message}
                         onChange={handleInputChange}
@@ -148,7 +149,7 @@ export default function ContactPage() {
                         className="flex-1 min-h-12 sm:min-h-0 py-4 sm:py-2 text-base"
                       >
                         <Send className="h-5 w-5 sm:h-4 sm:w-4 mr-2" />
-                        Send via Email
+                        {c.form.sendEmail}
                       </Button>
                       <Button
                         type="button"
@@ -159,7 +160,7 @@ export default function ContactPage() {
                         className="flex-1 min-h-12 sm:min-h-0 py-4 sm:py-2 text-base"
                       >
                         <MessageCircle className="h-5 w-5 sm:h-4 sm:w-4 mr-2" />
-                        Send via WhatsApp
+                        {c.form.sendWhatsApp}
                       </Button>
                     </div>
                   </form>
@@ -171,7 +172,7 @@ export default function ContactPage() {
             <div className="lg:order-1 h-full">
               <Card className="h-full">
                 <CardContent className="p-10 h-full space-y-10">
-                  <h3 className="font-subtitle text-2xl font-semibold">Contact Details</h3>
+                  <h3 className="font-subtitle text-2xl font-semibold">{c.details.heading}</h3>
 
                   <div className="grid sm:grid-cols-2 gap-12">
                     <div className="space-y-10">
@@ -180,7 +181,7 @@ export default function ContactPage() {
                           <Phone className="h-5 w-5 text-accent" />
                         </div>
                         <div>
-                          <p className="font-semibold mb-1">Phone</p>
+                          <p className="font-semibold mb-1">{c.details.phone}</p>
                           <a href={`tel:${AGENCY.phone}`} className="text-muted-foreground hover:text-foreground transition-colors">
                             {AGENCY.phone}
                           </a>
@@ -192,7 +193,7 @@ export default function ContactPage() {
                           <Mail className="h-5 w-5 text-accent" />
                         </div>
                         <div>
-                          <p className="font-semibold mb-1">Email</p>
+                          <p className="font-semibold mb-1">{c.details.email}</p>
                           <a href={`mailto:${AGENCY.email}`} className="text-muted-foreground hover:text-foreground transition-colors">
                             {AGENCY.email}
                           </a>
@@ -204,10 +205,10 @@ export default function ContactPage() {
                           <MessageCircle className="h-5 w-5 text-accent" />
                         </div>
                         <div className="space-y-2">
-                          <p className="font-semibold">WhatsApp</p>
+                          <p className="font-semibold">{c.details.whatsapp}</p>
                           <Button asChild variant="outline" size="sm">
                             <a href={`https://wa.me/${AGENCY.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                              Message on WhatsApp
+                              {c.details.whatsappCta}
                             </a>
                           </Button>
                         </div>
@@ -220,7 +221,7 @@ export default function ContactPage() {
                           <MapPin className="h-5 w-5 text-accent" />
                         </div>
                         <div>
-                          <p className="font-semibold mb-1">Office</p>
+                          <p className="font-semibold mb-1">{c.details.office}</p>
                           <p className="text-muted-foreground">
                             {AGENCY.address.line1}
                             <br />
@@ -235,7 +236,7 @@ export default function ContactPage() {
                           <Clock className="h-5 w-5 text-accent" />
                         </div>
                         <div>
-                          <p className="font-semibold mb-1">Hours</p>
+                          <p className="font-semibold mb-1">{c.details.hours}</p>
                           <p className="text-muted-foreground">{AGENCY.hours}</p>
                         </div>
                       </div>

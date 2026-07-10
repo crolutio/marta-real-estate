@@ -1,11 +1,14 @@
-import { AGENCY } from "@/lib/constants";
+"use client";
 
-const defaultMessage = encodeURIComponent(
-  `Hi, I'd like to know more about ${AGENCY.fullName}.`
-);
+import { AGENCY } from "@/lib/constants";
+import { useTranslation } from "@/components/language-provider";
 
 export function FloatingWhatsApp() {
-  const href = `https://wa.me/${AGENCY.whatsapp}?text=${defaultMessage}`;
+  const { dict } = useTranslation();
+  const message = encodeURIComponent(
+    dict.whatsapp.message.replace("{agency}", AGENCY.fullName)
+  );
+  const href = `https://wa.me/${AGENCY.whatsapp}?text=${message}`;
 
   return (
     <a
@@ -13,7 +16,7 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-4 ring-background transition-transform hover:scale-105 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] md:bottom-8 md:right-8"
-      aria-label={`Chat on WhatsApp with ${AGENCY.name}`}
+      aria-label={dict.whatsapp.aria}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

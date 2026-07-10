@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslation } from "@/components/language-provider";
 
 const GALLERY_VIDEOS = [
   "/videos/hero/hero-horizontal-1.mp4",
@@ -12,6 +13,7 @@ const GALLERY_VIDEOS = [
 ];
 
 export function AboutDubaiVideos() {
+  const { dict } = useTranslation();
   const refs = React.useRef<(HTMLVideoElement | null)[]>([]);
 
   const handlePlaying = React.useCallback((index: number) => {
@@ -24,10 +26,10 @@ export function AboutDubaiVideos() {
       <div className="container-wide">
         <div className="text-center mb-12">
           <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
-            Experience Dubai
+            {dict.aboutDubaiVideos.eyebrow}
           </p>
           <h2 className="font-subtitle text-3xl md:text-4xl font-semibold text-display">
-            Discover the city
+            {dict.aboutDubaiVideos.title}
           </h2>
         </div>
 

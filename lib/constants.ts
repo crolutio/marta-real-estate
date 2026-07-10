@@ -5,7 +5,7 @@ export const AGENCY = {
   tagline: "Exceptional Properties for Discerning Clients",
   description:
     "A boutique real estate agency specializing in luxury properties for high-net-worth individuals seeking exceptional investment opportunities.",
-  email: "marta@duna-partners.com",
+  email: "info@duna-partners.com",
   phone: "+971 55 754 1884",
   whatsapp: "+971557541884", // Format for wa.me link (no spaces, dashes, or special chars)
   address: {

@@ -7,7 +7,9 @@ import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { CardContent } from "@/components/ui/card";
 import { Property } from "@/lib/types";
 import { formatPriceForPreview } from "@/lib/data/properties";
+import { getPropertyListingCopy } from "@/lib/i18n/property-listings";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/components/language-provider";
 
 function preloadPropertyMedia(property: Property) {
   property.images.forEach((src) => {
@@ -27,6 +29,13 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property, featured = false }: PropertyCardProps) {
+  const { dict, locale } = useTranslation();
+  const card = dict.properties.card;
+  const listing = getPropertyListingCopy(property.slug, locale, {
+    shortDescription: property.shortDescription,
+    longDescription: property.longDescription,
+    highlights: property.highlights,
+  });
   const handleMouseEnter = React.useCallback(() => {
     preloadPropertyMedia(property);
   }, [property]);
@@ -106,13 +115,13 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
                   {(() => {
                     const first = property.unitTypes.split("|")[0].trim();
                     const m = first.match(/^(\d+)\s+to\s+(\d+)\s*Bed/i);
-                    return m ? `${m[1]} to ${m[2]} Beds` : first;
+                    return m ? `${m[1]} ${card.to} ${m[2]} ${card.beds}` : first;
                   })()}
                 </span>
                 {property.unitBathsRange && (
                   <span className="flex items-center gap-1.5">
                     <Bath className="h-4 w-4" />
-                    {property.unitBathsRange} Baths
+                    {property.unitBathsRange} {card.baths}
                   </span>
                 )}
                 {property.unitSizes && (
@@ -126,15 +135,15 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               <>
                 <span className="flex items-center gap-1.5">
                   <Bed className="h-4 w-4" />
-                  {property.bedrooms} Beds
+                  {property.bedrooms} {card.beds}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Bath className="h-4 w-4" />
-                  {property.bathrooms} Baths
+                  {property.bathrooms} {card.baths}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Square className="h-4 w-4" />
-                  {property.areaSqFt.toLocaleString()} sqft
+                  {property.areaSqFt.toLocaleString()} {card.sqft}
                 </span>
               </>
             )}
@@ -143,7 +152,7 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
           {/* Short Description (only on featured) - min-height so all cards match and text is visible */}
           {featured && (
             <p className="mt-3 text-base md:text-lg text-muted-foreground line-clamp-3 min-h-[4rem] flex-1">
-              {property.shortDescription}
+              {listing.shortDescription}
             </p>
           )}
         </CardContent>
