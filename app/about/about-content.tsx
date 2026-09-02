@@ -5,7 +5,7 @@ import { Shield, TrendingUp, Lock, Compass, Languages } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AboutPreview } from "@/components/about-preview";
 import { ConsultationCta } from "@/components/consultation-cta";
-import { VALUE_PROPS } from "@/lib/constants";
+import { AGENCY, VALUE_PROPS } from "@/lib/constants";
 import { useTranslation } from "@/components/language-provider";
 
 const iconMap = {
@@ -21,7 +21,7 @@ export function AboutContent() {
   const valueItems = dict.home.valueProps.items;
   const stats = [
     { value: "10+", label: a.stats.yearsExperience },
-    { value: "$2B+", label: a.stats.inTransactions },
+    { value: "+AED200M", label: a.stats.inTransactions },
     { value: "200+", label: a.stats.clientsServed },
   ];
 
@@ -39,13 +39,9 @@ export function AboutContent() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
         <div className="relative container-wide">
           <div className="max-w-2xl text-white">
-            <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-white font-semibold mb-4">
-              {a.hero.eyebrow}
-            </p>
-            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
+            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display">
               {a.hero.title}
             </h1>
-            <p className="text-lg text-white/90 text-editorial">{a.hero.body}</p>
           </div>
         </div>
       </section>
@@ -70,28 +66,65 @@ export function AboutContent() {
 
       <AboutPreview />
 
-      {/* Story Section */}
+      {/* Story Section — Marta's portrait lives here, beside her biography */}
       <section data-animate="reveal" className="animate-reveal section-padding">
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="space-y-4">
-              <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
-                {a.story.eyebrow}
-              </p>
-              <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-accent text-display">
-                {a.story.title}
-              </h2>
+          <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-10 lg:gap-12 items-start">
+            {/* Portrait Side */}
+            <div className="relative mx-auto lg:mx-0 w-full max-w-xs sm:max-w-sm">
+              <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
+                <Image
+                  src="/marta.jpg"
+                  alt={`${AGENCY.name} - Luxury Real Estate Specialist`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 80vw, 384px"
+                />
+              </div>
+              {/* Floating Stats Card */}
+              <div className="absolute -bottom-3 -right-3 bg-black text-white p-3 rounded-lg shadow-xl max-w-[180px] hidden md:block">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="text-center">
+                    <span className="block font-subtitle text-xl font-semibold text-white">
+                      10+
+                    </span>
+                    <span className="text-[10px] leading-tight text-white/85">
+                      {a.stats.yearsExperience}
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <span className="block font-subtitle text-xl font-semibold text-white">
+                      +AED200M
+                    </span>
+                    <span className="text-[10px] leading-tight text-white/85">
+                      {a.stats.inTransactions}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-4 text-muted-foreground text-editorial">
-              {a.story.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            {/* Story Side */}
+            <div className="space-y-6 min-w-0 w-full">
+              <div className="space-y-4">
+                <p className="font-title text-base md:text-lg tracking-[0.16em] uppercase text-accent font-semibold">
+                  {a.story.eyebrow}
+                </p>
+                <h2 className="font-subtitle text-4xl md:text-5xl font-semibold text-accent text-display">
+                  {a.story.title}
+                </h2>
+              </div>
 
-            <div className="flex items-center gap-3 pt-4">
-              <Languages className="h-5 w-5 text-accent" />
-              <span className="text-sm text-muted-foreground">{a.languages}</span>
+              <div className="space-y-4 text-muted-foreground text-editorial">
+                {a.story.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3 pt-4">
+                <Languages className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">{a.languages}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -101,9 +134,6 @@ export function AboutContent() {
       <section data-animate="reveal" className="animate-reveal section-padding bg-secondary/30">
         <div className="container-wide">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-accent font-semibold mb-4">
-              {a.values.eyebrow}
-            </p>
             <h2 className="font-subtitle text-3xl md:text-4xl lg:text-5xl font-semibold text-display">
               {a.values.title}
             </h2>

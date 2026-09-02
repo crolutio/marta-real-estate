@@ -21,6 +21,12 @@ interface HeroVideoBackgroundProps {
    * - "top-mobile": pinned to the top on mobile, centered on `md+`
    */
   contentAlign?: ContentAlign;
+  /**
+   * Still shown until the first video frame decodes, and left in place if
+   * decoding never succeeds. Without it a codec failure leaves an empty
+   * section — which is how the hero presented on some Apple devices.
+   */
+  poster?: string;
 }
 
 type ContentAlign = "center" | "start" | "top-mobile";
@@ -51,6 +57,7 @@ export function HeroVideoBackground({
   minHeight = "min-h-screen",
   crossfade = true,
   contentAlign = "center",
+  poster,
 }: HeroVideoBackgroundProps) {
   const n = videos.length;
   const noop = React.useCallback(() => {}, []);
@@ -64,6 +71,7 @@ export function HeroVideoBackground({
         minHeight={minHeight}
         className={className}
         contentAlign={contentAlign}
+        poster={poster}
         onFirstPlaying={noop}
       >
         {children}
@@ -78,6 +86,7 @@ export function HeroVideoBackground({
         minHeight={minHeight}
         className={className}
         contentAlign={contentAlign}
+        poster={poster}
         onFirstPlaying={noop}
       >
         {children}
@@ -91,6 +100,7 @@ export function HeroVideoBackground({
       minHeight={minHeight}
       className={className}
       contentAlign={contentAlign}
+      poster={poster}
       onFirstPlaying={noop}
     >
       {children}
@@ -103,6 +113,7 @@ function SingleClipHero({
   minHeight,
   className,
   contentAlign,
+  poster,
   children,
   onFirstPlaying,
 }: {
@@ -110,11 +121,15 @@ function SingleClipHero({
   minHeight: string;
   className: string;
   contentAlign: ContentAlign;
+  poster?: string;
   children: React.ReactNode;
   onFirstPlaying: () => void;
 }) {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [buffering, setBuffering] = React.useState(true);
+  // Once a layer errors it is done for good; a later `stalled`/`waiting` from
+  // the dead element must not bring the spinner back over the poster.
+  const [failed, setFailed] = React.useState(false);
 
   React.useLayoutEffect(() => {
     const v = videoRef.current;
@@ -148,6 +163,7 @@ function SingleClipHero({
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         className="absolute inset-0 z-0 w-full h-full object-cover"
         muted
         playsInline
@@ -160,14 +176,15 @@ function SingleClipHero({
         }}
         onCanPlay={() => setBuffering(false)}
         onTimeUpdate={() => setBuffering(false)}
-        onWaiting={() => setBuffering(true)}
-        onStalled={() => setBuffering(true)}
+        onWaiting={() => !failed && setBuffering(true)}
+        onStalled={() => !failed && setBuffering(true)}
         onError={() => {
           onFirstPlaying();
+          setFailed(true);
           setBuffering(false);
         }}
       />
-      {buffering && (
+      {buffering && !failed && (
         <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
@@ -185,6 +202,7 @@ function CutSwitchHero({
   minHeight,
   className,
   contentAlign,
+  poster,
   children,
   onFirstPlaying,
 }: {
@@ -192,6 +210,7 @@ function CutSwitchHero({
   minHeight: string;
   className: string;
   contentAlign: ContentAlign;
+  poster?: string;
   children: React.ReactNode;
   onFirstPlaying: () => void;
 }) {
@@ -205,6 +224,9 @@ function CutSwitchHero({
   const [frontLayer, setFrontLayer] = React.useState<0 | 1>(0);
   const [z, setZ] = React.useState<[number, number]>([2, 1]);
   const [buffering, setBuffering] = React.useState(true);
+  // Per-layer terminal failure. A dead layer's later `stalled`/`waiting`
+  // events must not re-show the spinner over the poster.
+  const [failed, setFailed] = React.useState<[boolean, boolean]>([false, false]);
 
   // Spinner reflects only the visible (front) layer's buffering state.
   const handlePlaying = React.useCallback(
@@ -222,10 +244,18 @@ function CutSwitchHero({
   );
   const handleWaiting = React.useCallback(
     (layer: 0 | 1) => {
-      if (layer === frontLayer) setBuffering(true);
+      if (layer === frontLayer && !failed[layer]) setBuffering(true);
     },
-    [frontLayer]
+    [frontLayer, failed]
   );
+  const handleError = React.useCallback((layer: 0 | 1) => {
+    setFailed((prev) => {
+      const next: [boolean, boolean] = [prev[0], prev[1]];
+      next[layer] = true;
+      return next;
+    });
+    setBuffering(false);
+  }, []);
 
   const refCallbacks = React.useMemo(
     () =>
@@ -358,6 +388,7 @@ function CutSwitchHero({
         <video
           ref={refCallbacks[0]}
           src={src0}
+          poster={poster}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: z[0] }}
           muted
@@ -371,11 +402,12 @@ function CutSwitchHero({
           onWaiting={() => handleWaiting(0)}
           onStalled={() => handleWaiting(0)}
           onEnded={() => advance(0)}
-          onError={() => setBuffering(false)}
+          onError={() => handleError(0)}
         />
         <video
           ref={refCallbacks[1]}
           src={src1}
+          poster={poster}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: z[1] }}
           muted
@@ -388,10 +420,10 @@ function CutSwitchHero({
           onWaiting={() => handleWaiting(1)}
           onStalled={() => handleWaiting(1)}
           onEnded={() => advance(1)}
-          onError={() => setBuffering(false)}
+          onError={() => handleError(1)}
         />
       </div>
-      {buffering && (
+      {buffering && !failed[frontLayer] && (
         <div className="absolute inset-0 z-[2] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>
@@ -408,6 +440,7 @@ function CrossfadeHero({
   minHeight,
   className,
   contentAlign,
+  poster,
   children,
   onFirstPlaying,
 }: {
@@ -415,6 +448,7 @@ function CrossfadeHero({
   minHeight: string;
   className: string;
   contentAlign: ContentAlign;
+  poster?: string;
   children: React.ReactNode;
   onFirstPlaying: () => void;
 }) {
@@ -430,6 +464,9 @@ function CrossfadeHero({
   const [opacity, setOpacity] = React.useState<[number, number]>([1, 0]);
   const [z, setZ] = React.useState<[number, number]>([2, 1]);
   const [buffering, setBuffering] = React.useState(true);
+  // Per-layer terminal failure. A dead layer's later `stalled`/`waiting`
+  // events must not re-show the spinner over the poster.
+  const [failed, setFailed] = React.useState<[boolean, boolean]>([false, false]);
 
   // Spinner reflects only the visible (front) layer's buffering state.
   const handlePlaying = React.useCallback(
@@ -447,10 +484,18 @@ function CrossfadeHero({
   );
   const handleWaiting = React.useCallback(
     (layer: 0 | 1) => {
-      if (layer === frontLayer) setBuffering(true);
+      if (layer === frontLayer && !failed[layer]) setBuffering(true);
     },
-    [frontLayer]
+    [frontLayer, failed]
   );
+  const handleError = React.useCallback((layer: 0 | 1) => {
+    setFailed((prev) => {
+      const next: [boolean, boolean] = [prev[0], prev[1]];
+      next[layer] = true;
+      return next;
+    });
+    setBuffering(false);
+  }, []);
 
   const refCallbacks = React.useMemo(
     () =>
@@ -584,6 +629,7 @@ function CrossfadeHero({
         <video
           ref={refCallbacks[0]}
           src={src0}
+          poster={poster}
           className={videoBaseClass}
           style={{
             opacity: opacity[0],
@@ -600,11 +646,12 @@ function CrossfadeHero({
           onWaiting={() => handleWaiting(0)}
           onStalled={() => handleWaiting(0)}
           onEnded={() => handleLayerEnded(0)}
-          onError={() => setBuffering(false)}
+          onError={() => handleError(0)}
         />
         <video
           ref={refCallbacks[1]}
           src={src1}
+          poster={poster}
           className={videoBaseClass}
           style={{
             opacity: opacity[1],
@@ -621,12 +668,12 @@ function CrossfadeHero({
           onWaiting={() => handleWaiting(1)}
           onStalled={() => handleWaiting(1)}
           onEnded={() => handleLayerEnded(1)}
-          onError={() => setBuffering(false)}
+          onError={() => handleError(1)}
         />
       </div>
 
 
-      {buffering && (
+      {buffering && !failed[frontLayer] && (
         <div className="absolute inset-0 z-[5] flex items-center justify-center bg-transparent pointer-events-none">
           <Loader2 className="h-12 w-12 text-white animate-spin" aria-hidden />
         </div>

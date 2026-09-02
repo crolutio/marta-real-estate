@@ -1,3 +1,9 @@
+/**
+ * Still frame from the first homepage clip. Shown until the first video frame
+ * decodes and left in place if decoding fails, so the hero is never empty.
+ */
+export const HOME_PAGE_HERO_POSTER = "/hero-poster.webp";
+
 /** Homepage hero reel (`public/videos/hero`). */
 export const HOME_PAGE_HERO_CLIP_PATHS: string[] = [
   "/videos/hero/hero-horizontal-1.mp4",

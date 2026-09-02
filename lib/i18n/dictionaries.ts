@@ -72,17 +72,17 @@ export interface Dictionary {
   aboutPreview: {
     eyebrow: string;
     title: string;
-    p1: string;
-    p2: string;
-    languages: string;
-    yearsExperience: string;
-    inTransactions: string;
+    /**
+     * Company copy. A leading entry may omit `heading` — its paragraphs then
+     * read as the intro under `title`; later entries are headed subsections.
+     */
+    sections: { heading?: string; paragraphs: string[] }[];
     topAgent: string;
     clients: string;
     globalNetwork: string;
   };
   about: {
-    hero: { eyebrow: string; title: string; body: string };
+    hero: { title: string };
     stats: {
       yearsExperience: string;
       inTransactions: string;
@@ -90,7 +90,7 @@ export interface Dictionary {
     };
     story: { eyebrow: string; title: string; paragraphs: string[] };
     languages: string;
-    values: { eyebrow: string; title: string };
+    values: { title: string };
     investors: {
       eyebrow: string;
       title: string;
@@ -390,22 +390,39 @@ const en: Dictionary = {
     aria: "Chat on WhatsApp",
   },
   aboutPreview: {
-    eyebrow: "About Marta Duran",
-    title: "A Trusted Partner in Luxury Real Estate",
-    p1: "Marta Duran is the CEO and owner of the company. With over a decade of experience in Dubai’s real estate market, she has established herself as a trusted advisor to investors seeking strategic, high-value opportunities. She combines her real estate expertise with a Master of Laws (LL.M.) qualification to provide comprehensive guidance as your Dubai expert.",
-    p2: "Whether you’re seeking a primary residence, vacation retreat, or investment opportunity, Marta offers exclusive access to Dubai’s most coveted properties with a refined, strategic approach to real estate investment. You’ll feel completely supported throughout your entire journey.",
-    languages: "Speaks Spanish, English, and German",
-    yearsExperience: "Years Experience",
-    inTransactions: "In Transactions",
+    eyebrow: "About Duna Partners",
+    title: "Your Trusted Partner for Investing in Dubai",
+    sections: [
+      {
+        paragraphs: [
+          "Dubai is more than a global city — it is a destination shaped by vision, ambition, and exceptional opportunity. Through our established network and carefully cultivated relationships, Duna Partners Real Estate provides discerning investors with privileged access to Dubai’s most prestigious properties and high-potential investment opportunities.",
+          "With the city’s population projected to grow from approximately 3.5 million to 7 million by 2040, Dubai continues to reinforce its position as one of the world’s most dynamic and sought-after real estate markets. Its resilient economy, investor-friendly environment, international appeal, and growing demand for premium residences create outstanding opportunities for capital appreciation and long-term returns.",
+        ],
+      },
+      {
+        heading: "Excellence in Real Estate",
+        paragraphs: [
+          "Our vision is to set a new benchmark in real estate by becoming the preferred partner for clients seeking exceptional properties, strategic investments, and an uncompromising level of service.",
+          "We believe that acquiring a property should be more than a transaction. It should be a seamless and highly personalized experience, defined by discretion, expertise, and a profound understanding of each client’s ambitions.",
+          "From exclusive off-market opportunities and landmark developments to distinguished residences in Dubai’s most desirable locations, we carefully curate every recommendation to reflect our clients’ investment objectives, lifestyle preferences, and long-term aspirations.",
+        ],
+      },
+      {
+        heading: "Personalised Advisory. Exceptional Results.",
+        paragraphs: [
+          "At Duna Partners Real Estate, every client relationship is built on trust, transparency, and individual attention. Our dedicated advisory approach simplifies every stage of the real estate journey, from opportunity selection and market analysis to negotiation and successful acquisition.",
+          "We uphold the highest standards of integrity and professionalism, combining in-depth market knowledge with strategic insight to deliver guidance that is precise, considered, and entirely tailored to each client.",
+          "We do not simply facilitate real estate transactions. We create exceptional investment experiences, elevate lifestyles, and build lasting relationships founded on trust, performance, and excellence.",
+        ],
+      },
+    ],
     topAgent: "Top 1% Agent",
     clients: "200+ Clients",
     globalNetwork: "Global Network",
   },
   about: {
     hero: {
-      eyebrow: "About Marta Duran",
       title: "A Legacy of Excellence in Luxury Real Estate",
-      body: "For over 10 years, I’ve helped clients navigate the world’s most prestigious real estate markets with discretion, expertise, and unwavering commitment to their success.",
     },
     stats: {
       yearsExperience: "Years Experience",
@@ -424,7 +441,6 @@ const en: Dictionary = {
     },
     languages: "Speaks Spanish, English, and German",
     values: {
-      eyebrow: "Marta’s Approach",
       title: "Principles That Guide Every Transaction",
     },
     investors: {
@@ -1075,22 +1091,39 @@ const es: Dictionary = {
     aria: "Chatear por WhatsApp",
   },
   aboutPreview: {
-    eyebrow: "Sobre Marta Duran",
-    title: "Un socio de confianza en el sector inmobiliario de lujo",
-    p1: "Marta Duran es la CEO y propietaria de la empresa. Con más de una década de experiencia en el mercado inmobiliario de Dubái, se ha consolidado como asesora de confianza para inversores que buscan oportunidades estratégicas y de alto valor. Combina su experiencia inmobiliaria con un Máster en Derecho (LL.M.) para ofrecer un asesoramiento integral como tu experta en Dubái.",
-    p2: "Ya busques una residencia principal, un refugio vacacional o una oportunidad de inversión, Marta ofrece acceso exclusivo a las propiedades más codiciadas de Dubái con un enfoque refinado y estratégico de la inversión inmobiliaria. Te sentirás totalmente acompañad@ durante todo el proceso.",
-    languages: "Habla español, inglés y alemán",
-    yearsExperience: "Años de experiencia",
-    inTransactions: "En transacciones",
+    eyebrow: "Sobre Duna Partners",
+    title: "Tu socio de confianza para invertir en Dubái",
+    sections: [
+      {
+        paragraphs: [
+          "Dubái es más que una ciudad global: es un destino moldeado por la visión, la ambición y oportunidades excepcionales. Gracias a nuestra red consolidada y a relaciones cultivadas con cuidado, Duna Partners Real Estate ofrece a inversores exigentes un acceso privilegiado a las propiedades más prestigiosas de Dubái y a oportunidades de inversión de alto potencial.",
+          "Con una población que se prevé que crezca de unos 3,5 millones a 7 millones en 2040, Dubái sigue reforzando su posición como uno de los mercados inmobiliarios más dinámicos y codiciados del mundo. Su economía resiliente, su entorno favorable al inversor, su atractivo internacional y la creciente demanda de residencias premium generan oportunidades extraordinarias de revalorización del capital y de rentabilidad a largo plazo.",
+        ],
+      },
+      {
+        heading: "Excelencia inmobiliaria",
+        paragraphs: [
+          "Nuestra visión es marcar un nuevo referente en el sector inmobiliario convirtiéndonos en el socio preferente de quienes buscan propiedades excepcionales, inversiones estratégicas y un nivel de servicio sin concesiones.",
+          "Creemos que adquirir una propiedad debe ser más que una transacción. Debe ser una experiencia fluida y altamente personalizada, definida por la discreción, la especialización y una comprensión profunda de las ambiciones de cada cliente.",
+          "Desde oportunidades exclusivas fuera de mercado y promociones emblemáticas hasta residencias distinguidas en las zonas más deseadas de Dubái, seleccionamos con cuidado cada recomendación para que refleje los objetivos de inversión, las preferencias de estilo de vida y las aspiraciones a largo plazo de nuestros clientes.",
+        ],
+      },
+      {
+        heading: "Asesoramiento personalizado. Resultados excepcionales.",
+        paragraphs: [
+          "En Duna Partners Real Estate, cada relación con el cliente se construye sobre la confianza, la transparencia y la atención individual. Nuestro enfoque de asesoramiento dedicado simplifica cada etapa del proceso inmobiliario, desde la selección de oportunidades y el análisis de mercado hasta la negociación y la adquisición.",
+          "Mantenemos los más altos estándares de integridad y profesionalidad, combinando un conocimiento profundo del mercado con visión estratégica para ofrecer una orientación precisa, meditada y completamente adaptada a cada cliente.",
+          "No nos limitamos a facilitar operaciones inmobiliarias. Creamos experiencias de inversión excepcionales, elevamos estilos de vida y construimos relaciones duraderas basadas en la confianza, los resultados y la excelencia.",
+        ],
+      },
+    ],
     topAgent: "Agente del 1% superior",
     clients: "Más de 200 clientes",
     globalNetwork: "Red global",
   },
   about: {
     hero: {
-      eyebrow: "Sobre Marta Duran",
       title: "Un legado de excelencia en el sector inmobiliario de lujo",
-      body: "Durante más de 10 años he ayudado a mis clientes a moverse por los mercados inmobiliarios más prestigiosos del mundo con discreción, experiencia y un compromiso inquebrantable con su éxito.",
     },
     stats: {
       yearsExperience: "Años de experiencia",
@@ -1109,7 +1142,6 @@ const es: Dictionary = {
     },
     languages: "Habla español, inglés y alemán",
     values: {
-      eyebrow: "El enfoque de Marta",
       title: "Principios que guían cada operación",
     },
     investors: {
@@ -1760,22 +1792,39 @@ const de: Dictionary = {
     aria: "Auf WhatsApp chatten",
   },
   aboutPreview: {
-    eyebrow: "Über Marta Duran",
-    title: "Ein vertrauensvoller Partner für Luxusimmobilien",
-    p1: "Marta Duran ist CEO und Inhaberin des Unternehmens. Mit über einem Jahrzehnt Erfahrung auf dem Dubaier Immobilienmarkt hat sie sich als vertrauenswürdige Beraterin für Investoren etabliert, die strategische, hochwertige Gelegenheiten suchen. Sie verbindet ihre Immobilienexpertise mit einem Master of Laws (LL.M.) und bietet als Ihre Dubai-Expertin eine umfassende Beratung.",
-    p2: "Ob Erstwohnsitz, Feriendomizil oder Investitionsmöglichkeit – Marta bietet exklusiven Zugang zu den begehrtesten Immobilien Dubais mit einem fundierten, strategischen Ansatz für Immobilieninvestitionen. Sie werden während des gesamten Prozesses umfassend begleitet.",
-    languages: "Spricht Spanisch, Englisch und Deutsch",
-    yearsExperience: "Jahre Erfahrung",
-    inTransactions: "An Transaktionen",
+    eyebrow: "Über Duna Partners",
+    title: "Ihr vertrauensvoller Partner für Investitionen in Dubai",
+    sections: [
+      {
+        paragraphs: [
+          "Dubai ist mehr als eine Weltstadt – es ist ein Ziel, geprägt von Weitblick, Ambition und außergewöhnlichen Möglichkeiten. Über unser etabliertes Netzwerk und sorgfältig gepflegte Beziehungen eröffnet Duna Partners Real Estate anspruchsvollen Investoren einen privilegierten Zugang zu den prestigeträchtigsten Immobilien Dubais und zu Investitionsmöglichkeiten mit hohem Potenzial.",
+          "Mit einer Bevölkerung, die bis 2040 von rund 3,5 Millionen auf 7 Millionen wachsen soll, festigt Dubai seine Position als einer der dynamischsten und begehrtesten Immobilienmärkte der Welt. Die robuste Wirtschaft, das investorenfreundliche Umfeld, die internationale Anziehungskraft und die steigende Nachfrage nach Premium-Residenzen schaffen herausragende Chancen für Wertsteigerung und langfristige Renditen.",
+        ],
+      },
+      {
+        heading: "Exzellenz in Immobilien",
+        paragraphs: [
+          "Unsere Vision ist es, in der Immobilienbranche einen neuen Maßstab zu setzen und zum bevorzugten Partner für Kunden zu werden, die außergewöhnliche Objekte, strategische Investitionen und ein kompromissloses Serviceniveau suchen.",
+          "Wir sind überzeugt, dass der Erwerb einer Immobilie mehr sein sollte als eine Transaktion. Er sollte ein reibungsloses und höchst persönliches Erlebnis sein, geprägt von Diskretion, Fachwissen und einem tiefen Verständnis für die Ziele jedes Kunden.",
+          "Von exklusiven Off-Market-Gelegenheiten und wegweisenden Projekten bis zu herausragenden Residenzen in den begehrtesten Lagen Dubais – wir kuratieren jede Empfehlung sorgfältig, damit sie den Investitionszielen, Lifestyle-Vorstellungen und langfristigen Ambitionen unserer Kunden entspricht.",
+        ],
+      },
+      {
+        heading: "Persönliche Beratung. Außergewöhnliche Ergebnisse.",
+        paragraphs: [
+          "Bei Duna Partners Real Estate basiert jede Kundenbeziehung auf Vertrauen, Transparenz und individueller Aufmerksamkeit. Unser dedizierter Beratungsansatz vereinfacht jede Phase des Immobilienprozesses – von der Auswahl der Gelegenheit und der Marktanalyse bis zur Verhandlung und zum erfolgreichen Erwerb.",
+          "Wir halten höchste Standards an Integrität und Professionalität ein und verbinden fundierte Marktkenntnis mit strategischem Weitblick, um eine Beratung zu liefern, die präzise, durchdacht und vollständig auf jeden Kunden zugeschnitten ist.",
+          "Wir vermitteln nicht einfach Immobiliengeschäfte. Wir schaffen außergewöhnliche Investitionserlebnisse, bereichern Lebensstile und bauen dauerhafte Beziehungen auf, die auf Vertrauen, Leistung und Exzellenz beruhen.",
+        ],
+      },
+    ],
     topAgent: "Top-1%-Maklerin",
     clients: "Über 200 Kunden",
     globalNetwork: "Globales Netzwerk",
   },
   about: {
     hero: {
-      eyebrow: "Über Marta Duran",
       title: "Ein Vermächtnis der Exzellenz in Luxusimmobilien",
-      body: "Seit über 10 Jahren unterstütze ich meine Kunden dabei, sich auf den renommiertesten Immobilienmärkten der Welt zurechtzufinden – mit Diskretion, Fachwissen und unerschütterlichem Engagement für ihren Erfolg.",
     },
     stats: {
       yearsExperience: "Jahre Erfahrung",
@@ -1794,7 +1843,6 @@ const de: Dictionary = {
     },
     languages: "Spricht Spanisch, Englisch und Deutsch",
     values: {
-      eyebrow: "Martas Ansatz",
       title: "Grundsätze, die jede Transaktion leiten",
     },
     investors: {

@@ -25,7 +25,7 @@ export const AGENCY = {
 // SEO Defaults
 export const SEO = {
   siteName: "Marta Duran Real Estate",
-  defaultTitle: "Marta Duran Real Estate | Luxury Properties & Investment",
+  defaultTitle: "Luxury Properties & Investment",
   defaultDescription:
     "Discover exceptional luxury properties with Marta Duran Real Estate. Specializing in premium real estate investments for discerning clients worldwide.",
   defaultKeywords: [
@@ -46,7 +46,8 @@ export const NAV_LINKS = [
   { label: "Invest", href: "/invest" },
   { label: "About Dubai", href: "/about-dubai" },
   { label: "Services", href: "/services" },
-  { label: "About Spain", href: "/about-spain" },
+  // About Spain is hidden from the nav for now. The page still exists at
+  // /about-spain and renders fine — re-add this entry to bring it back.
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;

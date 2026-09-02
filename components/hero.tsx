@@ -6,7 +6,10 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { AGENCY } from "@/lib/constants";
-import { HOME_PAGE_HERO_CLIP_PATHS } from "@/lib/hero-videos";
+import {
+  HOME_PAGE_HERO_CLIP_PATHS,
+  HOME_PAGE_HERO_POSTER,
+} from "@/lib/hero-videos";
 import { useTranslation } from "@/components/language-provider";
 
 export function Hero() {
@@ -14,6 +17,7 @@ export function Hero() {
   return (
     <HeroVideoBackground
       videos={HOME_PAGE_HERO_CLIP_PATHS}
+      poster={HOME_PAGE_HERO_POSTER}
       minHeight="min-h-screen"
       className="pt-20"
       crossfade={false}
