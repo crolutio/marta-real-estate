@@ -247,6 +247,7 @@ export interface Dictionary {
       bedrooms: string;
       bathrooms: string;
       livingArea: string;
+      officeSize: string;
       typeLabel: string;
       sqFt: string;
       salesOffer: string;
@@ -927,6 +928,7 @@ const en: Dictionary = {
       Apartment: "Apartment",
       Estate: "Estate",
       Townhouse: "Townhouse",
+      Office: "Office",
     },
     statuses: {
       "For Sale": "For Sale",
@@ -948,6 +950,7 @@ const en: Dictionary = {
       bedrooms: "Bedrooms",
       bathrooms: "Bathrooms",
       livingArea: "Living area",
+      officeSize: "Office size",
       typeLabel: "Type",
       sqFt: "sq ft",
       salesOffer: "Sales offer",
@@ -1628,6 +1631,7 @@ const es: Dictionary = {
       Apartment: "Apartamento",
       Estate: "Finca",
       Townhouse: "Casa adosada",
+      Office: "Oficina",
     },
     statuses: {
       "For Sale": "En venta",
@@ -1649,6 +1653,7 @@ const es: Dictionary = {
       bedrooms: "Dormitorios",
       bathrooms: "Baños",
       livingArea: "Superficie habitable",
+      officeSize: "Superficie de oficina",
       typeLabel: "Tipo",
       sqFt: "pies²",
       salesOffer: "Oferta de venta",
@@ -2329,6 +2334,7 @@ const de: Dictionary = {
       Apartment: "Wohnung",
       Estate: "Anwesen",
       Townhouse: "Reihenhaus",
+      Office: "Büro",
     },
     statuses: {
       "For Sale": "Zu verkaufen",
@@ -2350,6 +2356,7 @@ const de: Dictionary = {
       bedrooms: "Schlafzimmer",
       bathrooms: "Badezimmer",
       livingArea: "Wohnfläche",
+      officeSize: "Bürofläche",
       typeLabel: "Typ",
       sqFt: "sq ft",
       salesOffer: "Verkaufsangebot",

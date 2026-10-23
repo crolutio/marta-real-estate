@@ -111,6 +111,34 @@ const en: Record<string, PropertyListingCopy> = {
       "Urban convenience",
     ],
   },
+  "villa-tresor-al-barari": {
+    shortDescription:
+      "A custom-built trophy villa on one of the largest plots in The Collection, Al Barari — Dubai's green heart.",
+    longDescription:
+      "Villa Tresor is one of Al Barari's finest custom-built residences, occupying a rare large plot within the prestigious enclave of The Collection. Designed and finished to an exceptional standard, it brings together timeless architecture, premium materials and thoughtfully curated living spaces, with the privacy and scale of a true trophy residence. Expansive landscaped gardens, elegant reception rooms and generous indoor and outdoor entertaining areas create a refined setting for both family life and hosting. The villa offers 14,551 sq. ft. of built-up area on a 21,076 sq. ft. plot, six bedrooms and seven bathrooms, and is vacant on transfer. Al Barari is known as the \"Green Heart of Dubai\", home to botanical gardens, The Farm restaurant and the Heart & Soul Spa, about 20 minutes from Downtown Dubai and DXB Airport.",
+    highlights: [
+      "Custom-built on one of the largest plots in The Collection",
+      "14,551 sq. ft. built-up on a 21,076 sq. ft. plot",
+      "Resort-style pool and landscaped gardens",
+      "Temperature-controlled wine cellar",
+      "Private study, library and staff accommodation",
+      "Vacant on transfer",
+    ],
+  },
+  "ahs-tower-office": {
+    shortDescription:
+      "The highest half floor in AHS Tower — Grade A+ office space moments from DIFC, ready Q1 2027.",
+    longDescription:
+      "AHS Tower is an iconic new 69-storey commercial landmark positioned moments from Dubai International Financial Centre, in the heart of Dubai's financial district, and the first Grade A+ office space brought to market in Dubai. This is the tower's highest half floor: 3,379 sq. ft. with floor-to-ceiling glazing, premium specifications and an open, intelligent layout. Occupants benefit from an award-winning spa and state-of-the-art gym, a rooftop viewing lounge, curated restaurants and bars, and dedicated valet service. Ready Q1 2027, it is a rare opportunity to secure a next-generation headquarters in one of Dubai's most prestigious business addresses.",
+    highlights: [
+      "Highest half floor in the tower",
+      "Grade A+ office space",
+      "Iconic 69-storey tower moments from DIFC",
+      "Ready Q1 2027",
+      "Rooftop lounge, spa, gym and restaurants",
+      "Easy access to Sheikh Zayed Road and the Metro",
+    ],
+  },
 };
 
 const es: Record<string, PropertyListingCopy> = {
@@ -218,6 +246,34 @@ const es: Record<string, PropertyListingCopy> = {
       "Comodidad urbana",
     ],
   },
+  "villa-tresor-al-barari": {
+    shortDescription:
+      "Una villa excepcional construida a medida en una de las parcelas más grandes de The Collection, Al Barari, el corazón verde de Dubái.",
+    longDescription:
+      "Villa Tresor es una de las mejores residencias construidas a medida de Al Barari y ocupa una parcela excepcionalmente grande dentro del prestigioso enclave de The Collection. Diseñada y terminada con un estándar excepcional, combina arquitectura atemporal, materiales de primera calidad y espacios cuidadosamente concebidos, con la privacidad y la escala de una auténtica residencia de prestigio. Amplios jardines paisajísticos, elegantes salones de recepción y generosas zonas de ocio interiores y exteriores crean un entorno refinado tanto para la vida familiar como para recibir invitados. La villa ofrece 14.551 pies² construidos sobre una parcela de 21.076 pies², seis dormitorios y siete baños, y se entrega vacía en la transferencia. Al Barari, conocido como el «corazón verde de Dubái», alberga jardines botánicos, el restaurante The Farm y el Heart & Soul Spa, a unos 20 minutos de Downtown Dubai y del aeropuerto DXB.",
+    highlights: [
+      "Construida a medida en una de las parcelas más grandes de The Collection",
+      "14.551 pies² construidos sobre una parcela de 21.076 pies²",
+      "Piscina de estilo resort y jardines paisajísticos",
+      "Bodega con control de temperatura",
+      "Despacho, biblioteca y alojamiento para el personal",
+      "Se entrega vacía en la transferencia",
+    ],
+  },
+  "ahs-tower-office": {
+    shortDescription:
+      "La media planta más alta de AHS Tower: oficinas de categoría A+ a pocos minutos del DIFC, entrega en el primer trimestre de 2027.",
+    longDescription:
+      "AHS Tower es un nuevo e icónico rascacielos comercial de 69 plantas, situado a pocos minutos del Dubai International Financial Centre, en el corazón del distrito financiero de Dubái, y el primer espacio de oficinas de categoría A+ que sale al mercado en la ciudad. Se trata de la media planta más alta de la torre: 3.379 pies² con ventanales de suelo a techo, especificaciones premium y una distribución abierta e inteligente. Los ocupantes disfrutan de un spa galardonado y un gimnasio de última generación, un mirador en la azotea, restaurantes y bares seleccionados y servicio de aparcacoches. Con entrega en el primer trimestre de 2027, es una oportunidad única para asegurar una sede de nueva generación en una de las direcciones de negocios más prestigiosas de Dubái.",
+    highlights: [
+      "La media planta más alta de la torre",
+      "Oficinas de categoría A+",
+      "Icónica torre de 69 plantas junto al DIFC",
+      "Entrega en el primer trimestre de 2027",
+      "Lounge en la azotea, spa, gimnasio y restaurantes",
+      "Acceso directo a Sheikh Zayed Road y al metro",
+    ],
+  },
 };
 
 const de: Record<string, PropertyListingCopy> = {
@@ -323,6 +379,34 @@ const de: Record<string, PropertyListingCopy> = {
       "Premium-Annehmlichkeiten",
       "Dubai-Harbour-Lifestyle",
       "Urbaner Komfort",
+    ],
+  },
+  "villa-tresor-al-barari": {
+    shortDescription:
+      "Eine maßgeschneiderte Trophäen-Villa auf einem der größten Grundstücke von The Collection, Al Barari – dem grünen Herzen Dubais.",
+    longDescription:
+      "Villa Tresor ist eine der schönsten individuell gebauten Residenzen in Al Barari und liegt auf einem seltenen, besonders großen Grundstück in der prestigeträchtigen Enklave The Collection. Mit außergewöhnlichem Anspruch entworfen und ausgestattet, verbindet sie zeitlose Architektur, hochwertige Materialien und durchdacht gestaltete Wohnräume mit der Privatsphäre und Großzügigkeit einer echten Trophäen-Residenz. Weitläufige, angelegte Gärten, elegante Empfangsräume und großzügige Bereiche zum Entertainen drinnen und draußen schaffen einen eleganten Rahmen für Familienleben und Gastgeber gleichermaßen. Die Villa bietet 14.551 ft² Wohnfläche auf einem 21.076 ft² großen Grundstück, sechs Schlafzimmer und sieben Bäder und wird bei Übertragung frei übergeben. Al Barari gilt als „grünes Herz Dubais“ mit botanischen Gärten, dem Restaurant The Farm und dem Heart & Soul Spa, rund 20 Minuten von Downtown Dubai und dem Flughafen DXB entfernt.",
+    highlights: [
+      "Individuell gebaut auf einem der größten Grundstücke in The Collection",
+      "14.551 ft² Wohnfläche auf 21.076 ft² Grundstück",
+      "Pool im Resort-Stil und angelegte Gärten",
+      "Temperierter Weinkeller",
+      "Arbeitszimmer, Bibliothek und Personalunterkunft",
+      "Bei Übertragung frei",
+    ],
+  },
+  "ahs-tower-office": {
+    shortDescription:
+      "Die höchste halbe Etage im AHS Tower – Grade-A+-Büroflächen wenige Minuten vom DIFC, Fertigstellung Q1 2027.",
+    longDescription:
+      "Der AHS Tower ist ein neues, ikonisches Geschäftshochhaus mit 69 Stockwerken, nur wenige Minuten vom Dubai International Financial Centre entfernt im Herzen von Dubais Finanzviertel – und die erste Grade-A+-Bürofläche, die in Dubai auf den Markt kommt. Angeboten wird die höchste halbe Etage des Turms: 3.379 ft² mit raumhohen Fenstern, Premium-Ausstattung und einem offenen, durchdachten Grundriss. Nutzer profitieren von einem preisgekrönten Spa, einem hochmodernen Fitnessstudio, einer Aussichtslounge auf dem Dach, ausgewählten Restaurants und Bars sowie einem Valet-Service. Mit Fertigstellung im ersten Quartal 2027 ist dies eine seltene Gelegenheit, sich einen Firmensitz der nächsten Generation an einer der renommiertesten Geschäftsadressen Dubais zu sichern.",
+    highlights: [
+      "Höchste halbe Etage des Turms",
+      "Grade-A+-Büroflächen",
+      "Ikonischer 69-geschossiger Turm nahe dem DIFC",
+      "Fertigstellung Q1 2027",
+      "Dachlounge, Spa, Fitnessstudio und Restaurants",
+      "Schnelle Anbindung an die Sheikh Zayed Road und die Metro",
     ],
   },
 };

@@ -133,10 +133,12 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
               </>
             ) : (
               <>
-                <span className="flex items-center gap-1.5">
-                  <Bed className="h-4 w-4" />
-                  {property.bedrooms} {card.beds}
-                </span>
+                {property.bedrooms > 0 && (
+                  <span className="flex items-center gap-1.5">
+                    <Bed className="h-4 w-4" />
+                    {property.bedrooms} {card.beds}
+                  </span>
+                )}
                 <span className="flex items-center gap-1.5">
                   <Bath className="h-4 w-4" />
                   {property.bathrooms} {card.baths}

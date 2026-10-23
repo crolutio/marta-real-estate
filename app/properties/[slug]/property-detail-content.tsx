@@ -125,7 +125,11 @@ export function PropertyDetailContent({
               </div>
 
               {/* Key Facts */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-secondary/30 rounded-lg">
+              <div
+                className={`grid grid-cols-2 gap-4 p-6 bg-secondary/30 rounded-lg ${
+                  property.unitTypes || property.bedrooms > 0 ? "md:grid-cols-4" : "md:grid-cols-3"
+                }`}
+              >
                 {property.unitTypes ? (
                   <>
                     <div className="text-center">
@@ -160,11 +164,13 @@ export function PropertyDetailContent({
                   </>
                 ) : (
                   <>
-                    <div className="text-center">
-                      <Bed className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                      <p className="font-semibold text-lg">{property.bedrooms}</p>
-                      <p className="text-sm text-muted-foreground">{d.bedrooms}</p>
-                    </div>
+                    {property.bedrooms > 0 && (
+                      <div className="text-center">
+                        <Bed className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                        <p className="font-semibold text-lg">{property.bedrooms}</p>
+                        <p className="text-sm text-muted-foreground">{d.bedrooms}</p>
+                      </div>
+                    )}
                     <div className="text-center">
                       <Bath className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
                       <p className="font-semibold text-lg">{property.bathrooms}</p>
@@ -175,7 +181,7 @@ export function PropertyDetailContent({
                       <p className="font-semibold text-lg">
                         {property.areaSqFt.toLocaleString()} {d.sqFt}
                       </p>
-                      <p className="text-sm text-muted-foreground">{d.livingArea}</p>
+                      <p className="text-sm text-muted-foreground">{property.type === "Office" ? d.officeSize : d.livingArea}</p>
                     </div>
                     <div className="text-center">
                       <Building2 className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />

@@ -4,14 +4,12 @@
  */
 export const HOME_PAGE_HERO_POSTER = "/hero-poster.webp";
 
-/** Homepage hero reel (`public/videos/hero`). */
+/**
+ * Homepage hero (`public/videos/hero`). A single clip plays on a loop; add
+ * more paths here to turn it back into a multi-clip reel.
+ */
 export const HOME_PAGE_HERO_CLIP_PATHS: string[] = [
-  "/videos/hero/hero-horizontal-1.mp4",
-  "/videos/hero/hero-horizontal-2.mp4",
-  "/videos/hero/hero-horizontal-3.mp4",
-  "/videos/hero/hero-horizontal-4.mp4",
-  "/videos/hero/hero-horizontal-5.mp4",
-  "/videos/hero/hero-horizontal-6.mp4",
+  "/videos/hero/hero-main.mp4",
 ];
 
 /** About Dubai hero clips (`public/videos/about-dubai`). */

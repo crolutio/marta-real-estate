@@ -38,6 +38,7 @@ const propertyTypes: (PropertyType | "all")[] = [
   "Apartment",
   "Estate",
   "Townhouse",
+  "Office",
 ];
 
 const statusOptions: (PropertyStatus | "all")[] = [

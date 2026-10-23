@@ -6,7 +6,8 @@ export type PropertyType =
   | "Mansion"
   | "Apartment"
   | "Estate"
-  | "Townhouse";
+  | "Townhouse"
+  | "Office";
 export type Currency = "USD" | "EUR" | "GBP" | "AED";
 
 /** Used by the Invest page category tabs (Dubai opportunities). */
