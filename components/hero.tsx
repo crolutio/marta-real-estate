@@ -34,7 +34,7 @@ export function Hero() {
               alt={`${AGENCY.fullName} logo`}
               width={1260}
               height={360}
-              className="h-48 md:h-72 lg:h-80 w-auto object-contain object-center mb-6 mx-auto"
+              className="h-48 md:h-72 lg:h-80 w-auto object-contain object-center mb-6 mx-auto [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.55))_drop-shadow(0_2px_24px_rgba(0,0,0,0.45))]"
               priority
             />
 
