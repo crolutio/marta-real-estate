@@ -34,16 +34,12 @@ export function Hero() {
               alt={`${AGENCY.fullName} logo`}
               width={1260}
               height={360}
-              className="h-48 md:h-60 w-auto object-contain object-center md:object-left object-top mb-2 md:mb-3 mx-auto md:mx-0"
+              className="h-48 md:h-60 w-auto object-contain object-center md:object-left object-top mb-6 mx-auto md:mx-0"
               priority
             />
 
-            <p className="font-title text-base md:text-lg tracking-[0.18em] uppercase text-white font-semibold mb-4">
-              {t("hero.eyebrow")}
-            </p>
-            <h1 className="font-subtitle text-4xl md:text-5xl lg:text-6xl font-semibold text-display mb-6">
-              {t("hero.headline")}
-            </h1>
+            {/* Visually hidden: the hero shows only the logo, but the page still needs an h1 for SEO and screen readers. */}
+            <h1 className="sr-only">{t("hero.headline")}</h1>
 
             <div className="flex justify-center md:justify-start">
               <Button
