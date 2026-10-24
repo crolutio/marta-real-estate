@@ -25,7 +25,7 @@ export function Hero() {
       <div className="container-wide w-full">
         <div
           data-animate="reveal"
-          className="max-w-2xl animate-reveal mx-auto md:mx-0 text-center md:text-left"
+          className="max-w-2xl animate-reveal mx-auto text-center"
         >
           <div className="text-white">
             <Image
@@ -34,14 +34,14 @@ export function Hero() {
               alt={`${AGENCY.fullName} logo`}
               width={1260}
               height={360}
-              className="h-48 md:h-60 w-auto object-contain object-center md:object-left object-top mb-6 mx-auto md:mx-0"
+              className="h-48 md:h-72 lg:h-80 w-auto object-contain object-center mb-6 mx-auto"
               priority
             />
 
             {/* Visually hidden: the hero shows only the logo, but the page still needs an h1 for SEO and screen readers. */}
             <h1 className="sr-only">{t("hero.headline")}</h1>
 
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center">
               <Button
                 asChild
                 size="lg"
